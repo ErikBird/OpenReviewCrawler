@@ -1,0 +1,17 @@
+{
+  "targets": [
+    {
+      "venue": "ICLR.cc",
+      "years": [2019]
+    },
+    {
+      "venue": "NIPS.cc",
+      "years": "all"
+    }
+  ],
+  "username": "",
+  "password": "",
+  "outdir": ".",
+  "filename": "out.json",
+  "json_indent": 3
+}
