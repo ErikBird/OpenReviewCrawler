@@ -53,6 +53,9 @@ if __name__ == '__main__':
         venues = openreview.tools.get_all_venues(c)
         print(*venues, sep="\n")
 
+        for r in c.get_references(referent='ryQu7f-RZ'):
+            print(r)
+
     else:
         config = json.load(open(args.config))
 
