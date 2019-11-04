@@ -4,7 +4,11 @@ import os
 from datetime import date
 import re
 import openreview
+import requests
 
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+import selenium.webdriver.support.ui as ui
 
 def crawl(client, config):
     results = []
@@ -53,11 +57,38 @@ if __name__ == '__main__':
         venues = openreview.tools.get_all_venues(c)
         print(*venues, sep="\n")
 
-        for r in c.get_references(referent='ryQu7f-RZ'):
-            print(r)
+        my_url = 'http://openreview.net/revisions?id=ryQu7f-RZ'
+        options = Options()
+        options.headless = True
+        driver = webdriver.Firefox(options=options, executable_path=r'/home/erikschwan/PycharmProjects/OpenReviewCrawler/geckodriver')
+        #driver = webdriver.PhantomJS('Resources/phantomjs-2.1.1-linux-x86_64/bin/phantomjs')
+        driver.get(my_url)
+        wait = ui.WebDriverWait(driver, 10)
+        wait.until(lambda driver: driver.find_element_by_class_name('row'))
+        print(driver.find_element_by_class_name('row'))
+        for elm in driver.find_elements_by_class_name('title_pdf_row clearfix'):
+           print(elm.text)
+        #response = session.body()
+        #soup = BeautifulSoup(response)
+        #print(soup.find(id="note_Syax5XD9M"))
+        #response = c.__handle_response(response)
+        #for t in response.json()['tags']:
+        #   print(t)
 
     else:
         config = json.load(open(args.config))
+        my_url = 'http://openreview.net/revisions?id=ryQu7f-RZ'
+        options = Options()
+        options.headless = True
+        driver = webdriver.Firefox(options=options,
+                                   executable_path=config['geckodriver'])
+        # driver = webdriver.PhantomJS('Resources/phantomjs-2.1.1-linux-x86_64/bin/phantomjs')
+        driver.get(my_url)
+        wait = ui.WebDriverWait(driver, 10)
+        wait.until(lambda driver: driver.find_element_by_class_name('row'))
+        print(driver.find_element_by_class_name('row'))
+        for elm in driver.find_elements_by_class_name('title_pdf_row clearfix'):
+            print(elm.text)
 
         username = config["username"]
         if args.password is not None:
