@@ -44,14 +44,46 @@ def merge_invitations(invitations):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-c', '--config', help='configuration for the crawling')
+        '-c', '--config', help='configuration for the crawling', default='config.json')
     parser.add_argument(
         '-p', '--password', help='password for the username given in the config. Overwrites password in config')
     parser.add_argument('--baseurl', default='https://openreview.net')
 
     args = parser.parse_args()
 
+    try:
+        config = json.load(open(args.config))
+    except:
+        print('The configuration File has not been found. \n Please Make sure it is correctly Named \'config.json\' and is located in the project root foulder.\n Otherwise please specify the configuration Path with the parser argument \'-c PATH\'')
+
+    print("Available venues:")
+    c = openreview.Client(baseurl='https://openreview.net')
+    venues = openreview.tools.get_all_venues(c)
+    print(*venues, sep="\n")
+
+    my_url = 'http://openreview.net/revisions?id=ryQu7f-RZ'
+    options = Options()
+    options.headless = True
+    try:
+        driver = webdriver.Firefox(options=options,
+                                   executable_path=config['geckodriver'])
+    except:
+        print('The webdriver has not been setup correctly! Please follow the README Installation instructions to setup the geckodriver.')
+
+
+    # driver = webdriver.PhantomJS('Resources/phantomjs-2.1.1-linux-x86_64/bin/phantomjs')
+    driver.get(my_url)
+    wait = ui.WebDriverWait(driver, 10)
+    wait.until(lambda driver: driver.find_element_by_class_name('row'))
+    print(driver.find_element_by_class_name('row'))
+
+    for elm in driver.find_elements_by_class_name('title_pdf_row clearfix'):
+        print(elm.text)
+
+
+    '''
     if args.config is None:
+
         print("Available venues:")
         c = openreview.Client(baseurl='https://openreview.net')
         venues = openreview.tools.get_all_venues(c)
@@ -87,6 +119,7 @@ if __name__ == '__main__':
         wait = ui.WebDriverWait(driver, 10)
         wait.until(lambda driver: driver.find_element_by_class_name('row'))
         print(driver.find_element_by_class_name('row'))
+
         for elm in driver.find_elements_by_class_name('title_pdf_row clearfix'):
             print(elm.text)
 
@@ -102,3 +135,4 @@ if __name__ == '__main__':
             password=password)
 
         crawl(client, config)
+        '''
