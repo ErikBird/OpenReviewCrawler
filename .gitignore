@@ -20,5 +20,5 @@ __pycache__/
 # C extensions
 *.so
 
-# Config File (incl. Passwords)
-config.json
+# All Data and the Config File (incl. Passwords)
+*.json
