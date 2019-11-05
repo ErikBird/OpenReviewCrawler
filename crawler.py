@@ -91,7 +91,11 @@ def get_revisions(id,driver):
 
     return revisions
 
-
+def get_all_available_venues():
+    print("Available venues:")
+    c = openreview.Client(baseurl='https://openreview.net')
+    venues = openreview.tools.get_all_venues(c)
+    print(*venues, sep="\n")
 
 if __name__ == '__main__':
     log = logging.getLogger("crawler")
@@ -112,12 +116,6 @@ if __name__ == '__main__':
     except:
         print('The configuration File has not been found. \n Please Make sure it is correctly Named \'config.json\' and is located in the project root foulder.\n Otherwise please specify the configuration Path with the parser argument \'-c PATH\'')
 
-    '''
-    print("Available venues:")
-    c = openreview.Client(baseurl='https://openreview.net')
-    venues = openreview.tools.get_all_venues(c)
-    print(*venues, sep="\n")
-    '''
 
     username = config["username"]
     if args.password is not None:
