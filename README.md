@@ -10,5 +10,5 @@ https://github.com/mozilla/geckodriver/releases
 3. Adjust the Path Variable in the config.json file at "geckodriver" according to your setup
 
 #Run
-Run the Programm with the configuration with the following command:
-python crawler.py -c config.json
+Run the Programm with custom configuration-file with the following command:
+python crawler.py -c FILEPATH
