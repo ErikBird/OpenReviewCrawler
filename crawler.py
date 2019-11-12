@@ -130,4 +130,3 @@ if __name__ == '__main__':
     log.info('Login as '+username+' was successful')
 
     crawl(client, config,log)
-
