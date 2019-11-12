@@ -12,6 +12,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 import selenium.webdriver.support.ui as ui
 import time
+import urllib.request
 
 def crawl(client, config,log):
     results = []
@@ -21,7 +22,7 @@ def crawl(client, config,log):
         if years == "all":
             years = range(2000, date.today().year + 2)
         for year in years:
-            log.info('Current Download:'+ venue+' in '+str(year))
+            log.info('Current Download: '+ venue+' in '+str(year))
             invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year))
             invitations = [inv.id for inv in invitations_iterator]
             invitations = merge_invitations(invitations)
@@ -30,8 +31,11 @@ def crawl(client, config,log):
                 continue
             else:
                 invs = []
-                for inv in progressbar.progressbar(invitations):
+                for inv in invitations:
+                    if any([substring in inv for substring in ['Review','Decision','Comment','comment','Evaluation']]): continue
+
                     notes = [note for note in openreview.tools.iterget_notes(client, invitation=inv)]
+
                     revisions = []
                     for n in notes:
                         revisions.append(get_revisions(n.id,driver))
@@ -41,6 +45,8 @@ def crawl(client, config,log):
                                  'revisions': [json.dumps(rev) for  rev in revisions if revisions]})
                 results.append({"venue": venue, "year": year, "invitations": invs})
 
+    if not os.path.exists(config["outdir"]):
+        os.makedirs(config["outdir"])
     with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
         json.dump(results, file_handle, indent=config["json_indent"])
 
@@ -76,14 +82,21 @@ def get_revisions(id,driver):
         log.error(id+' id causes a timeout')
 
     revisions = []
-    for revision in driver.find_elements_by_class_name('note'):
+    for index,revision in progressbar.progressbar(enumerate(driver.find_elements_by_class_name('note'))):
         title = revision.find_element_by_class_name('note_content_title').text
         try:
-            pdf = revision.find_element_by_class_name('note_content_pdf').get_attribute('href')
+            url = revision.find_element_by_class_name('note_content_pdf').get_attribute('href')
+            pdf = id +'_'+ str(index) +'.pdf'
         except:
             pdf = 'NoPDF'
             log.error(id + ' provides no PDF')
             pass
+        if pdf != 'NoPDF':
+            out_path = os.path.join(config["outdir"], 'pdf/')
+            if not os.path.exists(out_path): os.makedirs(out_path)
+            urllib.request.urlretrieve(url, os.path.join(out_path, pdf))
+            log.info(pdf + ' downloaded')
+
         authors = [p.text for p in revision.find_elements_by_class_name('profile-link')]
         date = revision.find_element_by_class_name('date').text
         notes = [p.text for p in revision.find_elements_by_class_name('note_contents')]
