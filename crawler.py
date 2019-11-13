@@ -14,9 +14,9 @@ import selenium.webdriver.support.ui as ui
 import time
 import urllib.request
 
-def crawl(client, config,log):
+def crawl(client, config, log):
     results = []
-    driver  = start_webdriver()
+    driver = start_webdriver()
     for target in config["targets"]:
         venue, years = target["venue"], target["years"]
         if years == "all":
@@ -27,23 +27,39 @@ def crawl(client, config,log):
             invitations = [inv.id for inv in invitations_iterator]
             invitations = merge_invitations(invitations)
             if not invitations:
-                log.warning('No Data for'+ venue+' in '+str(year))
+                log.warning('No data for'+ venue+' in '+str(year))
                 continue
             else:
-                invs = []
-                for inv in invitations:
-                    if any([substring in inv for substring in ['Review','Decision','Comment','comment','Evaluation']]): continue
-
-                    notes = [note for note in openreview.tools.iterget_notes(client, invitation=inv)]
-
-                    revisions = []
-                    for n in notes:
-                        revisions.append(get_revisions(n.id,driver))
-
-                    invs.append({"invitation": inv,
-                                        "notes": [note.to_json() for note in notes],
-                                 'revisions': [json.dumps(rev) for  rev in revisions if revisions]})
-                results.append({"venue": venue, "year": year, "invitations": invs})
+                submissions = []
+                forum_idx_map = {}
+                other_notes = []
+                for inv in progressbar.progressbar(invitations):
+                    notes = [note.to_json() for note in openreview.tools.iterget_notes(client, invitation=inv)]
+                    if "ubmission" in inv:
+                        # this is a bit of a hack but there is no general submission invitation but all submission invitations
+                        # contain at least (S|s)ubmission somewhere
+                        # see https://openreview-py.readthedocs.io/en/latest/get_submission_invitations.html to verify
+                        log.info("Submission invitation")
+                        forum_idx_map.update({n["forum"]: i+len(submissions) for i, n in enumerate(notes)})
+                        for n in notes:
+                            n["revisions"] = get_submission_revisions(n["id"], driver)
+                            n["notes"] = []
+                        submissions.extend(notes)
+                    else:
+                        revisions = [r.to_json() for r in client.get_references(invitation=inv)]
+                        for note in notes:
+                            note["revisions"] = [r for r in revisions if r["referent"] == note["id"]]
+                        other_notes.extend(notes)
+                if not submissions:
+                    log.warning('No submissions found for '+ venue+' in '+str(year))
+                    continue
+                else:
+                    for note in other_notes:
+                        try:
+                            submissions[forum_idx_map[note["forum"]]]["notes"].append(note)
+                        except KeyError:
+                            log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
+                results.append({"venue": venue, "year": year, "submissions": submissions})
 
     if not os.path.exists(config["outdir"]):
         os.makedirs(config["outdir"])
@@ -71,7 +87,8 @@ def merge_invitations(invitations):
         new_invitations.add(sub2)
     return new_invitations
 
-def get_revisions(id,driver):
+
+def get_submission_revisions(id, driver):
     my_url = 'http://openreview.net/revisions?id='+id
     driver.get(my_url)
 
@@ -82,7 +99,7 @@ def get_revisions(id,driver):
         log.error(id+' id causes a timeout')
 
     revisions = []
-    for index,revision in progressbar.progressbar(enumerate(driver.find_elements_by_class_name('note'))):
+    for index, revision in progressbar.progressbar(enumerate(driver.find_elements_by_class_name('note'))):
         title = revision.find_element_by_class_name('note_content_title').text
         try:
             url = revision.find_element_by_class_name('note_content_pdf').get_attribute('href')
@@ -104,11 +121,13 @@ def get_revisions(id,driver):
 
     return revisions
 
+
 def get_all_available_venues():
     print("Available venues:")
     c = openreview.Client(baseurl='https://openreview.net')
     venues = openreview.tools.get_all_venues(c)
     print(*venues, sep="\n")
+
 
 if __name__ == '__main__':
     log = logging.getLogger("crawler")
@@ -129,7 +148,6 @@ if __name__ == '__main__':
     except:
         print('The configuration File has not been found. \n Please Make sure it is correctly Named \'config.json\' and is located in the project root foulder.\n Otherwise please specify the configuration Path with the parser argument \'-c PATH\'')
 
-
     username = config["username"]
     if args.password is not None:
         password = args.password
@@ -142,4 +160,4 @@ if __name__ == '__main__':
         password=password)
     log.info('Login as '+username+' was successful')
 
-    crawl(client, config,log)
+    crawl(client, config, log)
