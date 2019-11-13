@@ -12,6 +12,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 import selenium.webdriver.support.ui as ui
 import time
+import urllib.request
 
 def crawl(client, config, log):
     results = []
@@ -60,6 +61,8 @@ def crawl(client, config, log):
                             log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
                 results.append({"venue": venue, "year": year, "submissions": submissions})
 
+    if not os.path.exists(config["outdir"]):
+        os.makedirs(config["outdir"])
     with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
         json.dump(results, file_handle, indent=config["json_indent"])
 
@@ -96,20 +99,34 @@ def get_submission_revisions(id, driver):
         log.error(id+' id causes a timeout')
 
     revisions = []
-    for revision in driver.find_elements_by_class_name('note'):
+    for index, revision in progressbar.progressbar(enumerate(driver.find_elements_by_class_name('note'))):
         title = revision.find_element_by_class_name('note_content_title').text
         try:
-            pdf = revision.find_element_by_class_name('note_content_pdf').get_attribute('href')
+            url = revision.find_element_by_class_name('note_content_pdf').get_attribute('href')
+            pdf = id +'_'+ str(index) +'.pdf'
         except:
             pdf = 'NoPDF'
             log.error(id + ' provides no PDF')
             pass
+        if pdf != 'NoPDF':
+            out_path = os.path.join(config["outdir"], 'pdf/')
+            if not os.path.exists(out_path): os.makedirs(out_path)
+            urllib.request.urlretrieve(url, os.path.join(out_path, pdf))
+            log.info(pdf + ' downloaded')
+
         authors = [p.text for p in revision.find_elements_by_class_name('profile-link')]
         date = revision.find_element_by_class_name('date').text
         notes = [p.text for p in revision.find_elements_by_class_name('note_contents')]
         revisions.append({'title': title, 'pdf': pdf, 'authors': authors, 'date': date, 'pdf': pdf, 'notes': notes})
 
     return revisions
+
+
+def get_all_available_venues():
+    print("Available venues:")
+    c = openreview.Client(baseurl='https://openreview.net')
+    venues = openreview.tools.get_all_venues(c)
+    print(*venues, sep="\n")
 
 
 if __name__ == '__main__':
@@ -131,13 +148,6 @@ if __name__ == '__main__':
     except:
         print('The configuration File has not been found. \n Please Make sure it is correctly Named \'config.json\' and is located in the project root foulder.\n Otherwise please specify the configuration Path with the parser argument \'-c PATH\'')
 
-    '''
-    print("Available venues:")
-    c = openreview.Client(baseurl='https://openreview.net')
-    venues = openreview.tools.get_all_venues(c)
-    print(*venues, sep="\n")
-    '''
-
     username = config["username"]
     if args.password is not None:
         password = args.password
@@ -150,5 +160,4 @@ if __name__ == '__main__':
         password=password)
     log.info('Login as '+username+' was successful')
 
-    crawl(client, config,log)
-
+    crawl(client, config, log)
