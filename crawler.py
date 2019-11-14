@@ -4,6 +4,7 @@ import os
 from datetime import date
 import re
 import openreview
+
 import requests
 import logging
 import sys
@@ -38,11 +39,13 @@ def crawl(client, config, log):
                     if "ubmission" in inv:
                         # this is a bit of a hack but there is no general submission invitation but all submission invitations
                         # contain at least (S|s)ubmission somewhere
-                        # see https://openreview-py.readthedocs.io/en/latest/get_submission_invitations.html to verify
+                        # see https://openreview-py.readthedocs.io/en/latest/mental_models.html to verify
                         log.info("Submission invitation")
                         forum_idx_map.update({n["forum"]: i+len(submissions) for i, n in enumerate(notes)})
                         for n in notes:
-                            n["revisions"] = get_submission_revisions(n["id"], driver)
+                            n["revisions"] = download_revisions(n["id"],client=client)
+                            print(n["revisions"])
+                            #get_submission_revisions(n["id"], driver)
                             n["notes"] = []
                         submissions.extend(notes)
                     else:
@@ -87,8 +90,26 @@ def merge_invitations(invitations):
         new_invitations.add(sub2)
     return new_invitations
 
+def download_revisions(note_id,client):
+    references = client.get_references(note_id,original=True)
+    out_path = os.path.join(config["outdir"], 'pdf/')
+    if not os.path.exists(out_path): os.makedirs(out_path)
+    for index,r in enumerate(references):
+        pdf = note_id + '_' + str(index) + '.pdf'
+        with open(os.path.join(out_path, pdf), "wb") as file1:
+            file1.write(client.get_pdf(r.id,is_reference=True))
+        log.info(pdf + ' downloaded')
 
-def get_submission_revisions(id, driver):
+
+
+
+def get_submission_revisions_old(id, driver):
+    '''
+    @Depreciated. Please use download_revisions
+    :param id:
+    :param driver:
+    :return:
+    '''
     my_url = 'http://openreview.net/revisions?id='+id
     driver.get(my_url)
 
