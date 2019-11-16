@@ -1,14 +1,24 @@
 # OpenReviewCrawler
-A Crawler for Open Review. 
+This project is a crawler for OpenReview submissions. It is the base for [another project](https://github.com/movabo/science-revisioning) that wants to match comments and reviews to specific changes between revisions.
 
-## Installation
-1. Get the current geckodriver for your operating system at the following domain:
-https://github.com/mozilla/geckodriver/releases
+Both projects are created by students of the Technische Universität Darmstadt as a course project for the [UKP lab](https://www.informatik.tu-darmstadt.de/ukp/ukp_home/index.en.jsp).
 
-2. Unpack the compressed file in your File System 
 
-3. Adjust the Path Variable in the config.json file at "geckodriver" according to your setup
+## Setup
+We recommend at least Python 3.6 to use this project.
 
-## Run
-Run the Programm with custom configuration-file with the following command:
-python crawler.py -c FILEPATH
+Run `pip install -r requirements.txt` to install all required packages
+
+## Usage
+Run ``python crawler.py `` to start the crawler with the default config `./config.json`. The program then will go over the venues by year, download the PDFs for the revisions and output a JSON with the data.
+
+If you want to specify the path to the config, use `-c | --config {path}`. 
+If you don't want your password in the config, use `-p | --password {password}`.
+
+To get a list of all possible venues, run `python crawler --help_venues`
+
+## Config
+You specify the venues and years to crawl in the config. Check out the example config [here](config.json).
+
+Use `year: "all"` to crawl an entire venue.
+Leaving username and password empty uses the guest access.
