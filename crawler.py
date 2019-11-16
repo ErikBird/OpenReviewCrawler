@@ -4,15 +4,9 @@ import os
 from datetime import date
 import re
 import openreview
-
-import requests
 import logging
 import sys
 import progressbar
-from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-import selenium.webdriver.support.ui as ui
-import time
 import urllib.request
 
 def crawl(client, config, log):
@@ -39,7 +33,7 @@ def crawl(client, config, log):
                     if "ubmission" in inv:
                         # this is a bit of a hack but there is no general submission invitation but all submission invitations
                         # contain at least (S|s)ubmission somewhere
-                        # see https://openreview-py.readthedocs.io/en/latest/mental_models.html to verify
+                        # check https://openreview-py.readthedocs.io/en/latest/get_submission_invitations.html to verify
                         log.info("Submission invitation")
                         forum_idx_map.update({n["forum"]: i+len(submissions) for i, n in enumerate(notes)})
                         for n in notes:
@@ -70,18 +64,6 @@ def crawl(client, config, log):
         json.dump(results, file_handle, indent=config["json_indent"])
 
 
-def start_webdriver():
-    options = Options()
-    options.headless = True
-    try:
-        driver = webdriver.Firefox(options=options,
-                                   executable_path=config['geckodriver'])
-    except:
-        print(
-            'The webdriver has not been setup correctly! Please follow the README Installation instructions to setup the geckodriver.')
-    return driver
-
-
 def merge_invitations(invitations):
     new_invitations = set()
     for inv in invitations:
@@ -89,6 +71,7 @@ def merge_invitations(invitations):
         sub2 = re.sub(r"/(P|p)aper/[0-9]+/", r"/\1aper/.*/", sub1)
         new_invitations.add(sub2)
     return new_invitations
+
 
 def download_revisions(note_id,client):
     references = client.get_references(note_id,original=True)
@@ -99,48 +82,6 @@ def download_revisions(note_id,client):
         with open(os.path.join(out_path, pdf), "wb") as file1:
             file1.write(client.get_pdf(r.id,is_reference=True))
         log.info(pdf + ' downloaded')
-
-
-
-
-def get_submission_revisions_old(id, driver):
-    '''
-    @Depreciated. Please use download_revisions
-    :param id:
-    :param driver:
-    :return:
-    '''
-    my_url = 'http://openreview.net/revisions?id='+id
-    driver.get(my_url)
-
-    wait = ui.WebDriverWait(driver, 10)
-    try:
-        wait.until(lambda driver: driver.find_element_by_class_name('note_content_pdf'))
-    except:
-        log.error(id+' id causes a timeout')
-
-    revisions = []
-    for index, revision in progressbar.progressbar(enumerate(driver.find_elements_by_class_name('note'))):
-        title = revision.find_element_by_class_name('note_content_title').text
-        try:
-            url = revision.find_element_by_class_name('note_content_pdf').get_attribute('href')
-            pdf = id +'_'+ str(index) +'.pdf'
-        except:
-            pdf = 'NoPDF'
-            log.error(id + ' provides no PDF')
-            pass
-        if pdf != 'NoPDF':
-            out_path = os.path.join(config["outdir"], 'pdf/')
-            if not os.path.exists(out_path): os.makedirs(out_path)
-            urllib.request.urlretrieve(url, os.path.join(out_path, pdf))
-            log.info(pdf + ' downloaded')
-
-        authors = [p.text for p in revision.find_elements_by_class_name('profile-link')]
-        date = revision.find_element_by_class_name('date').text
-        notes = [p.text for p in revision.find_elements_by_class_name('note_contents')]
-        revisions.append({'title': title, 'pdf': pdf, 'authors': authors, 'date': date, 'pdf': pdf, 'notes': notes})
-
-    return revisions
 
 
 def get_all_available_venues():
@@ -161,13 +102,17 @@ if __name__ == '__main__':
     parser.add_argument(
         '-p', '--password', help='password for the username given in the config. Overwrites password in config')
     parser.add_argument('--baseurl', default='https://openreview.net')
-
+    parser.add_argument("--help_venues", action='store_true', help="receive a list of all possible venues")
     args = parser.parse_args()
+
+    if args.help:
+        get_all_available_venues()
+
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
     try:
         config = json.load(open(args.config))
     except:
-        print('The configuration File has not been found. \n Please Make sure it is correctly Named \'config.json\' and is located in the project root foulder.\n Otherwise please specify the configuration Path with the parser argument \'-c PATH\'')
+        print('The configuration file has not been found. \n Please Make sure it is correctly Named \'config.json\' and is located in the project root folder.\n Otherwise please specify the correct path with \'-c {path}\'')
 
     username = config["username"]
     if args.password is not None:
