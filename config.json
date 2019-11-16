@@ -14,5 +14,4 @@
   "outdir": ".",
   "filename": "out.json",
   "json_indent": 3,
-  "geckodriver": "/home/erikschwan/PycharmProjects/OpenReviewCrawler/geckodriver"
 }
