@@ -11,7 +11,6 @@ import urllib.request
 
 def crawl(client, config, log):
     results = []
-    driver = start_webdriver()
     for target in config["targets"]:
         venue, years = target["venue"], target["years"]
         if years == "all":
@@ -38,8 +37,6 @@ def crawl(client, config, log):
                         forum_idx_map.update({n["forum"]: i+len(submissions) for i, n in enumerate(notes)})
                         for n in notes:
                             n["revisions"] = download_revisions(n["id"],client=client)
-                            print(n["revisions"])
-                            #get_submission_revisions(n["id"], driver)
                             n["notes"] = []
                         submissions.extend(notes)
                     else:
@@ -82,6 +79,7 @@ def download_revisions(note_id,client):
         with open(os.path.join(out_path, pdf), "wb") as file1:
             file1.write(client.get_pdf(r.id,is_reference=True))
         log.info(pdf + ' downloaded')
+    return references
 
 
 def get_all_available_venues():
@@ -105,7 +103,7 @@ if __name__ == '__main__':
     parser.add_argument("--help_venues", action='store_true', help="receive a list of all possible venues")
     args = parser.parse_args()
 
-    if args.help:
+    if args.help_venues:
         get_all_available_venues()
 
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
