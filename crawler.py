@@ -7,9 +7,16 @@ import openreview
 import logging
 import sys
 import progressbar
-import urllib.request
+import threading
 
 def crawl(client, config, log):
+    '''
+
+    :param client:
+    :param config:
+    :param log:
+    :return:
+    '''
     results = []
     for target in config["targets"]:
         venue, years = target["venue"], target["years"]
@@ -29,14 +36,23 @@ def crawl(client, config, log):
                 other_notes = []
                 for inv in progressbar.progressbar(invitations):
                     notes = [note.to_json() for note in openreview.tools.iterget_notes(client, invitation=inv)]
-                    if "ubmission" in inv:
+                    if "submission" in inv.lower():
                         # this is a bit of a hack but there is no general submission invitation but all submission invitations
                         # contain at least (S|s)ubmission somewhere
                         # check https://openreview-py.readthedocs.io/en/latest/get_submission_invitations.html to verify
                         log.info("Submission invitation")
                         forum_idx_map.update({n["forum"]: i+len(submissions) for i, n in enumerate(notes)})
-                        for n in notes:
-                            n["revisions"] = download_revisions(n["id"],client=client)
+                        threads = list()
+                        for n in progressbar.progressbar(notes):
+                            references = client.get_references(n["id"], original=True)
+                            pdf_names=[]
+                            for index, r in enumerate(references):
+                                pdf_name = n["id"] + '_' + str(index) + '.pdf'
+                                pdf_names.append(pdf_name)
+                                x = threading.Thread(target=download_revision, args=(r.id,pdf_name,client))
+                                threads.append(x)
+                                x.start()
+                            n["revisions"] = pdf_names
                             n["notes"] = []
                         submissions.extend(notes)
                     else:
@@ -62,6 +78,11 @@ def crawl(client, config, log):
 
 
 def merge_invitations(invitations):
+    '''
+
+    :param invitations:
+    :return:
+    '''
     new_invitations = set()
     for inv in invitations:
         sub1 = re.sub(r"/(P|p)aper[0-9]+/", r"/\1aper.*/", inv)
@@ -70,19 +91,32 @@ def merge_invitations(invitations):
     return new_invitations
 
 
-def download_revisions(note_id,client):
-    references = client.get_references(note_id,original=True)
+def download_revision(ref_id, pdf_name, client):
+    '''
+
+    :param note_id:
+    :param client:
+    :return:
+    '''
+
     out_path = os.path.join(config["outdir"], 'pdf/')
     if not os.path.exists(out_path): os.makedirs(out_path)
-    for index,r in enumerate(references):
-        pdf = note_id + '_' + str(index) + '.pdf'
-        with open(os.path.join(out_path, pdf), "wb") as file1:
-            file1.write(client.get_pdf(r.id,is_reference=True))
-        log.info(pdf + ' downloaded')
-    return [r.to_json() for r in references]
+    if not ref_id: return
+    try:
+        file = client.get_pdf(ref_id, is_reference=True)
+    except:
+        log.info(ref_id + ' has no pdf ')
+        return
+    with open(os.path.join(out_path, pdf_name), "wb") as file1:
+        file1.write(file)
+    log.info(pdf_name + ' downloaded')
 
 
 def get_all_available_venues():
+    '''
+
+    :return:
+    '''
     print("Available venues:")
     c = openreview.Client(baseurl='https://openreview.net')
     venues = openreview.tools.get_all_venues(c)
@@ -91,7 +125,7 @@ def get_all_available_venues():
 
 if __name__ == '__main__':
     log = logging.getLogger("crawler")
-    log.setLevel(logging.INFO)
+    log.setLevel(logging.DEBUG)
     progressbar.streams.wrap_stderr()
 
     parser = argparse.ArgumentParser()
@@ -99,7 +133,7 @@ if __name__ == '__main__':
         '-c', '--config', help='configuration for the crawling', default='config.json')
     parser.add_argument(
         '-p', '--password', help='password for the username given in the config. Overwrites password in config')
-    parser.add_argument('--baseurl', default='https://openreview.net')
+    parser.add_argument('-b','--baseurl', default='https://openreview.net')
     parser.add_argument("--help_venues", action='store_true', help="receive a list of all possible venues")
     args = parser.parse_args()
 
