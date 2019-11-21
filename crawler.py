@@ -79,7 +79,7 @@ def download_revisions(note_id,client):
         with open(os.path.join(out_path, pdf), "wb") as file1:
             file1.write(client.get_pdf(r.id,is_reference=True))
         log.info(pdf + ' downloaded')
-    return references
+    return [r.to_json() for r in references]
 
 
 def get_all_available_venues():
