@@ -11,11 +11,12 @@ import threading
 
 def crawl(client, config, log):
     '''
+    This method crawls the configured venues and saves all comments and all PDF Revisions to the output folder.
 
-    :param client:
-    :param config:
-    :param log:
-    :return:
+    :param client: the openreview client
+    :param config: the config dictionary
+    :param log: the configured logging client
+    :return: Nothing
     '''
     results = []
     for target in config["targets"]:
@@ -79,9 +80,9 @@ def crawl(client, config, log):
 
 def merge_invitations(invitations):
     '''
-
-    :param invitations:
-    :return:
+    This method merges invitations if they are redundant
+    :param invitations: List of Invitations
+    :return: Set of invitations
     '''
     new_invitations = set()
     for inv in invitations:
@@ -93,10 +94,12 @@ def merge_invitations(invitations):
 
 def download_revision(ref_id, pdf_name, client):
     '''
-
-    :param note_id:
-    :param client:
-    :return:
+    This method downloads a pdf file from a openreview note and stores it in the oupath/pdf/ folder.
+    If the folder does not exist, it will be created.
+    :param ref_id: The target note id
+    :param pdf_name: The target filename
+    :param client: The openreview client
+    :return: Nothing
     '''
 
     out_path = os.path.join(config["outdir"], 'pdf/')
@@ -114,8 +117,10 @@ def download_revision(ref_id, pdf_name, client):
 
 def get_all_available_venues():
     '''
-
-    :return:
+    This method prints all available venues to the console
+    It can be used to find the exact name to configure the "config.json" file for the according venue.
+    This method is executed it this programm is executed with the parameter "--help_venues"
+    :return: Nothing
     '''
     print("Available venues:")
     c = openreview.Client(baseurl='https://openreview.net')
@@ -125,7 +130,7 @@ def get_all_available_venues():
 
 if __name__ == '__main__':
     log = logging.getLogger("crawler")
-    log.setLevel(logging.DEBUG)
+    log.setLevel(logging.CRITICAL)
     progressbar.streams.wrap_stderr()
 
     parser = argparse.ArgumentParser()
@@ -139,6 +144,7 @@ if __name__ == '__main__':
 
     if args.help_venues:
         get_all_available_venues()
+        exit()
 
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
     try:
