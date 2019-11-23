@@ -1,0 +1,2312 @@
+[
+   {
+      "venue": "NIPS.cc",
+      "year": 2018,
+      "submissions": [
+         {
+            "id": "HkghWScuoQ",
+            "original": "B1giWS5Oim",
+            "cdate": 1540035843524,
+            "tcdate": 1540035843524,
+            "tmdate": 1543593753140,
+            "ddate": null,
+            "number": 36,
+            "content": {
+               "title": "Targeted Dropout",
+               "abstract": "Neural networks are extremely flexible models due to their large number of parameters, which is beneficial for learning, but also highly redundant. This makes it possible to compress neural networks without having a drastic effect on performance. We introduce targeted dropout, a strategy for post hoc pruning of neural network weights and units that builds the pruning mechanism directly into learning. At each weight update, targeted dropout selects a candidate set for pruning using a simple selection criterion, and then stochastically prunes the network via dropout applied to this set. The resulting network learns to be explicitly robust to pruning, comparing favourably to more complicated regularization schemes while at the same time being extremely simple to implement, and easy to tune.",
+               "paperhash": "gomez|targeted_dropout",
+               "authorids": [
+                  "aidan@for.ai",
+                  "ivan@for.ai",
+                  "kswersky@google.com",
+                  "yarin@cs.ox.ac.uk",
+                  "geoffhinton@google.com"
+               ],
+               "authors": [
+                  "Aidan N. Gomez",
+                  "Ivan Zhang",
+                  "Kevin Swersky",
+                  "Yarin Gal",
+                  "Geoffrey E. Hinton"
+               ],
+               "keywords": [],
+               "pdf": "/pdf/1e9b22c08d7651c60362b60af660c1f92d304b7c.pdf"
+            },
+            "forum": "HkghWScuoQ",
+            "referent": null,
+            "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+            "replyto": null,
+            "readers": [
+               "everyone"
+            ],
+            "nonreaders": [],
+            "signatures": [
+               "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+            ],
+            "writers": [
+               "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+            ],
+            "details": {
+               "replyCount": 6
+            },
+            "revisions": [
+               {
+                  "id": "SkZXJJk1N",
+                  "original": "B1giWS5Oim",
+                  "cdate": 1540035843524,
+                  "tcdate": 1543593753140,
+                  "tmdate": 1543593753140,
+                  "ddate": null,
+                  "number": 36,
+                  "content": {
+                     "title": "Targeted Dropout",
+                     "abstract": "Neural networks are extremely flexible models due to their large number of parameters, which is beneficial for learning, but also highly redundant. This makes it possible to compress neural networks without having a drastic effect on performance. We introduce targeted dropout, a strategy for post hoc pruning of neural network weights and units that builds the pruning mechanism directly into learning. At each weight update, targeted dropout selects a candidate set for pruning using a simple selection criterion, and then stochastically prunes the network via dropout applied to this set. The resulting network learns to be explicitly robust to pruning, comparing favourably to more complicated regularization schemes while at the same time being extremely simple to implement, and easy to tune.",
+                     "authorids": [
+                        "aidan@for.ai",
+                        "ivan@for.ai",
+                        "kswersky@google.com",
+                        "yarin@cs.ox.ac.uk",
+                        "geoffhinton@google.com"
+                     ],
+                     "authors": [
+                        "Aidan N. Gomez",
+                        "Ivan Zhang",
+                        "Kevin Swersky",
+                        "Yarin Gal",
+                        "Geoffrey E. Hinton"
+                     ],
+                     "keywords": [],
+                     "pdf": "/pdf/1e9b22c08d7651c60362b60af660c1f92d304b7c.pdf",
+                     "paperhash": "gomez|targeted_dropout"
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": "HkghWScuoQ",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "details": null
+               },
+               {
+                  "id": "HkqzZlv6Q",
+                  "original": "B1giWS5Oim",
+                  "cdate": 1540035843524,
+                  "tcdate": 1542025489671,
+                  "tmdate": 1542025489671,
+                  "ddate": null,
+                  "number": 36,
+                  "content": {
+                     "title": "Targeted Dropout",
+                     "abstract": "Neural networks are extremely flexible models due to their large number of parameters, which is beneficial for learning, but also highly redundant. This makes it possible to compress neural networks without having a drastic effect on performance. We introduce targeted dropout, a strategy for post hoc pruning of neural network weights and units that builds the pruning mechanism directly into learning. At each weight update, targeted dropout selects a candidate set for pruning using a simple selection criterion, and then stochastically prunes the network via dropout applied to this set. The resulting network learns to be explicitly robust to pruning, comparing favourably to more complicated regularization schemes while at the same time being extremely simple to implement, and easy to tune.",
+                     "authorids": [
+                        "aidan@for.ai",
+                        "ivan@for.ai",
+                        "kswersky@google.com",
+                        "yarin@cs.ox.ac.uk",
+                        "geoffhinton@google.com"
+                     ],
+                     "authors": [
+                        "Aidan N. Gomez",
+                        "Ivan Zhang",
+                        "Kevin Swersky",
+                        "Yarin Gal",
+                        "Geoffrey E. Hinton"
+                     ],
+                     "keywords": [],
+                     "pdf": "/pdf/91fbf2e278d30d18142086094fa69005c9f12286.pdf",
+                     "paperhash": "gomez|targeted_dropout"
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": "HkghWScuoQ",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "details": null
+               },
+               {
+                  "id": "rJs-HcujQ",
+                  "original": "B1giWS5Oim",
+                  "cdate": 1540035843524,
+                  "tcdate": 1540035842941,
+                  "tmdate": 1540999919206,
+                  "ddate": null,
+                  "number": 36,
+                  "content": {
+                     "title": "Targeted Dropout",
+                     "abstract": "Neural networks are extremely flexible models due to their large number of parameters, which is beneficial for learning, but also highly redundant. This makes it possible to compress neural networks without having a drastic effect on performance. We introduce targeted dropout, a strategy for post hoc pruning of neural network weights and units that builds the pruning mechanism directly into learning. At each weight update, targeted dropout selects a candidate set for pruning using a simple selection criterion, and then stochastically prunes the network via dropout applied to this set. The resulting network learns to be explicitly robust to pruning, comparing favourably to more complicated regularization schemes while at the same time being extremely simple to implement, and easy to tune.",
+                     "paperhash": "gomez|targeted_dropout",
+                     "authorids": [
+                        "aidan@for.ai",
+                        "ivan@for.ai",
+                        "kswersky@google.com",
+                        "yarin@cs.ox.ac.uk",
+                        "geoffhinton@google.com"
+                     ],
+                     "authors": [
+                        "Aidan N. Gomez",
+                        "Ivan Zhang",
+                        "Kevin Swersky",
+                        "Yarin Gal",
+                        "Geoffrey E. Hinton"
+                     ],
+                     "keywords": [],
+                     "pdf": "/pdf/6bf98c8e2392df0626fe6b8ccff098f7d917f81c.pdf"
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": "HkghWScuoQ",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "details": null
+               },
+               {
+                  "id": "r1DVUfG3m",
+                  "original": "B1giWS5Oim",
+                  "cdate": 1540035843524,
+                  "tcdate": 1540658735199,
+                  "tmdate": 1540658735199,
+                  "ddate": null,
+                  "number": 36,
+                  "content": {
+                     "title": "Targeted Dropout",
+                     "abstract": "Neural networks are extremely flexible models due to their large number of parameters, which is beneficial for learning, but also highly redundant. This makes it possible to compress neural networks without having a drastic effect on performance. We introduce targeted dropout, a strategy for post hoc pruning of neural network weights and units that builds the pruning mechanism directly into learning. At each weight update, targeted dropout selects a candidate set for pruning using a simple selection criterion, and then stochastically prunes the network via dropout applied to this set. The resulting network learns to be explicitly robust to pruning, comparing favourably to more complicated regularization schemes while at the same time being extremely simple to implement, and easy to tune.",
+                     "authorids": [
+                        "aidan@for.ai",
+                        "ivan@for.ai",
+                        "kswersky@google.com",
+                        "yarin@cs.ox.ac.uk",
+                        "geoffhinton@google.com"
+                     ],
+                     "authors": [
+                        "Aidan N. Gomez",
+                        "Ivan Zhang",
+                        "Kevin Swersky",
+                        "Yarin Gal",
+                        "Geoffrey E. Hinton"
+                     ],
+                     "keywords": [],
+                     "pdf": "/pdf/6bf98c8e2392df0626fe6b8ccff098f7d917f81c.pdf",
+                     "paperhash": "gomez|targeted_dropout"
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": "HkghWScuoQ",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "details": null
+               }
+            ],
+            "notes": [
+               {
+                  "id": "HJGsH53x6Q",
+                  "original": null,
+                  "cdate": 1541618243229,
+                  "tcdate": 1541618243229,
+                  "tmdate": 1541618243229,
+                  "ddate": null,
+                  "number": 1,
+                  "content": {
+                     "title": "Acceptance Decision",
+                     "decision": "accept"
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Decision",
+                  "replyto": "HkghWScuoQ",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "r1ZiSchepX",
+                        "original": null,
+                        "cdate": 1541618243229,
+                        "tcdate": 1541618243229,
+                        "tmdate": 1541618243229,
+                        "ddate": null,
+                        "number": 1,
+                        "content": {
+                           "title": "Acceptance Decision",
+                           "decision": "accept"
+                        },
+                        "forum": "HkghWScuoQ",
+                        "referent": "HJGsH53x6Q",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Decision",
+                        "replyto": "HkghWScuoQ",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "B1lXNPfx3m",
+                  "original": null,
+                  "cdate": 1540527914527,
+                  "tcdate": 1540527914527,
+                  "tmdate": 1540527914527,
+                  "ddate": null,
+                  "number": 1,
+                  "content": {
+                     "title": "An important direction to explore.",
+                     "review": "\nThis paper proposed to explore an important direction i.e. to incorporate stochastic dropout into the sparsity regularisation during learning, and justified its argument with preliminary yet convincing experimental results.\n\nMy main concern is the lacking of the proof of convergence, both empirical and theoretical, for such a stochastic pruning and dropout approach. Even though there is a page limit, adding some detailed analysis or empirical studies in appendix would greatly improve the paper.\n\nOverall, this is a well motivated work with promising results that should be of interest to large audience at the conference. ",
+                     "rating": "4: Top 50% of accepted papers, clear accept",
+                     "confidence": "2: The reviewer is fairly confident that the evaluation is correct"
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Official_Review",
+                  "replyto": "HkghWScuoQ",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/AnonReviewer5"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/AnonReviewer5"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "BkXNPGlnm",
+                        "original": null,
+                        "cdate": 1540527914527,
+                        "tcdate": 1540527914527,
+                        "tmdate": 1540527914527,
+                        "ddate": null,
+                        "number": 1,
+                        "content": {
+                           "title": "An important direction to explore.",
+                           "review": "\nThis paper proposed to explore an important direction i.e. to incorporate stochastic dropout into the sparsity regularisation during learning, and justified its argument with preliminary yet convincing experimental results.\n\nMy main concern is the lacking of the proof of convergence, both empirical and theoretical, for such a stochastic pruning and dropout approach. Even though there is a page limit, adding some detailed analysis or empirical studies in appendix would greatly improve the paper.\n\nOverall, this is a well motivated work with promising results that should be of interest to large audience at the conference. ",
+                           "rating": "4: Top 50% of accepted papers, clear accept",
+                           "confidence": "2: The reviewer is fairly confident that the evaluation is correct"
+                        },
+                        "forum": "HkghWScuoQ",
+                        "referent": "B1lXNPfx3m",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Official_Review",
+                        "replyto": "HkghWScuoQ",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/AnonReviewer5"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/AnonReviewer5"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "SkgePO3js7",
+                  "original": null,
+                  "cdate": 1540241496271,
+                  "tcdate": 1540241496271,
+                  "tmdate": 1540724314080,
+                  "ddate": null,
+                  "number": 1,
+                  "content": {
+                     "comment": "The authors presented a novel regularization method for fusing post hoc pruning methods with the training process, the method is based on using the pruning strategy information and bias the dropout criteria based on the information.\n\nI believe the intuition behind the idea is solid, it introduced a bridge between known pruning techniques such as [6] and [12], and dropout. However, there are some parts that confused me; line 56 and 57 contain multiple points:\n\n- Citing [6] and [12] as weight pruning techniques, while it holds true for the first method, the second method prunes feature maps, not weights.\n\n- In the explanation of weight pruning, it is mentioned that it considers whole filters, which is not the case for weight pruning nor [6]\n\n- [12] is cited in unit and weight pruning, does it belong to both?\n\nPros:\n\n- Novelty\n- Methods used\n\nCons:\n\n- Parts which caused confusion (mentioned above)\n- Not considering comparing the results to the original methods (e.g, produce tests on LeNet and compare with results of [6] on LeNet)\n\nRating: 3/5\nConfidence: 3/3\n\n\n[6] Song Han, Jeff Pool, John Tran, and William Dally. Learning both weights and connections\nfor efficient neural network. In Advances in neural information processing systems\n\n[12] Pavlo Molchanov, Stephen Tyree, Tero Karras, Timo Aila, and Jan Kautz. Pruning convolutional\nneural networks for resource efficient inference. 2016."
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Official_Comment",
+                  "replyto": "HkghWScuoQ",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Reviewers"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Reviewers"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "S1eDO2jo7",
+                        "original": null,
+                        "cdate": 1540241496271,
+                        "tcdate": 1540241496271,
+                        "tmdate": 1540724314080,
+                        "ddate": null,
+                        "number": 1,
+                        "content": {
+                           "comment": "The authors presented a novel regularization method for fusing post hoc pruning methods with the training process, the method is based on using the pruning strategy information and bias the dropout criteria based on the information.\n\nI believe the intuition behind the idea is solid, it introduced a bridge between known pruning techniques such as [6] and [12], and dropout. However, there are some parts that confused me; line 56 and 57 contain multiple points:\n\n- Citing [6] and [12] as weight pruning techniques, while it holds true for the first method, the second method prunes feature maps, not weights.\n\n- In the explanation of weight pruning, it is mentioned that it considers whole filters, which is not the case for weight pruning nor [6]\n\n- [12] is cited in unit and weight pruning, does it belong to both?\n\nPros:\n\n- Novelty\n- Methods used\n\nCons:\n\n- Parts which caused confusion (mentioned above)\n- Not considering comparing the results to the original methods (e.g, produce tests on LeNet and compare with results of [6] on LeNet)\n\nRating: 3/5\nConfidence: 3/3\n\n\n[6] Song Han, Jeff Pool, John Tran, and William Dally. Learning both weights and connections\nfor efficient neural network. In Advances in neural information processing systems\n\n[12] Pavlo Molchanov, Stephen Tyree, Tero Karras, Timo Aila, and Jan Kautz. Pruning convolutional\nneural networks for resource efficient inference. 2016."
+                        },
+                        "forum": "HkghWScuoQ",
+                        "referent": "SkgePO3js7",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Official_Comment",
+                        "replyto": "HkghWScuoQ",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Reviewers"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Reviewers"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "HkxCWIMz3X",
+                  "original": null,
+                  "cdate": 1540658694066,
+                  "tcdate": 1540658694066,
+                  "tmdate": 1540658694066,
+                  "ddate": null,
+                  "number": 3,
+                  "content": {
+                     "comment": "We would like to thank the reviewer for their comments. Thank you for bringing up the confusion regarding citation [12], we have removed [12] from the descriptions of \"weight\" and \"unit\" pruning, replacing them with earlier work presenting the techniques. Regarding the explanation of weight pruning, we thank the reviewer for pointing out the description error, we have corrected this in the revision.\n\nThank you for your time and comments,\nAuthors "
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Official_Comment",
+                  "replyto": "SkgePO3js7",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "SJR-Uzfnm",
+                        "original": null,
+                        "cdate": 1540658694066,
+                        "tcdate": 1540658694066,
+                        "tmdate": 1540658694066,
+                        "ddate": null,
+                        "number": 3,
+                        "content": {
+                           "comment": "We would like to thank the reviewer for their comments. Thank you for bringing up the confusion regarding citation [12], we have removed [12] from the descriptions of \"weight\" and \"unit\" pruning, replacing them with earlier work presenting the techniques. Regarding the explanation of weight pruning, we thank the reviewer for pointing out the description error, we have corrected this in the revision.\n\nThank you for your time and comments,\nAuthors "
+                        },
+                        "forum": "HkghWScuoQ",
+                        "referent": "HkxCWIMz3X",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Official_Comment",
+                        "replyto": "SkgePO3js7",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "HJldo0ZM3Q",
+                  "original": null,
+                  "cdate": 1540656800496,
+                  "tcdate": 1540656800496,
+                  "tmdate": 1540656800496,
+                  "ddate": null,
+                  "number": 2,
+                  "content": {
+                     "comment": "We thank the reviewer for the comments, we do have considerably more empirical results, as well as discussion on some possible explanations for the methods effectiveness that we can add to the final version of the paper.\n\nIn particular, we benchmark on MLPs, LeNet, and VGG16. All of which show results confirming the method's success. There are also visualizations of the change in function sensitivity as a consequence of our technique that we will add the appendix.\n\nAgain, we would like to thank the reviewer for their time and constructive comments,\nAuthors"
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Official_Comment",
+                  "replyto": "B1lXNPfx3m",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "Sk_jA-Mn7",
+                        "original": null,
+                        "cdate": 1540656800496,
+                        "tcdate": 1540656800496,
+                        "tmdate": 1540656800496,
+                        "ddate": null,
+                        "number": 2,
+                        "content": {
+                           "comment": "We thank the reviewer for the comments, we do have considerably more empirical results, as well as discussion on some possible explanations for the methods effectiveness that we can add to the final version of the paper.\n\nIn particular, we benchmark on MLPs, LeNet, and VGG16. All of which show results confirming the method's success. There are also visualizations of the change in function sensitivity as a consequence of our technique that we will add the appendix.\n\nAgain, we would like to thank the reviewer for their time and constructive comments,\nAuthors"
+                        },
+                        "forum": "HkghWScuoQ",
+                        "referent": "HJldo0ZM3Q",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper36/Official_Comment",
+                        "replyto": "B1lXNPfx3m",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper36/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "rklW3dlAAm",
+                  "original": null,
+                  "cdate": 1543534761266,
+                  "tcdate": 1543534761266,
+                  "tmdate": 1543534761266,
+                  "ddate": null,
+                  "number": 42,
+                  "content": {
+                     "comment": "Smallify is referred to in the comparison tables.  I assume this is Leclerc et. al. 2018, but you may want to be specific.",
+                     "title": "Ref of Smallify suggested"
+                  },
+                  "forum": "HkghWScuoQ",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Comment",
+                  "replyto": "HkghWScuoQ",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "~Harris_Teague1"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "r1WnuxRRm",
+                        "original": null,
+                        "cdate": 1543534761266,
+                        "tcdate": 1543534761266,
+                        "tmdate": 1543534761266,
+                        "ddate": null,
+                        "number": 42,
+                        "content": {
+                           "comment": "Smallify is referred to in the comparison tables.  I assume this is Leclerc et. al. 2018, but you may want to be specific.",
+                           "title": "Ref of Smallify suggested"
+                        },
+                        "forum": "HkghWScuoQ",
+                        "referent": "rklW3dlAAm",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Comment",
+                        "replyto": "HkghWScuoQ",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "~Harris_Teague1"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "id": "r1eLk2mKiX",
+            "original": "H1xH1hQtjQ",
+            "cdate": 1540074461855,
+            "tcdate": 1540074461855,
+            "tmdate": 1542159665434,
+            "ddate": null,
+            "number": 49,
+            "content": {
+               "title": "Rethinking the Value of Network Pruning",
+               "abstract": "Network pruning is widely used for reducing the heavy computational cost of deep models. A typical pruning algorithm is a three-stage pipeline, i.e., training (a large model), pruning and fine-tuning. In this work, we make a rather surprising observation: fine-tuning a pruned model only gives comparable or even worse performance than training that model with randomly initialized weights. Our results have several implications: 1) training a large, over-parameterized model is not necessary to obtain an efficient final model, 2) learned \"important\" weights of the large model are not necessarily useful for the small pruned model, 3) the pruned architecture itself, rather than a set of inherited weights, is what leads to the efficiency benefit in the final model, which suggests that some pruning algorithms could be seen as performing network architecture search.",
+               "paperhash": "liu|rethinking_the_value_of_network_pruning",
+               "TL;DR": "In network pruning, fine-tuning a pruned model only gives comparable or worse performance than training it from scratch. This advocate a rethinking of existing pruning algorithms.",
+               "authorids": [
+                  "zhuangl@berkeley.edu",
+                  "sunmj15@gmail.com",
+                  "tinghuiz@eecs.berkeley.edu",
+                  "gaohuang.thu@gmail.com",
+                  "trevordarrell@gmail.com"
+               ],
+               "authors": [
+                  "Zhuang Liu",
+                  "Mingjie Sun",
+                  "Tinghui Zhou",
+                  "Gao Huang",
+                  "Trevor Darrell"
+               ],
+               "keywords": [
+                  "Network Pruning",
+                  "Network Compression",
+                  "Architecture Search",
+                  "Training from Scratch"
+               ],
+               "pdf": "/pdf/dad7038fa745bf15afe2a9f5692a5c51a5433084.pdf"
+            },
+            "forum": "r1eLk2mKiX",
+            "referent": null,
+            "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+            "replyto": null,
+            "readers": [
+               "everyone"
+            ],
+            "nonreaders": [],
+            "signatures": [
+               "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+            ],
+            "writers": [
+               "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+            ],
+            "details": {
+               "replyCount": 22
+            },
+            "revisions": [
+               {
+                  "id": "SJKNaeKam",
+                  "original": "H1xH1hQtjQ",
+                  "cdate": 1540074461855,
+                  "tcdate": 1542159665434,
+                  "tmdate": 1542159665434,
+                  "ddate": null,
+                  "number": 49,
+                  "content": {
+                     "title": "Rethinking the Value of Network Pruning",
+                     "abstract": "Network pruning is widely used for reducing the heavy computational cost of deep models. A typical pruning algorithm is a three-stage pipeline, i.e., training (a large model), pruning and fine-tuning. In this work, we make a rather surprising observation: fine-tuning a pruned model only gives comparable or even worse performance than training that model with randomly initialized weights. Our results have several implications: 1) training a large, over-parameterized model is not necessary to obtain an efficient final model, 2) learned \"important\" weights of the large model are not necessarily useful for the small pruned model, 3) the pruned architecture itself, rather than a set of inherited weights, is what leads to the efficiency benefit in the final model, which suggests that some pruning algorithms could be seen as performing network architecture search.",
+                     "TL;DR": "In network pruning, fine-tuning a pruned model only gives comparable or worse performance than training it from scratch. This advocate a rethinking of existing pruning algorithms.",
+                     "authorids": [
+                        "zhuangl@berkeley.edu",
+                        "sunmj15@gmail.com",
+                        "tinghuiz@eecs.berkeley.edu",
+                        "gaohuang.thu@gmail.com",
+                        "trevordarrell@gmail.com"
+                     ],
+                     "authors": [
+                        "Zhuang Liu",
+                        "Mingjie Sun",
+                        "Tinghui Zhou",
+                        "Gao Huang",
+                        "Trevor Darrell"
+                     ],
+                     "keywords": [
+                        "Network Pruning",
+                        "Network Compression",
+                        "Architecture Search",
+                        "Training from Scratch"
+                     ],
+                     "pdf": "/pdf/dad7038fa745bf15afe2a9f5692a5c51a5433084.pdf",
+                     "paperhash": "liu|rethinking_the_value_of_network_pruning"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": "r1eLk2mKiX",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": null
+               },
+               {
+                  "id": "Bk6j5lKTQ",
+                  "original": "H1xH1hQtjQ",
+                  "cdate": 1540074461855,
+                  "tcdate": 1542159013190,
+                  "tmdate": 1542159013190,
+                  "ddate": null,
+                  "number": 49,
+                  "content": {
+                     "title": "Rethinking the Value of Network Pruning",
+                     "abstract": "Network pruning is widely used for reducing the heavy computational cost of deep models. A typical pruning algorithm is a three-stage pipeline, i.e., training (a large model), pruning and fine-tuning. In this work, we make a rather surprising observation: fine-tuning a pruned model only gives comparable or even worse performance than training that model with randomly initialized weights. Our results have several implications: 1) training a large, over-parameterized model is not necessary to obtain an efficient final model, 2) learned \"important\" weights of the large model are not necessarily useful for the small pruned model, 3) the pruned architecture itself, rather than a set of inherited weights, is what leads to the efficiency benefit in the final model, which suggests that some pruning algorithms could be seen as performing network architecture search.",
+                     "TL;DR": "In network pruning, fine-tuning a pruned model only gives comparable or worse performance than training it from scratch. This advocate a rethinking of existing pruning algorithms.",
+                     "authorids": [
+                        "zhuangl@berkeley.edu",
+                        "sunmj15@gmail.com",
+                        "tinghuiz@eecs.berkeley.edu",
+                        "gaohuang.thu@gmail.com",
+                        "trevordarrell@gmail.com"
+                     ],
+                     "authors": [
+                        "Zhuang Liu",
+                        "Mingjie Sun",
+                        "Tinghui Zhou",
+                        "Gao Huang",
+                        "Trevor Darrell"
+                     ],
+                     "keywords": [
+                        "Network Pruning",
+                        "Network Compression",
+                        "Architecture Search",
+                        "Training from Scratch"
+                     ],
+                     "pdf": "/pdf/0d61fbdafc911a1f8de814b2677abb33e9ac0814.pdf",
+                     "paperhash": "liu|rethinking_the_value_of_network_pruning"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": "r1eLk2mKiX",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": null
+               },
+               {
+                  "id": "SyS13QYsm",
+                  "original": "H1xH1hQtjQ",
+                  "cdate": 1540074461855,
+                  "tcdate": 1540074461234,
+                  "tmdate": 1540999920343,
+                  "ddate": null,
+                  "number": 49,
+                  "content": {
+                     "title": "Rethinking the Value of Network Pruning",
+                     "abstract": "Network pruning is widely used for reducing the heavy computational cost of deep models. A typical pruning algorithm is a three-stage pipeline, i.e., training (a large model), pruning and fine-tuning. In this work, we make a rather surprising observation: fine-tuning a pruned model only gives comparable or even worse performance than training that model with randomly initialized weights. Our results have several implications: 1) training a large, over-parameterized model is not necessary to obtain an efficient final model, 2) learned \"important\" weights of the large model are not necessarily useful for the small pruned model, 3) the pruned architecture itself, rather than a set of inherited weights, is what leads to the efficiency benefit in the final model, which suggests that some pruning algorithms could be seen as performing network architecture search.",
+                     "paperhash": "liu|rethinking_the_value_of_network_pruning",
+                     "TL;DR": "In network pruning, fine-tuning a pruned model only gives comparable or worse performance than training it from scratch. This advocate a rethinking of existing pruning algorithms.",
+                     "authorids": [
+                        "zhuangl@berkeley.edu",
+                        "sunmj15@gmail.com",
+                        "tinghuiz@eecs.berkeley.edu",
+                        "gaohuang.thu@gmail.com",
+                        "trevordarrell@gmail.com"
+                     ],
+                     "authors": [
+                        "Zhuang Liu",
+                        "Mingjie Sun",
+                        "Tinghui Zhou",
+                        "Gao Huang",
+                        "Trevor Darrell"
+                     ],
+                     "keywords": [
+                        "Network Pruning",
+                        "Network Compression",
+                        "Architecture Search",
+                        "Training from Scratch"
+                     ],
+                     "pdf": "/pdf/23b9fcbd4ce5ba893795c99de5c1f6a15c962de2.pdf"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": "r1eLk2mKiX",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": null
+               },
+               {
+                  "id": "SJT5ZH4nX",
+                  "original": "H1xH1hQtjQ",
+                  "cdate": 1540074461855,
+                  "tcdate": 1540800917394,
+                  "tmdate": 1540800917394,
+                  "ddate": null,
+                  "number": 49,
+                  "content": {
+                     "title": "Rethinking the Value of Network Pruning",
+                     "abstract": "Network pruning is widely used for reducing the heavy computational cost of deep models. A typical pruning algorithm is a three-stage pipeline, i.e., training (a large model), pruning and fine-tuning. In this work, we make a rather surprising observation: fine-tuning a pruned model only gives comparable or even worse performance than training that model with randomly initialized weights. Our results have several implications: 1) training a large, over-parameterized model is not necessary to obtain an efficient final model, 2) learned \"important\" weights of the large model are not necessarily useful for the small pruned model, 3) the pruned architecture itself, rather than a set of inherited weights, is what leads to the efficiency benefit in the final model, which suggests that some pruning algorithms could be seen as performing network architecture search.",
+                     "TL;DR": "In network pruning, fine-tuning a pruned model only gives comparable or worse performance than training it from scratch. This advocate a rethinking of existing pruning algorithms.",
+                     "authorids": [
+                        "zhuangl@berkeley.edu",
+                        "sunmj15@gmail.com",
+                        "tinghuiz@eecs.berkeley.edu",
+                        "gaohuang.thu@gmail.com",
+                        "trevordarrell@gmail.com"
+                     ],
+                     "authors": [
+                        "Zhuang Liu",
+                        "Mingjie Sun",
+                        "Tinghui Zhou",
+                        "Gao Huang",
+                        "Trevor Darrell"
+                     ],
+                     "keywords": [
+                        "Network Pruning",
+                        "Network Compression",
+                        "Architecture Search",
+                        "Training from Scratch"
+                     ],
+                     "pdf": "/pdf/23b9fcbd4ce5ba893795c99de5c1f6a15c962de2.pdf",
+                     "paperhash": "liu|rethinking_the_value_of_network_pruning"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": "r1eLk2mKiX",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": null
+               },
+               {
+                  "id": "BkNjEVtoQ",
+                  "original": "H1xH1hQtjQ",
+                  "cdate": 1540074461855,
+                  "tcdate": 1540076700229,
+                  "tmdate": 1540076700229,
+                  "ddate": null,
+                  "number": 49,
+                  "content": {
+                     "title": "Rethinking the Value of Network Pruning",
+                     "abstract": "Network pruning is widely used for reducing the heavy computational cost of deep models. A typical pruning algorithm consists of a three-stage pipeline, i.e., training (a large model), pruning and fine-tuning. In this work, we make a rather surprising observation: fine-tuning a pruned model only gives comparable or even worse performance than training that model with randomly initialized weights. Our results have several implications: 1) training a large, over-parameterized model is not necessary to obtain an efficient final model, 2) learned \"important\" weights of the large model are not necessarily useful for the small pruned model, 3) the pruned architecture itself, rather than a set of inherited weights, is what leads to the efficiency benefit in the final model, which suggests that some pruning algorithms could be seen as performing network architecture search.",
+                     "TL;DR": "In network pruning, fine-tuning a pruned model only gives comparable or worse performance than training it from scratch. This advocate a rethinking of existing pruning algorithms.",
+                     "authorids": [
+                        "zhuangl@berkeley.edu",
+                        "smj15@gmail.com",
+                        "tinghuiz@eecs.berkeley.edu",
+                        "gaohuang.thu@gmail.com",
+                        "trevordarrell@gmail.com"
+                     ],
+                     "authors": [
+                        "Zhuang Liu",
+                        "Mingjie Sun",
+                        "Tinghui Zhou",
+                        "Gao Huang",
+                        "Trevor Darrell"
+                     ],
+                     "keywords": [
+                        "Network Pruning",
+                        "Network Compression",
+                        "Architecture Search",
+                        "Training from Scratch"
+                     ],
+                     "pdf": "/pdf/af9aefd8dbdb9fb0948bd853d9a22e9ce81fd715.pdf",
+                     "paperhash": "liu|rethinking_the_value_of_network_pruning"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": "r1eLk2mKiX",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": null
+               },
+               {
+                  "id": "S1I027ts7",
+                  "original": "H1xH1hQtjQ",
+                  "cdate": 1540074461855,
+                  "tcdate": 1540074701603,
+                  "tmdate": 1540074701603,
+                  "ddate": null,
+                  "number": 49,
+                  "content": {
+                     "title": "Rethinking the Value of Network Pruning",
+                     "abstract": "Network pruning is widely used for reducing the heavy computational cost of deep models. A typical pruning algorithm consists of a three-stage pipeline, i.e., training (a large model), pruning and fine-tuning. In this work, we make a rather surprising observation: fine-tuning a pruned model only gives comparable or even worse performance than training that model with randomly initialized weights. Our results have several implications: 1) training a large, over-parameterized model is not necessary to obtain an efficient final model, 2) learned \"important\" weights of the large model are not necessarily useful for the small pruned model, 3) the pruned architecture itself, rather than a set of inherited weights, is what leads to the efficiency benefit in the final model, which suggests that some pruning algorithms could be seen as performing network architecture search.",
+                     "TL;DR": "In network pruning, fine-tuning a pruned model only gives comparable or worse performance than training it from scratch. This advocate a rethinking of existing pruning algorithms.",
+                     "authorids": [
+                        "zhuangl@berkeley.edu",
+                        "smj15@gmail.com",
+                        "tinghuiz@eecs.berkeley.edu",
+                        "gaohuang.thu@gmail.com",
+                        "trevordarrell@gmail.com"
+                     ],
+                     "authors": [
+                        "Zhuang Liu",
+                        "Mingjie Sun",
+                        "Tinghui Zhou",
+                        "Gao Huang",
+                        "Trevor Darrell"
+                     ],
+                     "keywords": [
+                        "Network Pruning",
+                        "Network Compression",
+                        "Architecture Search",
+                        "Training from Scratch"
+                     ],
+                     "pdf": "/pdf/15d2c1d7c68f28cdbc31e49950f8baeadbe84ddd.pdf",
+                     "paperhash": "liu|rethinking_the_value_of_network_pruning"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": "r1eLk2mKiX",
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Blind_Submission",
+                  "replyto": null,
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": null
+               }
+            ],
+            "notes": [
+               {
+                  "id": "SkgTS5nxpX",
+                  "original": null,
+                  "cdate": 1541618244633,
+                  "tcdate": 1541618244633,
+                  "tmdate": 1541618244633,
+                  "ddate": null,
+                  "number": 1,
+                  "content": {
+                     "title": "Acceptance Decision",
+                     "decision": "accept"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Decision",
+                  "replyto": "r1eLk2mKiX",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "SJ6Bchgpm",
+                        "original": null,
+                        "cdate": 1541618244633,
+                        "tcdate": 1541618244633,
+                        "tmdate": 1541618244633,
+                        "ddate": null,
+                        "number": 1,
+                        "content": {
+                           "title": "Acceptance Decision",
+                           "decision": "accept"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "SkgTS5nxpX",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Decision",
+                        "replyto": "r1eLk2mKiX",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "rJgwAWZ0j7",
+                  "original": null,
+                  "cdate": 1540391374594,
+                  "tcdate": 1540391374594,
+                  "tmdate": 1540457322203,
+                  "ddate": null,
+                  "number": 1,
+                  "content": {
+                     "title": "Important work, but experimental results not entirely convincing.",
+                     "review": "This paper investigates the importance of inheriting the weights of a pruned network. It does so by comparing the results of pruned and fine-tuned networks with training such networks from scratch. Furthermore, it claims that the power of automatic pruning strategies is to find better small architectures.\n\nThe paper addresses an interesting and important topic, as it is crucial to verify and re-evaluate results of existing papers in order to trust them.\n\nHowever, there are certain issues that I would like the authors to address or explain.\n\n\"Scratch-B\" training:\nI don't think that training with the same amount of computational budget (Scratch-B) is a fair comparison. We know that training large neural networks has a much higher computational cost compared to the gain in accuracy they provide. For predefined target architectures, if a smaller network (with just fewer filters in each layer) performs better than the bigger one, this means that either the model was too big in the first place (and is thus over-fitting), or it has not been trained until convergence. \n\nFor the automatically discovered target architectures (3.2), there is no way to train the target architecture from scratch without training the full model first! Thus the computational budget argument makes little sense to me here, because you *have* to train the big model in any case to derive the pruned one. Furthermore, the difference between Scratch-E and Scratch-B shows that the number of epochs the models were trained initially is not enough to achieve the best performance.\n\nFor the same reason, the results for the fine-tuned networks might not be indicative of their performance. The paper does not state for how many epochs they have been trained, but generally, \"fine-tuning\" means fewer epochs than training from scratch. (Also, the statement from the conclusion, \"in this case fine-tuning is much faster\", indicates that this is indeed the case.) If this is the case, the better performance might also be explained by the number training epochs, and does not support the conclusions.\n\nFinally, in the conclusion, the paper says that \"this changed our understanding about the necessity of over-parameterization\". This is a very general (and strong) statement. First, the paper does not indicate how this understanding changed (if there ever was an understanding about this). Second, I don't see how this conclusion can be drawn from the experiments in this work. The paper should thus substantiate this conclusion in some way.\n\nSome minor things that would improve the readability and understanding of the paper:\n\n - Table 1: It is unclear what the *-A and *-B variants of the pruned models mean. How many channels have been pruned?\n - The paper should compare the same architectures in 3.1 as in 3.2 to enable a direct comparison between the methods.",
+                     "rating": "4: Top 50% of accepted papers, clear accept",
+                     "confidence": "2: The reviewer is fairly confident that the evaluation is correct"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Review",
+                  "replyto": "r1eLk2mKiX",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer3"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer3"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "ryPCZW0j7",
+                        "original": null,
+                        "cdate": 1540391374594,
+                        "tcdate": 1540391374594,
+                        "tmdate": 1540457322203,
+                        "ddate": null,
+                        "number": 1,
+                        "content": {
+                           "title": "Important work, but experimental results not entirely convincing.",
+                           "review": "This paper investigates the importance of inheriting the weights of a pruned network. It does so by comparing the results of pruned and fine-tuned networks with training such networks from scratch. Furthermore, it claims that the power of automatic pruning strategies is to find better small architectures.\n\nThe paper addresses an interesting and important topic, as it is crucial to verify and re-evaluate results of existing papers in order to trust them.\n\nHowever, there are certain issues that I would like the authors to address or explain.\n\n\"Scratch-B\" training:\nI don't think that training with the same amount of computational budget (Scratch-B) is a fair comparison. We know that training large neural networks has a much higher computational cost compared to the gain in accuracy they provide. For predefined target architectures, if a smaller network (with just fewer filters in each layer) performs better than the bigger one, this means that either the model was too big in the first place (and is thus over-fitting), or it has not been trained until convergence. \n\nFor the automatically discovered target architectures (3.2), there is no way to train the target architecture from scratch without training the full model first! Thus the computational budget argument makes little sense to me here, because you *have* to train the big model in any case to derive the pruned one. Furthermore, the difference between Scratch-E and Scratch-B shows that the number of epochs the models were trained initially is not enough to achieve the best performance.\n\nFor the same reason, the results for the fine-tuned networks might not be indicative of their performance. The paper does not state for how many epochs they have been trained, but generally, \"fine-tuning\" means fewer epochs than training from scratch. (Also, the statement from the conclusion, \"in this case fine-tuning is much faster\", indicates that this is indeed the case.) If this is the case, the better performance might also be explained by the number training epochs, and does not support the conclusions.\n\nFinally, in the conclusion, the paper says that \"this changed our understanding about the necessity of over-parameterization\". This is a very general (and strong) statement. First, the paper does not indicate how this understanding changed (if there ever was an understanding about this). Second, I don't see how this conclusion can be drawn from the experiments in this work. The paper should thus substantiate this conclusion in some way.\n\nSome minor things that would improve the readability and understanding of the paper:\n\n - Table 1: It is unclear what the *-A and *-B variants of the pruned models mean. How many channels have been pruned?\n - The paper should compare the same architectures in 3.1 as in 3.2 to enable a direct comparison between the methods.",
+                           "rating": "4: Top 50% of accepted papers, clear accept",
+                           "confidence": "2: The reviewer is fairly confident that the evaluation is correct"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "rJgwAWZ0j7",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Review",
+                        "replyto": "r1eLk2mKiX",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer3"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer3"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "S1lJjJKRim",
+                  "original": null,
+                  "cdate": 1540423575158,
+                  "tcdate": 1540423575158,
+                  "tmdate": 1540423575158,
+                  "ddate": null,
+                  "number": 3,
+                  "content": {
+                     "title": "Interesting and Solid Works",
+                     "review": "In this paper, the authors make a clear claim that \u201cfine-tuning a pruned model only gives comparable or even worse performance than training that model with randomly initialized weights.\u201d, which significantly challenges the conventional \u201cthree-stage pipeline\u201d pruning methods.  With extensive and solid experiments, this paper has caused me to think about the pruning. \n\nI'm wondering what is the difference between the training from the scratch and fine-tuning from the pruned model. I tried to prune the VGG-16 on the CIFAR10 datasets, which pruning the same number of filters as the L1-norm based paper. I pruned the whole network once and try to compensate the accuracy by retraining. However, it is really hard to compensate the accuracy by retraining. Is that just because the L1-norm based filter pruning method only prune the smallest filters, which could also be important to the network?  So, the remaining larger filters cannot be tuned to compensate the accuracy drop.\n",
+                     "rating": "4: Top 50% of accepted papers, clear accept",
+                     "confidence": "2: The reviewer is fairly confident that the evaluation is correct"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Review",
+                  "replyto": "r1eLk2mKiX",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer5"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer5"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "r1yi1FAjm",
+                        "original": null,
+                        "cdate": 1540423575158,
+                        "tcdate": 1540423575158,
+                        "tmdate": 1540423575158,
+                        "ddate": null,
+                        "number": 3,
+                        "content": {
+                           "title": "Interesting and Solid Works",
+                           "review": "In this paper, the authors make a clear claim that \u201cfine-tuning a pruned model only gives comparable or even worse performance than training that model with randomly initialized weights.\u201d, which significantly challenges the conventional \u201cthree-stage pipeline\u201d pruning methods.  With extensive and solid experiments, this paper has caused me to think about the pruning. \n\nI'm wondering what is the difference between the training from the scratch and fine-tuning from the pruned model. I tried to prune the VGG-16 on the CIFAR10 datasets, which pruning the same number of filters as the L1-norm based paper. I pruned the whole network once and try to compensate the accuracy by retraining. However, it is really hard to compensate the accuracy by retraining. Is that just because the L1-norm based filter pruning method only prune the smallest filters, which could also be important to the network?  So, the remaining larger filters cannot be tuned to compensate the accuracy drop.\n",
+                           "rating": "4: Top 50% of accepted papers, clear accept",
+                           "confidence": "2: The reviewer is fairly confident that the evaluation is correct"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "S1lJjJKRim",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Review",
+                        "replyto": "r1eLk2mKiX",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer5"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer5"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "BylYNTIRsQ",
+                  "original": null,
+                  "cdate": 1540414769115,
+                  "tcdate": 1540414769115,
+                  "tmdate": 1540414769115,
+                  "ddate": null,
+                  "number": 2,
+                  "content": {
+                     "title": "Solid interesting paper challenging conventional wisdom in the field",
+                     "review": "Overall score: 4/5\nConfidence of review: 2/5\n\nSummary: In a nutshell, this paper challenges the conventional notions of network pruning held by researchers and practitioners. The authors demonstrate, through an extensive set of experiments, training a small pruned model from scratch gives comparable accuracy to the standard pipeline of first training a large overparameterized model, then pruning unimportant weights and lastly fine-tuning the model. In addition, the authors that automatic pruning methods can serve as a guide for effective architecture search.\n\nEvaluation: Overall I think this makes a great workshop paper. The paper is well-written and easy to follow. The empirical analysis is also very clean. However, I want to make a few points connecting their work and foundational aspects of deep learning that I hope the authors will think about in the future (especially since their title is reminsicent of the \"Rethinking generalization\" paper):\n\n1. Recent works have shown that overparameterization can speed up optimization. In (Arora et al, ICML '18), the authors shown both in theory and practice that for linear networks, increasing depth accelerates training. However, the authors advocate against training large overparameterized models; I'm curious to know in general the exact effects of overparameterization in deep neural network training.\n\n2. I did not see any mention of the type of optimization method used. Is it SGD with some usual tricks (Dropout, batch-normalization, etc)? I am curious whether or not the results of this paper would be true if we use different optimizers.\n\n3. Pruning is usually important as it can help generalization since this helps to reduce redundancy in the parameter space. There's also a lot of literature discussing how pruning acts as a useful regularization thus helping generalization performance. It would be nice to see more extensive experiments or analysis on how training with scratch (both Scratch-E/Scratch-B) affects generalization.\n=================================================================",
+                     "rating": "4: Top 50% of accepted papers, clear accept",
+                     "confidence": "2: The reviewer is fairly confident that the evaluation is correct"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Review",
+                  "replyto": "r1eLk2mKiX",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer2"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer2"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "ryt4TIRjm",
+                        "original": null,
+                        "cdate": 1540414769115,
+                        "tcdate": 1540414769115,
+                        "tmdate": 1540414769115,
+                        "ddate": null,
+                        "number": 2,
+                        "content": {
+                           "title": "Solid interesting paper challenging conventional wisdom in the field",
+                           "review": "Overall score: 4/5\nConfidence of review: 2/5\n\nSummary: In a nutshell, this paper challenges the conventional notions of network pruning held by researchers and practitioners. The authors demonstrate, through an extensive set of experiments, training a small pruned model from scratch gives comparable accuracy to the standard pipeline of first training a large overparameterized model, then pruning unimportant weights and lastly fine-tuning the model. In addition, the authors that automatic pruning methods can serve as a guide for effective architecture search.\n\nEvaluation: Overall I think this makes a great workshop paper. The paper is well-written and easy to follow. The empirical analysis is also very clean. However, I want to make a few points connecting their work and foundational aspects of deep learning that I hope the authors will think about in the future (especially since their title is reminsicent of the \"Rethinking generalization\" paper):\n\n1. Recent works have shown that overparameterization can speed up optimization. In (Arora et al, ICML '18), the authors shown both in theory and practice that for linear networks, increasing depth accelerates training. However, the authors advocate against training large overparameterized models; I'm curious to know in general the exact effects of overparameterization in deep neural network training.\n\n2. I did not see any mention of the type of optimization method used. Is it SGD with some usual tricks (Dropout, batch-normalization, etc)? I am curious whether or not the results of this paper would be true if we use different optimizers.\n\n3. Pruning is usually important as it can help generalization since this helps to reduce redundancy in the parameter space. There's also a lot of literature discussing how pruning acts as a useful regularization thus helping generalization performance. It would be nice to see more extensive experiments or analysis on how training with scratch (both Scratch-E/Scratch-B) affects generalization.\n=================================================================",
+                           "rating": "4: Top 50% of accepted papers, clear accept",
+                           "confidence": "2: The reviewer is fairly confident that the evaluation is correct"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "BylYNTIRsQ",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Review",
+                        "replyto": "r1eLk2mKiX",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer2"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer2"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "SyxxVzSE37",
+                  "original": null,
+                  "cdate": 1540801064054,
+                  "tcdate": 1540801064054,
+                  "tmdate": 1540801112299,
+                  "ddate": null,
+                  "number": 18,
+                  "content": {
+                     "comment": "We have just uploaded a revision, and here we give a summary of the changes.\n\nIn response to Reviewer 2:\n1. We emphasized the over-parameterization's necessity we are verifying is in the context of network pruning, in Section 5.\n2. We briefly mentioned the optimization scheme used in our experiments in Section 2. \n\nIn response to Reviewer 3:\n1. We added the clarification on fine-tuning settings in the first paragraph of Section 3.\n2. We improved the concluding sentence about over-parameterization in Section 5.\n3. We add the clarification on \"*-A\" and \"*-B\" models in the caption of Table 1, and that we use the same datasets and networks in the first paragraph of Section 3.\n\nIn response to Reviewer 4:\n1. We added the results on the usage of sparsity regularization when training from scratch in Appendix B.2.\n2. We made clarifications on which pruning methods use sparsity regularization during large model training in Section 3 and Appendix B.\n3. We clarified that for no sparsity regularization is used in experiments of Section 4.\n4. We visualized the weight distributions of convolutional layers, for unpruned, fine-tuned and scratch-trained models in Appendix D.\n\nThanks again for all the reviews and suggestions from the reviewers!\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "r1eLk2mKiX",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "HJe4MBN3X",
+                        "original": null,
+                        "cdate": 1540801064054,
+                        "tcdate": 1540801064054,
+                        "tmdate": 1540801112299,
+                        "ddate": null,
+                        "number": 18,
+                        "content": {
+                           "comment": "We have just uploaded a revision, and here we give a summary of the changes.\n\nIn response to Reviewer 2:\n1. We emphasized the over-parameterization's necessity we are verifying is in the context of network pruning, in Section 5.\n2. We briefly mentioned the optimization scheme used in our experiments in Section 2. \n\nIn response to Reviewer 3:\n1. We added the clarification on fine-tuning settings in the first paragraph of Section 3.\n2. We improved the concluding sentence about over-parameterization in Section 5.\n3. We add the clarification on \"*-A\" and \"*-B\" models in the caption of Table 1, and that we use the same datasets and networks in the first paragraph of Section 3.\n\nIn response to Reviewer 4:\n1. We added the results on the usage of sparsity regularization when training from scratch in Appendix B.2.\n2. We made clarifications on which pruning methods use sparsity regularization during large model training in Section 3 and Appendix B.\n3. We clarified that for no sparsity regularization is used in experiments of Section 4.\n4. We visualized the weight distributions of convolutional layers, for unpruned, fine-tuned and scratch-trained models in Appendix D.\n\nThanks again for all the reviews and suggestions from the reviewers!\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "SyxxVzSE37",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "r1eLk2mKiX",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "S1ea0Wr4nX",
+                  "original": null,
+                  "cdate": 1540800980878,
+                  "tcdate": 1540800980878,
+                  "tmdate": 1540800980878,
+                  "ddate": null,
+                  "number": 17,
+                  "content": {
+                     "comment": "Thank you for your response and evaluation. \n\nIn the latest revision, we visualized the weight distributions for two pruning methods in Appendix D. We found that the distributions of fine-tuned/scratch-trained pruned models are very different from the unpruned models. The mentioned connection of Scratch-B to multiple training sessions in architecture search also seems interesting.\n\nThank you again for your review!\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "S1elursMnQ",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "HkpCZr4hQ",
+                        "original": null,
+                        "cdate": 1540800980878,
+                        "tcdate": 1540800980878,
+                        "tmdate": 1540800980878,
+                        "ddate": null,
+                        "number": 17,
+                        "content": {
+                           "comment": "Thank you for your response and evaluation. \n\nIn the latest revision, we visualized the weight distributions for two pruning methods in Appendix D. We found that the distributions of fine-tuned/scratch-trained pruned models are very different from the unpruned models. The mentioned connection of Scratch-B to multiple training sessions in architecture search also seems interesting.\n\nThank you again for your review!\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "S1ea0Wr4nX",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "S1elursMnQ",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "S1elursMnQ",
+                  "original": null,
+                  "cdate": 1540695399933,
+                  "tcdate": 1540695399933,
+                  "tmdate": 1540695399933,
+                  "ddate": null,
+                  "number": 16,
+                  "content": {
+                     "comment": "Thanks for clarifying scratch-E/B and reiterating the motivation i.e. to verify the mentioned previous beliefs about network pruning (inheriting weights is helpful, training large model first gives more optimization power). \n\nInstead of the question whether \"inheriting weights is helpful\",  I would rather ask \"what kinds of weights are learned and inherited\".  In the baseline model without using sparsity regularisation, contributions of each filters are more or less equally distributed. Enforcing sparsity boosts importances of certain filters while suppressing others. Both the number of important filters and corresponding weights are optimized, with respect to the regularized objective. The scratch E/B methods then throw away weights and learn a smaller set of filters with respect to different objectives.  Even though the reported performances are comparable, the learned filters might be substantially different from those inherited and fine-tuned filters.  I would suggest to visualize and compare learned filters in two approaches.\n\nAs for the argument of Scratch-B i.e. to train more epochs for smaller networks, might be relevant for network architecture search e.g. invoking multiple training sessions to find the optimal network size for given application datasets.  But in general I find to compare models trained with the same number of epochs more fair and convincing.\n\nAs I said, this is a valuable contribution to the community and I recommend the acceptance to the workshop. "
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "rJeEsqHfnX",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "HyldHjzhm",
+                        "original": null,
+                        "cdate": 1540695399933,
+                        "tcdate": 1540695399933,
+                        "tmdate": 1540695399933,
+                        "ddate": null,
+                        "number": 16,
+                        "content": {
+                           "comment": "Thanks for clarifying scratch-E/B and reiterating the motivation i.e. to verify the mentioned previous beliefs about network pruning (inheriting weights is helpful, training large model first gives more optimization power). \n\nInstead of the question whether \"inheriting weights is helpful\",  I would rather ask \"what kinds of weights are learned and inherited\".  In the baseline model without using sparsity regularisation, contributions of each filters are more or less equally distributed. Enforcing sparsity boosts importances of certain filters while suppressing others. Both the number of important filters and corresponding weights are optimized, with respect to the regularized objective. The scratch E/B methods then throw away weights and learn a smaller set of filters with respect to different objectives.  Even though the reported performances are comparable, the learned filters might be substantially different from those inherited and fine-tuned filters.  I would suggest to visualize and compare learned filters in two approaches.\n\nAs for the argument of Scratch-B i.e. to train more epochs for smaller networks, might be relevant for network architecture search e.g. invoking multiple training sessions to find the optimal network size for given application datasets.  But in general I find to compare models trained with the same number of epochs more fair and convincing.\n\nAs I said, this is a valuable contribution to the community and I recommend the acceptance to the workshop. "
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "S1elursMnQ",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "rJeEsqHfnX",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "rJeEsqHfnX",
+                  "original": null,
+                  "cdate": 1540672156282,
+                  "tcdate": 1540672156282,
+                  "tmdate": 1540672553109,
+                  "ddate": null,
+                  "number": 15,
+                  "content": {
+                     "comment": "Thank you for your timely reply! \n\nWe agree with your points about regularization. Thanks to your questions, through these follow-up experiments we learned some interesting knowledge about the effect of regularization. Our work focuses on verifying whether inheriting weights is useful and training a large model then prune can give better optimization solution, on general pruning algorithms where regularization may be used or not. We definitely agree investigating the regularization effect in network pruning is an interesting next step.\n\nAs for your concern about scratch-E/B, we would like to make some clarifications. We are not proposing to use training scratch instead of the traditional pipelines in this work. Instead, we are verifying the mentioned previous beliefs about network pruning (inheriting weights is helpful, training large model first gives more optimization power). To verify these, we experiment with training the pruned architecture from scratch, but we are not suggesting it should replace the current methods or showing it is better. The fact that scratch-trained models can be on par with the fine-tuned models naturally leads to the implications: for predefined architectures, one may skip the pipeline; for automatic methods, the architecture matters more than weights so it can be seen as implicit architecture search. In the later case, one can even distill the patterns from pruned architectures and redesign the network (Section 4 and Appendix C) so it can be argued training the large model is not necessary either. In summary, our contribution is not to propose to use training from scratch instead of traditional methods, but lies in verifying the previous beliefs and advocate a rethinking of existing pruning algorithms.\n\nFrom our understanding, AnonReviewer3's concern is not that scratch-B is not fair compared to scratch-E. His/her concern was that the number of epochs for scratch-E is not enough for convergence so if we extend both scratch-E (epochs for training large models) and scratch-B the observation may no longer hold.  We explained in response to him/her on two reasons: 1. the number of epochs we used for scratch-E is carefully chosen by previous state-of-the-art works [1,2], and is the de-facto standard in the image classification literature. They are also used by the pruning algorithms we evaluated on. 2. In our experiments we have tried to extend both scratch-E and scratch-B, but the same observation still holds\n\nWe think for predefined methods, scratch-B is more fair than scratch-E since the small model really consumes significantly less computation than large model for one epoch, and in engineering practice, training time is an important aspect to consider. For automatic methods, we think it is also interesting to see the results of scratch-B; this is not to argue that one can use same computation budget to achieve the same result, since finding the pruned model still requires large model training. This is interesting to us from an optimization perspective -- we wish to explore the scratch-training's full optimization potential, since small models are possibly less prone to overfitting and can possibly be more suitable to be trained longer than large models.\n\nWe would like to thank you again for discussing with us, it is very helpful. And finally, an overall rating and confidence score  (maybe in our first comment) would be very much appreciated.\n\n[1] Deep Residual Learning for Image Recognition. He et al., CVPR 2016.\n[2] Densely Connected Convolutional Networks. Huang et al., CVPR 2017.\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "HkeNDAZG37",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "BJEsqSfnm",
+                        "original": null,
+                        "cdate": 1540672156282,
+                        "tcdate": 1540672156282,
+                        "tmdate": 1540672553109,
+                        "ddate": null,
+                        "number": 15,
+                        "content": {
+                           "comment": "Thank you for your timely reply! \n\nWe agree with your points about regularization. Thanks to your questions, through these follow-up experiments we learned some interesting knowledge about the effect of regularization. Our work focuses on verifying whether inheriting weights is useful and training a large model then prune can give better optimization solution, on general pruning algorithms where regularization may be used or not. We definitely agree investigating the regularization effect in network pruning is an interesting next step.\n\nAs for your concern about scratch-E/B, we would like to make some clarifications. We are not proposing to use training scratch instead of the traditional pipelines in this work. Instead, we are verifying the mentioned previous beliefs about network pruning (inheriting weights is helpful, training large model first gives more optimization power). To verify these, we experiment with training the pruned architecture from scratch, but we are not suggesting it should replace the current methods or showing it is better. The fact that scratch-trained models can be on par with the fine-tuned models naturally leads to the implications: for predefined architectures, one may skip the pipeline; for automatic methods, the architecture matters more than weights so it can be seen as implicit architecture search. In the later case, one can even distill the patterns from pruned architectures and redesign the network (Section 4 and Appendix C) so it can be argued training the large model is not necessary either. In summary, our contribution is not to propose to use training from scratch instead of traditional methods, but lies in verifying the previous beliefs and advocate a rethinking of existing pruning algorithms.\n\nFrom our understanding, AnonReviewer3's concern is not that scratch-B is not fair compared to scratch-E. His/her concern was that the number of epochs for scratch-E is not enough for convergence so if we extend both scratch-E (epochs for training large models) and scratch-B the observation may no longer hold.  We explained in response to him/her on two reasons: 1. the number of epochs we used for scratch-E is carefully chosen by previous state-of-the-art works [1,2], and is the de-facto standard in the image classification literature. They are also used by the pruning algorithms we evaluated on. 2. In our experiments we have tried to extend both scratch-E and scratch-B, but the same observation still holds\n\nWe think for predefined methods, scratch-B is more fair than scratch-E since the small model really consumes significantly less computation than large model for one epoch, and in engineering practice, training time is an important aspect to consider. For automatic methods, we think it is also interesting to see the results of scratch-B; this is not to argue that one can use same computation budget to achieve the same result, since finding the pruned model still requires large model training. This is interesting to us from an optimization perspective -- we wish to explore the scratch-training's full optimization potential, since small models are possibly less prone to overfitting and can possibly be more suitable to be trained longer than large models.\n\nWe would like to thank you again for discussing with us, it is very helpful. And finally, an overall rating and confidence score  (maybe in our first comment) would be very much appreciated.\n\n[1] Deep Residual Learning for Image Recognition. He et al., CVPR 2016.\n[2] Densely Connected Convolutional Networks. Huang et al., CVPR 2017.\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "rJeEsqHfnX",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "HkeNDAZG37",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "HkeNDAZG37",
+                  "original": null,
+                  "cdate": 1540656732124,
+                  "tcdate": 1540656732124,
+                  "tmdate": 1540656732124,
+                  "ddate": null,
+                  "number": 14,
+                  "content": {
+                     "comment": "\nI appreciate authors efforts in reporting new experiment results, which provide solid ground for discussion.  \n\nFirst of all, I'd like to focus on the effectiveness of adding sparsity terms.  In terms of  accuracy, there seems no consistent improvements by adding sparsity terms (except for VG-19 only).  As I said, it is not a surprise since the optimization goal is DIFFERENT and there is no guarantee that 'adding the sparsity is not hurting our goal of higher test accuracy'. \n\nSecond, then we'd like to ask why adding sparsity terms is needed. As you found out,  it is impossible to prune a VGG-19 trained without sparsity by 70% since a whole layer is pruned and the network gets destroyed.  By adding a sparsity term, the optimization will boost the contributions of important filters while suppressing others, such that unimportant ones can be safely removed at the end of the training phase.  Bear in mind  the price paid for this possibility is the potential loss of accuracies due to different optimization goals. This is also why the retraining (without sparsity terms) is needed to restore the accuracy. But the retraining is not always successful, probably, because of unduly pruning of important filters.\n\nThird, the scratch-E scheme (without sparsity terms) seems comparable or slightly worse than the retrained models, depending on networks architectures used and whether the retraining is properly done. \n\nFinally, as for scratch-B, I am inclined to accept the argument of  AnonReviewer3 that all models should be trained with the same number of epochs to have a fair comparison.  But even with the reported scheme, the improvement margins are often within the standard deviations. Considering that the pruning method is still needed to identify efficient architectures, as suggested in line 37/38 of the paper, the benefits of invoking a training from scratch (rather than retraining) seem questionable. \n\nOverall, I view this work valuable in challenging the myths about network pruning with solid experiment results.  On the other hand, it is better refrain from jumping to new beliefs without indisputable evidence and explanations. \n\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "r1xXL-3-2m",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "BJVv0-GnQ",
+                        "original": null,
+                        "cdate": 1540656732124,
+                        "tcdate": 1540656732124,
+                        "tmdate": 1540656732124,
+                        "ddate": null,
+                        "number": 14,
+                        "content": {
+                           "comment": "\nI appreciate authors efforts in reporting new experiment results, which provide solid ground for discussion.  \n\nFirst of all, I'd like to focus on the effectiveness of adding sparsity terms.  In terms of  accuracy, there seems no consistent improvements by adding sparsity terms (except for VG-19 only).  As I said, it is not a surprise since the optimization goal is DIFFERENT and there is no guarantee that 'adding the sparsity is not hurting our goal of higher test accuracy'. \n\nSecond, then we'd like to ask why adding sparsity terms is needed. As you found out,  it is impossible to prune a VGG-19 trained without sparsity by 70% since a whole layer is pruned and the network gets destroyed.  By adding a sparsity term, the optimization will boost the contributions of important filters while suppressing others, such that unimportant ones can be safely removed at the end of the training phase.  Bear in mind  the price paid for this possibility is the potential loss of accuracies due to different optimization goals. This is also why the retraining (without sparsity terms) is needed to restore the accuracy. But the retraining is not always successful, probably, because of unduly pruning of important filters.\n\nThird, the scratch-E scheme (without sparsity terms) seems comparable or slightly worse than the retrained models, depending on networks architectures used and whether the retraining is properly done. \n\nFinally, as for scratch-B, I am inclined to accept the argument of  AnonReviewer3 that all models should be trained with the same number of epochs to have a fair comparison.  But even with the reported scheme, the improvement margins are often within the standard deviations. Considering that the pruning method is still needed to identify efficient architectures, as suggested in line 37/38 of the paper, the benefits of invoking a training from scratch (rather than retraining) seem questionable. \n\nOverall, I view this work valuable in challenging the myths about network pruning with solid experiment results.  On the other hand, it is better refrain from jumping to new beliefs without indisputable evidence and explanations. \n\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "HkeNDAZG37",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "r1xXL-3-2m",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "r1xXL-3-2m",
+                  "original": null,
+                  "cdate": 1540632907295,
+                  "tcdate": 1540632907295,
+                  "tmdate": 1540633010327,
+                  "ddate": null,
+                  "number": 13,
+                  "content": {
+                     "comment": "Thank you for your patience. The results for DenseNet-40 on CIFAR-10 for both objective A and B are now available.\n\nObjective A (training cross-entropy loss + sparsity loss)\n-------------------------------------------------------------------------------------------------------------------------------\n(All with sparsity)            Unpruned   Prune Ratio  Fine-tuned      Scratch-E       Scratch-B\nDenseNet-40-CIFAR10   94.00(\u00b10.17)      40%         94.01(\u00b10.23)   93.76(\u00b10.06)   93.91(\u00b10.23)\nDenseNet-40-CIFAR10   94.00(\u00b10.17)      60%         93.86(\u00b10.12)   93.62(\u00b10.22)   93.93(\u00b10.20)\n-------------------------------------------------------------------------------------------------------------------------------\n\nIt can be seen that when all models are trained with sparsity, scratch-B is able to perform on par with fine-tuned model.\n\nObjective B (only training cross-entropy loss)\n-------------------------------------------------------------------------------------------------------------------------------\n(All without sparsity)      Unpruned   Prune Ratio  Fine-tuned      Scratch-E        Scratch-B      \nDensenet-40-CIFAR10   94.10(\u00b10.12)       40%         94.00(\u00b10.12)   93.79(\u00b10.19)   94.07(\u00b10.14)   \nDensenet-40-CIFAR10   94.10(\u00b10.12)       60%         93.77(\u00b10.12)   93.73(\u00b10.20)   94.01(\u00b10.11)   \n--------------------------------------------------------------------------------------------------------------------------------\n\nFor objective B (only training cross-entropy loss), different from VGG-19 on CIFAR10, we are able to prune DenseNet-40 trained without sparsity by both 40% and 60%. We can see that scratch-B also consistently matches the accuracy of fine-tuned models. The fact that not using sparsity can also lead to good fine-tuned models is also surprising to us, as we thought sparsity is needed in the first stage to make the pruning smooth.\n\nTherefore, for both objective A and B, we verify that training from scratch can match the accuracy of the fine-tuned models for DenseNet-40 on CIFAR-10. This is consistent with our conclusions in the paper. Looking forward to your response!\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "rJxWqXm-3X",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "B1XI-n-nQ",
+                        "original": null,
+                        "cdate": 1540632907295,
+                        "tcdate": 1540632907295,
+                        "tmdate": 1540633010327,
+                        "ddate": null,
+                        "number": 13,
+                        "content": {
+                           "comment": "Thank you for your patience. The results for DenseNet-40 on CIFAR-10 for both objective A and B are now available.\n\nObjective A (training cross-entropy loss + sparsity loss)\n-------------------------------------------------------------------------------------------------------------------------------\n(All with sparsity)            Unpruned   Prune Ratio  Fine-tuned      Scratch-E       Scratch-B\nDenseNet-40-CIFAR10   94.00(\u00b10.17)      40%         94.01(\u00b10.23)   93.76(\u00b10.06)   93.91(\u00b10.23)\nDenseNet-40-CIFAR10   94.00(\u00b10.17)      60%         93.86(\u00b10.12)   93.62(\u00b10.22)   93.93(\u00b10.20)\n-------------------------------------------------------------------------------------------------------------------------------\n\nIt can be seen that when all models are trained with sparsity, scratch-B is able to perform on par with fine-tuned model.\n\nObjective B (only training cross-entropy loss)\n-------------------------------------------------------------------------------------------------------------------------------\n(All without sparsity)      Unpruned   Prune Ratio  Fine-tuned      Scratch-E        Scratch-B      \nDensenet-40-CIFAR10   94.10(\u00b10.12)       40%         94.00(\u00b10.12)   93.79(\u00b10.19)   94.07(\u00b10.14)   \nDensenet-40-CIFAR10   94.10(\u00b10.12)       60%         93.77(\u00b10.12)   93.73(\u00b10.20)   94.01(\u00b10.11)   \n--------------------------------------------------------------------------------------------------------------------------------\n\nFor objective B (only training cross-entropy loss), different from VGG-19 on CIFAR10, we are able to prune DenseNet-40 trained without sparsity by both 40% and 60%. We can see that scratch-B also consistently matches the accuracy of fine-tuned models. The fact that not using sparsity can also lead to good fine-tuned models is also surprising to us, as we thought sparsity is needed in the first stage to make the pruning smooth.\n\nTherefore, for both objective A and B, we verify that training from scratch can match the accuracy of the fine-tuned models for DenseNet-40 on CIFAR-10. This is consistent with our conclusions in the paper. Looking forward to your response!\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "r1xXL-3-2m",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "rJxWqXm-3X",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "rJxWqXm-3X",
+                  "original": null,
+                  "cdate": 1540596617260,
+                  "tcdate": 1540596617260,
+                  "tmdate": 1540596617260,
+                  "ddate": null,
+                  "number": 12,
+                  "content": {
+                     "comment": "\nThanks for sharing new experiment results. Let's continue discussion when DenseNet-40 results are available."
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "BJx4AZKghm",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "SyZcm7W2Q",
+                        "original": null,
+                        "cdate": 1540596617260,
+                        "tcdate": 1540596617260,
+                        "tmdate": 1540596617260,
+                        "ddate": null,
+                        "number": 12,
+                        "content": {
+                           "comment": "\nThanks for sharing new experiment results. Let's continue discussion when DenseNet-40 results are available."
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "rJxWqXm-3X",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "BJx4AZKghm",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "BJx4AZKghm",
+                  "original": null,
+                  "cdate": 1540555212455,
+                  "tcdate": 1540555212455,
+                  "tmdate": 1540596206968,
+                  "ddate": null,
+                  "number": 11,
+                  "content": {
+                     "comment": "Thank you for your clarification, here we present some new experiment results along with some discussions.\n\n\"The point is, when adding regularization for training, the optimization goal is DIFFERENT from that of the fine-tuning or training-from-scratch without regularization terms.   Depending on different strengths of the regularization parameter (e.g. lambda in [1]), the optimization goals of two approaches might be rather close or drastically different. So there is no guarantee that 'adding the sparsity is not hurting our goal of higher test accuracy'. \"\n\nWe agree that whether the accuracy will be affected depends on the regularization strength, and it can be close or drastically different. In the original paper of Network Slimming, the authors stated that \"the hyperparameter \u03bb, which controls the tradeoff between empirical loss and sparsity, is determined by a grid search over 10^{-3} , 10^{-4} , 10^{\u22125} on validation set\". They chose the regularization strength based on validation accuracy of fine-tuned model, so a relative good regularization strength is chosen for the goal of high test accuracy (for pruned model). And we use the same regularization strength as they reported in the paper and used in their official code [1,2]. So we believe the use of sparsity is to ensure a good final model in terms of test accuracy, despite the optimization objectives are different in different phases.\n\nWe present the test accuracy on CIFAR-10 of unpruned large models trained with and without sparsity in the table below. It can be seen that the accuracy is not drastically affected when using the chosen sparsity strength, so it can be argued that the objectives are relatively close.\n------------------------------------------------------------\nNetwork         without sparsity   with sparsity\nVGG-19                93.53(\u00b10.16)      93.59(\u00b10.19)      \nPreResNet           95.04(\u00b10.16)      94.70(\u00b10.16)\nDenseNet            94.10(\u00b10.12)      94.00(\u00b10.17)\n------------------------------------------------------------\n\n\"I hope my concern about the comparison is clarified, and possibly, be supported by follow-up experimental results.\"\n\nAfter receiving your review, we have run some experiments on Network Slimming, under the setting of the same objective, for training large model, fine-tuning, and scratch-training, and here are some results.\n\nVGG-19 on CIFAR-10:\nObjective A (training cross-entropy loss + sparsity):\n----------------------------------------------------------------------------------------------------------------------------\n(All with sparsity)     Unpruned     Prune Ratio     Fine-tuned         Scratch-E         Scratch-B\nVGG-19-CIFAR10     93.59(\u00b10.19)          70%          93.51(\u00b10.23)     93.36(\u00b10.23)     93.62(\u00b10.10)\n----------------------------------------------------------------------------------------------------------------------------\n\nIt can be seen that even when the pruned models are trained with sparsity, scratch-B can still outperforms the fine-tuned models. It can even outperform the model fine-tuned without sparsity slightly (93.60 in our paper).\n\nObjective B (only training cross-entropy loss)\nFor objective B (only training cross-entropy loss), we cannot prune a VGG-19 trained without sparsity by 70%, since we found in this case a whole layer is pruned and the network gets destroyed. This phenomenon supports the use of sparsity to facilitate pruning.\n\nWe're also running experiments for DenseNet-40 on CIFAR-10 for both objective A and B, and we will let you know the results when the experiments finish (hopefully in one day). We hope these follow-up experiments can address your concerns.\n\n[1] https://github.com/Eric-mingjie/network-slimming\n[2] https://github.com/liuzhuang13/slimming\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "Skx9ApNe2X",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "Sk40WYxnm",
+                        "original": null,
+                        "cdate": 1540555212455,
+                        "tcdate": 1540555212455,
+                        "tmdate": 1540596206968,
+                        "ddate": null,
+                        "number": 11,
+                        "content": {
+                           "comment": "Thank you for your clarification, here we present some new experiment results along with some discussions.\n\n\"The point is, when adding regularization for training, the optimization goal is DIFFERENT from that of the fine-tuning or training-from-scratch without regularization terms.   Depending on different strengths of the regularization parameter (e.g. lambda in [1]), the optimization goals of two approaches might be rather close or drastically different. So there is no guarantee that 'adding the sparsity is not hurting our goal of higher test accuracy'. \"\n\nWe agree that whether the accuracy will be affected depends on the regularization strength, and it can be close or drastically different. In the original paper of Network Slimming, the authors stated that \"the hyperparameter \u03bb, which controls the tradeoff between empirical loss and sparsity, is determined by a grid search over 10^{-3} , 10^{-4} , 10^{\u22125} on validation set\". They chose the regularization strength based on validation accuracy of fine-tuned model, so a relative good regularization strength is chosen for the goal of high test accuracy (for pruned model). And we use the same regularization strength as they reported in the paper and used in their official code [1,2]. So we believe the use of sparsity is to ensure a good final model in terms of test accuracy, despite the optimization objectives are different in different phases.\n\nWe present the test accuracy on CIFAR-10 of unpruned large models trained with and without sparsity in the table below. It can be seen that the accuracy is not drastically affected when using the chosen sparsity strength, so it can be argued that the objectives are relatively close.\n------------------------------------------------------------\nNetwork         without sparsity   with sparsity\nVGG-19                93.53(\u00b10.16)      93.59(\u00b10.19)      \nPreResNet           95.04(\u00b10.16)      94.70(\u00b10.16)\nDenseNet            94.10(\u00b10.12)      94.00(\u00b10.17)\n------------------------------------------------------------\n\n\"I hope my concern about the comparison is clarified, and possibly, be supported by follow-up experimental results.\"\n\nAfter receiving your review, we have run some experiments on Network Slimming, under the setting of the same objective, for training large model, fine-tuning, and scratch-training, and here are some results.\n\nVGG-19 on CIFAR-10:\nObjective A (training cross-entropy loss + sparsity):\n----------------------------------------------------------------------------------------------------------------------------\n(All with sparsity)     Unpruned     Prune Ratio     Fine-tuned         Scratch-E         Scratch-B\nVGG-19-CIFAR10     93.59(\u00b10.19)          70%          93.51(\u00b10.23)     93.36(\u00b10.23)     93.62(\u00b10.10)\n----------------------------------------------------------------------------------------------------------------------------\n\nIt can be seen that even when the pruned models are trained with sparsity, scratch-B can still outperforms the fine-tuned models. It can even outperform the model fine-tuned without sparsity slightly (93.60 in our paper).\n\nObjective B (only training cross-entropy loss)\nFor objective B (only training cross-entropy loss), we cannot prune a VGG-19 trained without sparsity by 70%, since we found in this case a whole layer is pruned and the network gets destroyed. This phenomenon supports the use of sparsity to facilitate pruning.\n\nWe're also running experiments for DenseNet-40 on CIFAR-10 for both objective A and B, and we will let you know the results when the experiments finish (hopefully in one day). We hope these follow-up experiments can address your concerns.\n\n[1] https://github.com/Eric-mingjie/network-slimming\n[2] https://github.com/liuzhuang13/slimming\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "BJx4AZKghm",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "Skx9ApNe2X",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "SklsDRPenQ",
+                  "original": null,
+                  "cdate": 1540550243044,
+                  "tcdate": 1540550243044,
+                  "tmdate": 1540555739189,
+                  "ddate": null,
+                  "number": 10,
+                  "content": {
+                     "comment": "Thanks for your positive feedback on our reply!\n\n\"My first point was that if we can reduce the model size in a very naive way (just use x% of the filters), and train to achieve a better result than the big model, maybe the big models were not well chosen in the first place (I understand that this was not your model design).\"\n\nYes, we agree with this point. But this phenomenon (smaller pruned models outperform unpruned models) mostly does not happen in our experiments. Most pruned models are slightly worse than the corresponding unpruned large model, no matter they are fine-tuned or trained from scratch. An exception is VGG on CIFAR-10/100 (see Table 1, Table 6).  This makes sense because the VGG-series are originally designed for ImageNet [1], and then adapted to CIFAR without significant changes [2]. Our results also suggest that automatic pruning methods can help us identify this improper designing and redesign efficient networks (Figure 2 right and Figure 3 right).\n\n\"I also think that the most interesting point of this work is that it shows that in doubt we can over-parametrize a model and then use automatic pruning to get the best (smaller) architecture, and the fact that is generalizes over datasets is also quite interesting.\"\n\nThanks for your positive feedback, it is indeed an important point this paper tries to make.\n\n\"Thanks again for clarifying the extent of your experiments (the number of training epochs you tried, etc.). This was not clear for me from the paper itself. Maybe it would be helpful to refer to the relevant sections in the appendix, and extend the description of the experimental setup there.\"\n\nYes, we will update the paper and add some important missing details (thanks for pointing out), after more discussions with other reviewers. We will post a comment on this page when our revision is up, in one or two days.\n\n[1] Very deep convolutional networks for large-scale image recognition. Simonyan et al., ICLR 2015.\n[2] https://github.com/bearpaw/pytorch-classification/blob/master/models/cifar/vgg.py\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "B1lPDmZ1nX",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "S1sPCwehX",
+                        "original": null,
+                        "cdate": 1540550243044,
+                        "tcdate": 1540550243044,
+                        "tmdate": 1540555739189,
+                        "ddate": null,
+                        "number": 10,
+                        "content": {
+                           "comment": "Thanks for your positive feedback on our reply!\n\n\"My first point was that if we can reduce the model size in a very naive way (just use x% of the filters), and train to achieve a better result than the big model, maybe the big models were not well chosen in the first place (I understand that this was not your model design).\"\n\nYes, we agree with this point. But this phenomenon (smaller pruned models outperform unpruned models) mostly does not happen in our experiments. Most pruned models are slightly worse than the corresponding unpruned large model, no matter they are fine-tuned or trained from scratch. An exception is VGG on CIFAR-10/100 (see Table 1, Table 6).  This makes sense because the VGG-series are originally designed for ImageNet [1], and then adapted to CIFAR without significant changes [2]. Our results also suggest that automatic pruning methods can help us identify this improper designing and redesign efficient networks (Figure 2 right and Figure 3 right).\n\n\"I also think that the most interesting point of this work is that it shows that in doubt we can over-parametrize a model and then use automatic pruning to get the best (smaller) architecture, and the fact that is generalizes over datasets is also quite interesting.\"\n\nThanks for your positive feedback, it is indeed an important point this paper tries to make.\n\n\"Thanks again for clarifying the extent of your experiments (the number of training epochs you tried, etc.). This was not clear for me from the paper itself. Maybe it would be helpful to refer to the relevant sections in the appendix, and extend the description of the experimental setup there.\"\n\nYes, we will update the paper and add some important missing details (thanks for pointing out), after more discussions with other reviewers. We will post a comment on this page when our revision is up, in one or two days.\n\n[1] Very deep convolutional networks for large-scale image recognition. Simonyan et al., ICLR 2015.\n[2] https://github.com/bearpaw/pytorch-classification/blob/master/models/cifar/vgg.py\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "SklsDRPenQ",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "B1lPDmZ1nX",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "Skx9ApNe2X",
+                  "original": null,
+                  "cdate": 1540537809769,
+                  "tcdate": 1540537809769,
+                  "tmdate": 1540537809769,
+                  "ddate": null,
+                  "number": 9,
+                  "content": {
+                     "comment": "\nThanks for the clarification of 6 evaluated pruning methods.  My following argument will only apply to those methods including additional regularization terms.   These methods have demonstrated state-of-the-art results as in [1,2] and indicate an interesting direction to explore further. \n\n\"This is because  regularization effect can possibly lead to better generalization. Thus adding the sparsity is not hurting our goal of higher test accuracy, for the large model\"\n\nThe point is,  when adding regularization for training, the optimization goal is DIFFERENT from that of the fine-tuning or training-from-scratch without regularization terms.   Depending on different strengths of the regularization parameter (e.g. lambda in [1]), the optimization goals of two approaches might be rather close or drastically different.   So there is no guarantee that \"adding the sparsity is not hurting our goal of higher test accuracy\".  \n\nI hope my concern about the comparison is clarified, and possibly, be supported by follow-up experimental results. \n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "B1eOfRWl27",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "Skq0TEe27",
+                        "original": null,
+                        "cdate": 1540537809769,
+                        "tcdate": 1540537809769,
+                        "tmdate": 1540537809769,
+                        "ddate": null,
+                        "number": 9,
+                        "content": {
+                           "comment": "\nThanks for the clarification of 6 evaluated pruning methods.  My following argument will only apply to those methods including additional regularization terms.   These methods have demonstrated state-of-the-art results as in [1,2] and indicate an interesting direction to explore further. \n\n\"This is because  regularization effect can possibly lead to better generalization. Thus adding the sparsity is not hurting our goal of higher test accuracy, for the large model\"\n\nThe point is,  when adding regularization for training, the optimization goal is DIFFERENT from that of the fine-tuning or training-from-scratch without regularization terms.   Depending on different strengths of the regularization parameter (e.g. lambda in [1]), the optimization goals of two approaches might be rather close or drastically different.   So there is no guarantee that \"adding the sparsity is not hurting our goal of higher test accuracy\".  \n\nI hope my concern about the comparison is clarified, and possibly, be supported by follow-up experimental results. \n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "Skx9ApNe2X",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "B1eOfRWl27",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "B1eOfRWl27",
+                  "original": null,
+                  "cdate": 1540525583977,
+                  "tcdate": 1540525583977,
+                  "tmdate": 1540531391972,
+                  "ddate": null,
+                  "number": 8,
+                  "content": {
+                     "comment": "Thank you for your reply! We are happy to further address your concerns here:\n\n\"Given that the training-from-scratch approach is using a different objective function, I am not surprised that the inherited weights are not helpful at all.\"\n\nOut of the six pruning methods (including those in Appendix) we evaluated, only two of them ([1,2]) uses a sparsity regularization during the first stage large model training. For the remaining four methods [3,4,5,6], the large model training only optimizes the training cross-entropy loss, without sparsity loss. In this case, the objectives of large model training and fine-tuning are consistent.\n\n\"Indeed it's the problem of existing training-pruning-tuning pipelines --- weights optimized in the first stage for objective A are not necessarily optimal for objective B in the tuning stage.  That's why training-from-scratch (for objective B) might get even better performance.\"\n\nIn our opinion, the sparsity regularization imposed in [1,2] is not the \"problem\" of those pruning methods which impose sparsity, for the following reasons:\n\nFirst, the objective A you mentioned can be seen as (training cross-entropy loss + sparsity loss), objective B is only training cross-entropy loss. The reason to minimize the training cross-entropy loss is to get high test accuracy. However, for models trained with objective A, the test accuracy can be on par with networks trained in objective B, sometimes even higher (see Figure 5 in Network Slimming [1]). This is because  regularization effect can possibly lead to better generalization. Thus adding the sparsity is not hurting our goal of higher test accuracy, for the large model.\n\nSecond, sparsity regularization makes certain weights (or groups of weights) of the large network close to zero, so pruning can be smoother after training, since pruning close-to-zero weights does not hurt the accuracy much. In other words, the purpose of imposing the sparsity term is to make the pruning smoother, and further ensure a good final accuracy of pruned model (see [1,2,5,6]). The sparsity term is in line with the goal of a final accurate pruned model, but not against it by deviating the objective. In our experiments with Network Slimming, if we do not use this sparsity regularization during the first stage training, the accuracy of the final fine-tuned model is significantly worse. This is because the pruning process significantly hurt the accuracy, since the pruning algorithm cannot find many close-to-zero weights to prune.\n\nCombining those points, adding sparsity in the first stage large model training, is not against and does not hurt the goal of a final accurate pruned model, thus we believe it is not the \"problem\" of some existing pruning algorithms. In contrary, it is an essential part of some pruning algorithms. But we agree that clarifying these points about optimization objectives and regularization  (e.g., which methods use regularization, whether we used regularization during training from scratch), will make the paper more clear. We will clarify these points in the revision following your suggestion.\n\nThanks for your suggestion again, and we hope our response addresses your concerns.\n\n[1] Learning Efficient Convolutional Networks through Network Slimming. Liu et al., ICCV 2017. https://arxiv.org/pdf/1708.06519.pdf\n[2] Data-Driven Sparse Structure Selection for Deep Neural Networks. Huang et al., ECCV 2018.\n[3] Pruning Filters for Efficient ConvNets. Li et al., ICLR 2017.\n[4] Learning both Weights and Connections for Efficient Neural Networks. Han et al., NIPS 2015.\n[5] ThiNet: A Filter Level Pruning Method for Deep Neural Network Compression. Luo et al., ICCV 2017.\n[6] Channel Pruning for Accelerating Very Deep Neural Networks. He et al., ICCV 2017.\n[7] Learning Structured Sparsity in Deep Neural Networks. Wen et al., NIPS 2016.\n[8] Rethinking the Smaller-Norm-Less-Informative Assumption in Channel Pruning of Convolution Layers. Ye et al., ICLR 2018.\n\n\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "BkevoF6J2X",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "Bk_f0-enm",
+                        "original": null,
+                        "cdate": 1540525583977,
+                        "tcdate": 1540525583977,
+                        "tmdate": 1540531391972,
+                        "ddate": null,
+                        "number": 8,
+                        "content": {
+                           "comment": "Thank you for your reply! We are happy to further address your concerns here:\n\n\"Given that the training-from-scratch approach is using a different objective function, I am not surprised that the inherited weights are not helpful at all.\"\n\nOut of the six pruning methods (including those in Appendix) we evaluated, only two of them ([1,2]) uses a sparsity regularization during the first stage large model training. For the remaining four methods [3,4,5,6], the large model training only optimizes the training cross-entropy loss, without sparsity loss. In this case, the objectives of large model training and fine-tuning are consistent.\n\n\"Indeed it's the problem of existing training-pruning-tuning pipelines --- weights optimized in the first stage for objective A are not necessarily optimal for objective B in the tuning stage.  That's why training-from-scratch (for objective B) might get even better performance.\"\n\nIn our opinion, the sparsity regularization imposed in [1,2] is not the \"problem\" of those pruning methods which impose sparsity, for the following reasons:\n\nFirst, the objective A you mentioned can be seen as (training cross-entropy loss + sparsity loss), objective B is only training cross-entropy loss. The reason to minimize the training cross-entropy loss is to get high test accuracy. However, for models trained with objective A, the test accuracy can be on par with networks trained in objective B, sometimes even higher (see Figure 5 in Network Slimming [1]). This is because  regularization effect can possibly lead to better generalization. Thus adding the sparsity is not hurting our goal of higher test accuracy, for the large model.\n\nSecond, sparsity regularization makes certain weights (or groups of weights) of the large network close to zero, so pruning can be smoother after training, since pruning close-to-zero weights does not hurt the accuracy much. In other words, the purpose of imposing the sparsity term is to make the pruning smoother, and further ensure a good final accuracy of pruned model (see [1,2,5,6]). The sparsity term is in line with the goal of a final accurate pruned model, but not against it by deviating the objective. In our experiments with Network Slimming, if we do not use this sparsity regularization during the first stage training, the accuracy of the final fine-tuned model is significantly worse. This is because the pruning process significantly hurt the accuracy, since the pruning algorithm cannot find many close-to-zero weights to prune.\n\nCombining those points, adding sparsity in the first stage large model training, is not against and does not hurt the goal of a final accurate pruned model, thus we believe it is not the \"problem\" of some existing pruning algorithms. In contrary, it is an essential part of some pruning algorithms. But we agree that clarifying these points about optimization objectives and regularization  (e.g., which methods use regularization, whether we used regularization during training from scratch), will make the paper more clear. We will clarify these points in the revision following your suggestion.\n\nThanks for your suggestion again, and we hope our response addresses your concerns.\n\n[1] Learning Efficient Convolutional Networks through Network Slimming. Liu et al., ICCV 2017. https://arxiv.org/pdf/1708.06519.pdf\n[2] Data-Driven Sparse Structure Selection for Deep Neural Networks. Huang et al., ECCV 2018.\n[3] Pruning Filters for Efficient ConvNets. Li et al., ICLR 2017.\n[4] Learning both Weights and Connections for Efficient Neural Networks. Han et al., NIPS 2015.\n[5] ThiNet: A Filter Level Pruning Method for Deep Neural Network Compression. Luo et al., ICCV 2017.\n[6] Channel Pruning for Accelerating Very Deep Neural Networks. He et al., ICCV 2017.\n[7] Learning Structured Sparsity in Deep Neural Networks. Wen et al., NIPS 2016.\n[8] Rethinking the Smaller-Norm-Less-Informative Assumption in Channel Pruning of Convolution Layers. Ye et al., ICLR 2018.\n\n\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "B1eOfRWl27",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "BkevoF6J2X",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "BkevoF6J2X",
+                  "original": null,
+                  "cdate": 1540508062874,
+                  "tcdate": 1540508062874,
+                  "tmdate": 1540508062874,
+                  "ddate": null,
+                  "number": 7,
+                  "content": {
+                     "comment": "\nThank you for the clarification.\n\nGiven that the training-from-scratch approach is using a different objective function, I am not surprised that the inherited weights are not helpful at all.  Indeed it's the problem of existing training-pruning-tuning pipelines --- weights optimized in the first stage for objective A are not necessarily the optimal for objective B in the tuning stage.  That's why training-from-scratch (for objective B) might get even better performance. \n\nI'd suggest clarify this point in the revision.  Otherwise, the first two implications made in abstract sound misleading, given the above argument. "
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "rkegxyTRom",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "rkDoKTJ3X",
+                        "original": null,
+                        "cdate": 1540508062874,
+                        "tcdate": 1540508062874,
+                        "tmdate": 1540508062874,
+                        "ddate": null,
+                        "number": 7,
+                        "content": {
+                           "comment": "\nThank you for the clarification.\n\nGiven that the training-from-scratch approach is using a different objective function, I am not surprised that the inherited weights are not helpful at all.  Indeed it's the problem of existing training-pruning-tuning pipelines --- weights optimized in the first stage for objective A are not necessarily the optimal for objective B in the tuning stage.  That's why training-from-scratch (for objective B) might get even better performance. \n\nI'd suggest clarify this point in the revision.  Otherwise, the first two implications made in abstract sound misleading, given the above argument. "
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "BkevoF6J2X",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "rkegxyTRom",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "B1lPDmZ1nX",
+                  "original": null,
+                  "cdate": 1540457310941,
+                  "tcdate": 1540457310941,
+                  "tmdate": 1540457310941,
+                  "ddate": null,
+                  "number": 6,
+                  "content": {
+                     "comment": "Thanks for the clarifications, they are very helpful. Indeed, it would be great so see some of them in the final revision, but I understand that space is limited for workshop papers. Considering your commends, I adapted my score.\n\nMy first point was that if we can reduce the model size in a very naive way (just use x% of the filters), and train to achieve a better result than the big model, maybe the big models were not well chosen in the first place (I understand that this was not your model design).\n\nI also think that the most interesting point of this work is that it shows that in doubt we can over-parametrize a model and then use automatic pruning to get the best (smaller) architecture, and the fact that is generalizes over datasets is also quite interesting.\n\nThanks again for clarifying the extent of your experiments (the number of training epochs you tried, etc.). This was not clear for me from the paper itself. Maybe it would be helpful to refer to the relevant sections in the appendix, and extend the description of the experimental setup there.\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "rygh4WfCsm",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer3"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer3"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "SkwwQZJnQ",
+                        "original": null,
+                        "cdate": 1540457310941,
+                        "tcdate": 1540457310941,
+                        "tmdate": 1540457310941,
+                        "ddate": null,
+                        "number": 6,
+                        "content": {
+                           "comment": "Thanks for the clarifications, they are very helpful. Indeed, it would be great so see some of them in the final revision, but I understand that space is limited for workshop papers. Considering your commends, I adapted my score.\n\nMy first point was that if we can reduce the model size in a very naive way (just use x% of the filters), and train to achieve a better result than the big model, maybe the big models were not well chosen in the first place (I understand that this was not your model design).\n\nI also think that the most interesting point of this work is that it shows that in doubt we can over-parametrize a model and then use automatic pruning to get the best (smaller) architecture, and the fact that is generalizes over datasets is also quite interesting.\n\nThanks again for clarifying the extent of your experiments (the number of training epochs you tried, etc.). This was not clear for me from the paper itself. Maybe it would be helpful to refer to the relevant sections in the appendix, and extend the description of the experimental setup there.\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "B1lPDmZ1nX",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "rygh4WfCsm",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer3"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer3"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "BJebLXk1n7",
+                  "original": null,
+                  "cdate": 1540449097260,
+                  "tcdate": 1540449097260,
+                  "tmdate": 1540449278082,
+                  "ddate": null,
+                  "number": 5,
+                  "content": {
+                     "comment": "Thanks for your review and suggestions. We give our response as follows:\n\n1. Our paper focuses on the effect of over-parameterization in network pruning, i.e., whether training an over-parameterized model is necessary for obtaining a final efficient model, to which the common answer used to be yes, as we mentioned in the introduction. But note that here over-parameterization's effect in network pruning is different from its effect for accelerating training/optimization (Arora et al, ICML18).\n\nTherefore, here we are not comparing between a large over-parameterized model and a smaller model, instead, we are comparing a small model that is pruned from an over-parameterized model and a small model that is trained from scratch. Hence our results do not advocate against over-parameterization for accelerating single model training, but only advocate against over-parameterization as a way to obtain a (predefined) final efficient model. We agree that knowing the exact role of over-parameterization in training networks is important and it can be interesting future work.\n\n2. We use standard training hyperparameters in the image classification literature [1,2,3]. These hyperparameters are also used by the pruning methods we evaluated in their original papers. More specifically, the optimization scheme is SGD with Nesterov momentum, and most networks have Batch Normalization in them by design. Those setups are carefully chosen by existing state-of-the-art network architecture works [1, 2], and are the de facto standard on CIFAR and ImageNet datasets. SGD has also been shown to be significantly better than Adam or other adaptive optimizers on these tasks/datasets in [4]. Therefore, to achieve high accuracy and make our results comparable with the literature, here we evaluate using the standard hyperparameters.\n\nThat being said, it would be interesting to try another optimizer (e.g., Adam) for large model training, fine-tuning, and training from scratch, and see whether the observation still holds. We will investigate this.\n\n3. Yes, we agree that more experiments on the generalization effect would be helpful. Thanks for your suggestion, we will investigate this. \n\nA possible reason for training the pruned model from scratch can help generalization is that the redundancy is removed before training. According to our results, the architecture is what matters for efficiency, rather than weights. Thus, the redundancy lies in the structures, instead of trained weights, and knowing where the redundancy is before training and removing them can be helpful on generalization and reducing overfitting when training from scratch.\n\nThank you again for your helpful suggestions.\n\n[1] Deep Residual Learning for Image Recognition. He et al., CVPR 2016.\n[2] Densely Connected Convolutional Networks. Huang et al., CVPR 2017.\n[3] https://github.com/pytorch/examples/tree/master/imagenet.\n[4] The Marginal Value of Adaptive Gradient Methods in Machine Learning. Wilson et al., NIPS 2017"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "BylYNTIRsQ",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "r1-UQJkn7",
+                        "original": null,
+                        "cdate": 1540449097260,
+                        "tcdate": 1540449097260,
+                        "tmdate": 1540449278082,
+                        "ddate": null,
+                        "number": 5,
+                        "content": {
+                           "comment": "Thanks for your review and suggestions. We give our response as follows:\n\n1. Our paper focuses on the effect of over-parameterization in network pruning, i.e., whether training an over-parameterized model is necessary for obtaining a final efficient model, to which the common answer used to be yes, as we mentioned in the introduction. But note that here over-parameterization's effect in network pruning is different from its effect for accelerating training/optimization (Arora et al, ICML18).\n\nTherefore, here we are not comparing between a large over-parameterized model and a smaller model, instead, we are comparing a small model that is pruned from an over-parameterized model and a small model that is trained from scratch. Hence our results do not advocate against over-parameterization for accelerating single model training, but only advocate against over-parameterization as a way to obtain a (predefined) final efficient model. We agree that knowing the exact role of over-parameterization in training networks is important and it can be interesting future work.\n\n2. We use standard training hyperparameters in the image classification literature [1,2,3]. These hyperparameters are also used by the pruning methods we evaluated in their original papers. More specifically, the optimization scheme is SGD with Nesterov momentum, and most networks have Batch Normalization in them by design. Those setups are carefully chosen by existing state-of-the-art network architecture works [1, 2], and are the de facto standard on CIFAR and ImageNet datasets. SGD has also been shown to be significantly better than Adam or other adaptive optimizers on these tasks/datasets in [4]. Therefore, to achieve high accuracy and make our results comparable with the literature, here we evaluate using the standard hyperparameters.\n\nThat being said, it would be interesting to try another optimizer (e.g., Adam) for large model training, fine-tuning, and training from scratch, and see whether the observation still holds. We will investigate this.\n\n3. Yes, we agree that more experiments on the generalization effect would be helpful. Thanks for your suggestion, we will investigate this. \n\nA possible reason for training the pruned model from scratch can help generalization is that the redundancy is removed before training. According to our results, the architecture is what matters for efficiency, rather than weights. Thus, the redundancy lies in the structures, instead of trained weights, and knowing where the redundancy is before training and removing them can be helpful on generalization and reducing overfitting when training from scratch.\n\nThank you again for your helpful suggestions.\n\n[1] Deep Residual Learning for Image Recognition. He et al., CVPR 2016.\n[2] Densely Connected Convolutional Networks. Huang et al., CVPR 2017.\n[3] https://github.com/pytorch/examples/tree/master/imagenet.\n[4] The Marginal Value of Adaptive Gradient Methods in Machine Learning. Wilson et al., NIPS 2017"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "BJebLXk1n7",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "BylYNTIRsQ",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "BJxz3_CCim",
+                  "original": null,
+                  "cdate": 1540446377801,
+                  "tcdate": 1540446377801,
+                  "tmdate": 1540446470013,
+                  "ddate": null,
+                  "number": 4,
+                  "content": {
+                     "comment": "Thanks for your positive feedback first, and we give our answers to your questions below.\n\n\u201cI'm wondering what is the difference between the training from the scratch and fine-tuning from the pruned model.\u201d\n\nThe difference is that fine-tuning starts with inherited weights from the pre-trained large model, while training the pruned model from scratch starts from random initialization, just like training the large model in the 1st stage of the pipeline. In the former case, the pruned model might be trapped into a bad local minimum caused by inheriting the weights from the large model. Our experiments demonstrate that these two approaches can be on par with each other, whereas the previous belief is fine-tuning is better.\n\n\"It is really hard to compensate the accuracy by retraining. Is that just because the L1-norm based filter pruning method only prune the smallest filters, which could also be important to the network?\"\n\nThe intuition for pruning filters based on L1-norm is that filters with smaller L1-norm can be seen as less important and therefore can be more safely pruned without hurting accuracy too much. There have been many new innovations on the pruning criteria, e.g., [1, 2].\n\nA possible reason why fine-tuning cannot fully compensate the accuracy, is that the pruning may be too aggressive, and the pruned network does not have enough representation power. This phenomenon is not rare [1, 2]. If one prunes more weights than a certain threshold, it can be impossible to regain the lost accuracy by merely fine-tuning. There has always been a tradeoff between accuracy and network size.\n\n[1] ThiNet: A Filter Level Pruning Method for Deep Neural Network Compression. Luo et al. ICCV, 2017.\n[2] Channel Pruning for Accelerating Very Deep Neural Networks. He et al. ICCV, 2017.\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "S1lJjJKRim",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "ryznOCCiQ",
+                        "original": null,
+                        "cdate": 1540446377801,
+                        "tcdate": 1540446377801,
+                        "tmdate": 1540446470013,
+                        "ddate": null,
+                        "number": 4,
+                        "content": {
+                           "comment": "Thanks for your positive feedback first, and we give our answers to your questions below.\n\n\u201cI'm wondering what is the difference between the training from the scratch and fine-tuning from the pruned model.\u201d\n\nThe difference is that fine-tuning starts with inherited weights from the pre-trained large model, while training the pruned model from scratch starts from random initialization, just like training the large model in the 1st stage of the pipeline. In the former case, the pruned model might be trapped into a bad local minimum caused by inheriting the weights from the large model. Our experiments demonstrate that these two approaches can be on par with each other, whereas the previous belief is fine-tuning is better.\n\n\"It is really hard to compensate the accuracy by retraining. Is that just because the L1-norm based filter pruning method only prune the smallest filters, which could also be important to the network?\"\n\nThe intuition for pruning filters based on L1-norm is that filters with smaller L1-norm can be seen as less important and therefore can be more safely pruned without hurting accuracy too much. There have been many new innovations on the pruning criteria, e.g., [1, 2].\n\nA possible reason why fine-tuning cannot fully compensate the accuracy, is that the pruning may be too aggressive, and the pruned network does not have enough representation power. This phenomenon is not rare [1, 2]. If one prunes more weights than a certain threshold, it can be impossible to regain the lost accuracy by merely fine-tuning. There has always been a tradeoff between accuracy and network size.\n\n[1] ThiNet: A Filter Level Pruning Method for Deep Neural Network Compression. Luo et al. ICCV, 2017.\n[2] Channel Pruning for Accelerating Very Deep Neural Networks. He et al. ICCV, 2017.\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "BJxz3_CCim",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "S1lJjJKRim",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "rkegxyTRom",
+                  "original": null,
+                  "cdate": 1540439783802,
+                  "tcdate": 1540439783802,
+                  "tmdate": 1540441396599,
+                  "ddate": null,
+                  "number": 3,
+                  "content": {
+                     "comment": "Thanks for your review and questions! We give our answers below:\n\n1. We are not proposing to \"replace\" the traditional 3-stage pipeline with training the target model from scratch. Instead, we are verifying the common beliefs of network pruning, such as \"inheriting weights is helpful\" and \"it is necessary to start with training the large model first due to its stronger optimization power\". Surprisingly we observe that training the pruned model from scratch can be on par with fine-tuning on inherited weights, which suggests that those beliefs are not necessarily true. This naturally leads to our conclusion that for predefined methods, one may skip the pipeline, and for automatic methods, it is the pruned architecture that is efficient rather than the inherited weights, hence it can be seen as implicit architecture search.\n\nIn our experiments, for pruning method that imposes some forms of sparsity regularization during large model training (e.g., Network Slimming), we did not impose sparsity regularization for training the pruned model from scratch. This is because in those pruning methods, during fine-tuning no sparsity is imposed either. We want to verify whether those inherited weights are helpful for the pruned model, so we chose not to use sparsity regularization in training from scratch, in order to fairly compare with fine-tuning with inherited weights. The sparsity regularization can be seen as a tool for architecture selection during large model training, but once that target model is found, we demonstrate that the inherited weights are not important by showing that training the model from scratch without regularization can be on par with fine-tuning without regularization.\n\nWe agree it would be interesting to see the performance if we train the pruned model from scratch with sparsity regularization, and we can add this result in the revision.\n\n2. In our experiments in Section 4 (pruning as architecture search), all models are trained without the sparsity regularization. Here we are demonstrating the parameter efficiency of the pruned architectures, hence we use standard training settings, without imposing sparsity regularization, which is used when training the large model to facilitate pruning.\n\nThanks again for your helpful questions, we will make those points more clear accordingly in the revision.\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "BkxxwtjRoX",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "B1elypRiQ",
+                        "original": null,
+                        "cdate": 1540439783802,
+                        "tcdate": 1540439783802,
+                        "tmdate": 1540441396599,
+                        "ddate": null,
+                        "number": 3,
+                        "content": {
+                           "comment": "Thanks for your review and questions! We give our answers below:\n\n1. We are not proposing to \"replace\" the traditional 3-stage pipeline with training the target model from scratch. Instead, we are verifying the common beliefs of network pruning, such as \"inheriting weights is helpful\" and \"it is necessary to start with training the large model first due to its stronger optimization power\". Surprisingly we observe that training the pruned model from scratch can be on par with fine-tuning on inherited weights, which suggests that those beliefs are not necessarily true. This naturally leads to our conclusion that for predefined methods, one may skip the pipeline, and for automatic methods, it is the pruned architecture that is efficient rather than the inherited weights, hence it can be seen as implicit architecture search.\n\nIn our experiments, for pruning method that imposes some forms of sparsity regularization during large model training (e.g., Network Slimming), we did not impose sparsity regularization for training the pruned model from scratch. This is because in those pruning methods, during fine-tuning no sparsity is imposed either. We want to verify whether those inherited weights are helpful for the pruned model, so we chose not to use sparsity regularization in training from scratch, in order to fairly compare with fine-tuning with inherited weights. The sparsity regularization can be seen as a tool for architecture selection during large model training, but once that target model is found, we demonstrate that the inherited weights are not important by showing that training the model from scratch without regularization can be on par with fine-tuning without regularization.\n\nWe agree it would be interesting to see the performance if we train the pruned model from scratch with sparsity regularization, and we can add this result in the revision.\n\n2. In our experiments in Section 4 (pruning as architecture search), all models are trained without the sparsity regularization. Here we are demonstrating the parameter efficiency of the pruned architectures, hence we use standard training settings, without imposing sparsity regularization, which is used when training the large model to facilitate pruning.\n\nThanks again for your helpful questions, we will make those points more clear accordingly in the revision.\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "rkegxyTRom",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "BkxxwtjRoX",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "rygh4WfCsm",
+                  "original": null,
+                  "cdate": 1540395315644,
+                  "tcdate": 1540395315644,
+                  "tmdate": 1540438015562,
+                  "ddate": null,
+                  "number": 1,
+                  "content": {
+                     "comment": "Thanks for your review and suggestions. We give our response below:\n--------------------\nScratch-B training:\n\n\"I don't think that .... or it has not been trained until convergence\" \nHere we are comparing the scratch-trained pruned models with the fine-tuned pruned models, not comparing small pruned models with the large unpruned models. Your discussion seems to point to the later one. For methods with predefined target architectures, we think it is relatively clear that scratch-B training is fair, compared with the \"train, prune and fine-tune\" pipeline, when we don't have a pre-trained large model.\n\n\"For the automatically discovered target architectures (3.2), there is no way to train the target architecture from scratch without training the full model first!\"\n1. For automatic methods, we have shown in Section 4/Appendix C, that it is possible to distill the sparsity patterns in the pruned model and use it on another dataset/architecture, and achieve similar efficiency with pruned models. In this case, it is not necessary to train a large model to get the desired pruned architecture either.\n2. For automatic methods, the fact that scratch-trained pruned models can be on par with fine-tuned models, has demonstrated that those methods can be seen as implicit architecture search. This is also an important implication from our experiments, which we think is not very widely recognized previously. The purpose of this experiment is to find whether the set of inherited weights or the found architecture is important, but not to argue we can replace the 3-stage pipeline with directly training target model.\n3. Assuming we know the target architecture, it is still interesting to know, is it better to first train a large model and then prune, or is it better to directly train it. In the former case, we have the chance to pick an \"important\" subnetwork from the large network with stronger optimization power. We think this problem is interesting from an optimization perspective. It is also meaningful to consider the budget argument, from an optimization perspective.\nThe above three reasons support that the experiments on automatic pruning methods are meaningful.\n\n\"Furthermore, the difference between Scratch-E and Scratch-B shows that the number of epochs the models were trained initially is not enough to achieve the best performance.\"\nWe all adopt standard hyperparameters (including epochs) for training those models, so we cannot agree that \"the number of epochs the models were trained initially is not enough\". If that is true, standard epochs should have been extended. However, these standard epoch numbers are used in state-of-the-art network architectures like ResNet and DenseNet, as well as pruning methods we evaluated in our paper. \nThe reason why for pruned models Scratch-B can outperform Scratch-E could possibly be explained by smaller pruned models are less prone to overfitting and can be trained for more epochs, as opposed to large models. In fact, we have tried to extend the training epochs to be more than the standard number of epochs for both large and small models, but the same phenomenon still holds.\n--------------------\n\nFine-tuning:\nWe use the same fine-tuning epochs as in each method's original paper. We omitted this detail since the epoch number does not really change the accuracy much if it is sufficiently big (e.g., > 5 epochs). We will include this in the revision, thanks for reminding.  \nWe agree that fine-tuning is much faster, but this is only true when we already have a pre-trained large model. In most cases we have to train the large model by ourselves, so comparing fine-tuning epochs with scratch-trained epochs directly is not fair.\n--------------------\n\nConclusion about Over-parameterization:\nThe common belief was that training an over-parameterized large model is necessary for obtaining a final efficient model (e.g., see related work in [1]), and our results imply this is not necessarily true, i.e., the over-parameterization is not as beneficial as previously believed.  Sorry for we didn't state this clearly in the introduction. Moreover, \"our understanding\" here was intended to refer to the authors' understanding, not the audience's. We will make improvements in the revision.\n--------------------\n\nMinor issues:\n1. Due to space limit, we didn't list the configurations of -A and -B models. They can be found in the original paper of the L1-norm pruning [2].\n2. For each method we evaluate the same models and datasets as used in the original paper of that method, to ensure our results are comparable with the original paper's (stated in the Appendix A). The need to compare between different methods seems not that necessary.\nWe will make these two points clear in the revision.\n\nThanks again and we hope our response addresses your concerns.\n\n[1] ThiNet: A Filter Level Pruning Method for Deep Neural Network Compression. Luo et al. 2017.\n[2] Pruning Filters for Efficient ConvNets. Li et al. 2017.\n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "rJgwAWZ0j7",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "BJ3Ebz0iQ",
+                        "original": null,
+                        "cdate": 1540395315644,
+                        "tcdate": 1540395315644,
+                        "tmdate": 1540438015562,
+                        "ddate": null,
+                        "number": 1,
+                        "content": {
+                           "comment": "Thanks for your review and suggestions. We give our response below:\n--------------------\nScratch-B training:\n\n\"I don't think that .... or it has not been trained until convergence\" \nHere we are comparing the scratch-trained pruned models with the fine-tuned pruned models, not comparing small pruned models with the large unpruned models. Your discussion seems to point to the later one. For methods with predefined target architectures, we think it is relatively clear that scratch-B training is fair, compared with the \"train, prune and fine-tune\" pipeline, when we don't have a pre-trained large model.\n\n\"For the automatically discovered target architectures (3.2), there is no way to train the target architecture from scratch without training the full model first!\"\n1. For automatic methods, we have shown in Section 4/Appendix C, that it is possible to distill the sparsity patterns in the pruned model and use it on another dataset/architecture, and achieve similar efficiency with pruned models. In this case, it is not necessary to train a large model to get the desired pruned architecture either.\n2. For automatic methods, the fact that scratch-trained pruned models can be on par with fine-tuned models, has demonstrated that those methods can be seen as implicit architecture search. This is also an important implication from our experiments, which we think is not very widely recognized previously. The purpose of this experiment is to find whether the set of inherited weights or the found architecture is important, but not to argue we can replace the 3-stage pipeline with directly training target model.\n3. Assuming we know the target architecture, it is still interesting to know, is it better to first train a large model and then prune, or is it better to directly train it. In the former case, we have the chance to pick an \"important\" subnetwork from the large network with stronger optimization power. We think this problem is interesting from an optimization perspective. It is also meaningful to consider the budget argument, from an optimization perspective.\nThe above three reasons support that the experiments on automatic pruning methods are meaningful.\n\n\"Furthermore, the difference between Scratch-E and Scratch-B shows that the number of epochs the models were trained initially is not enough to achieve the best performance.\"\nWe all adopt standard hyperparameters (including epochs) for training those models, so we cannot agree that \"the number of epochs the models were trained initially is not enough\". If that is true, standard epochs should have been extended. However, these standard epoch numbers are used in state-of-the-art network architectures like ResNet and DenseNet, as well as pruning methods we evaluated in our paper. \nThe reason why for pruned models Scratch-B can outperform Scratch-E could possibly be explained by smaller pruned models are less prone to overfitting and can be trained for more epochs, as opposed to large models. In fact, we have tried to extend the training epochs to be more than the standard number of epochs for both large and small models, but the same phenomenon still holds.\n--------------------\n\nFine-tuning:\nWe use the same fine-tuning epochs as in each method's original paper. We omitted this detail since the epoch number does not really change the accuracy much if it is sufficiently big (e.g., > 5 epochs). We will include this in the revision, thanks for reminding.  \nWe agree that fine-tuning is much faster, but this is only true when we already have a pre-trained large model. In most cases we have to train the large model by ourselves, so comparing fine-tuning epochs with scratch-trained epochs directly is not fair.\n--------------------\n\nConclusion about Over-parameterization:\nThe common belief was that training an over-parameterized large model is necessary for obtaining a final efficient model (e.g., see related work in [1]), and our results imply this is not necessarily true, i.e., the over-parameterization is not as beneficial as previously believed.  Sorry for we didn't state this clearly in the introduction. Moreover, \"our understanding\" here was intended to refer to the authors' understanding, not the audience's. We will make improvements in the revision.\n--------------------\n\nMinor issues:\n1. Due to space limit, we didn't list the configurations of -A and -B models. They can be found in the original paper of the L1-norm pruning [2].\n2. For each method we evaluate the same models and datasets as used in the original paper of that method, to ensure our results are comparable with the original paper's (stated in the Appendix A). The need to compare between different methods seems not that necessary.\nWe will make these two points clear in the revision.\n\nThanks again and we hope our response addresses your concerns.\n\n[1] ThiNet: A Filter Level Pruning Method for Deep Neural Network Compression. Luo et al. 2017.\n[2] Pruning Filters for Efficient ConvNets. Li et al. 2017.\n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "rygh4WfCsm",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "rJgwAWZ0j7",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/Authors"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": "BkxxwtjRoX",
+                  "original": null,
+                  "cdate": 1540434263659,
+                  "tcdate": 1540434263659,
+                  "tmdate": 1540434263659,
+                  "ddate": null,
+                  "number": 2,
+                  "content": {
+                     "comment": "\nI understand this abstract is only a shortened version of a more thorough report, so it would be unfair to ask for more than what can be squeezed within 3 pages limit.   Nevertheless, it would be good to still provide some insightful and in-depth discussions on important questions such as: \n\n1) What is the fundamental difference between the training-pruning-tuning pipeline and the training-from-scratch approaches?  If the former can be replaced by the proposed approach, what happen to all kinds of regularization terms that are often used in the first approach e.g. the BN-scaling-factors in Net-slimming?  Are they supposed to be incorporated into the optimization objective function of the train-from-scratch approach too?  If yes, both approaches are solving the same optimization problem, with different initializations. If not, then they are completely different, and I don't think in this case the proposed approach can completely replace the training-pruning-tuning methods. \n\n2) The same question can be asked for the \"Pruning as Architecture Search\" section.  Is the same optimization objective function used?  Or there should be some regularization terms to penalize complex network architectures?  \n\nOverall, an interesting argument was proposed with some solid experimental results presented.   I'd like to see more discussions on the underlying principles that leads to these empirical observations.   \n"
+                  },
+                  "forum": "r1eLk2mKiX",
+                  "referent": null,
+                  "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                  "replyto": "r1eLk2mKiX",
+                  "readers": [
+                     "everyone"
+                  ],
+                  "nonreaders": [],
+                  "signatures": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "writers": [
+                     "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                  ],
+                  "details": {
+                     "replyCount": 0
+                  },
+                  "revisions": [
+                     {
+                        "id": "SkxwKsAsm",
+                        "original": null,
+                        "cdate": 1540434263659,
+                        "tcdate": 1540434263659,
+                        "tmdate": 1540434263659,
+                        "ddate": null,
+                        "number": 2,
+                        "content": {
+                           "comment": "\nI understand this abstract is only a shortened version of a more thorough report, so it would be unfair to ask for more than what can be squeezed within 3 pages limit.   Nevertheless, it would be good to still provide some insightful and in-depth discussions on important questions such as: \n\n1) What is the fundamental difference between the training-pruning-tuning pipeline and the training-from-scratch approaches?  If the former can be replaced by the proposed approach, what happen to all kinds of regularization terms that are often used in the first approach e.g. the BN-scaling-factors in Net-slimming?  Are they supposed to be incorporated into the optimization objective function of the train-from-scratch approach too?  If yes, both approaches are solving the same optimization problem, with different initializations. If not, then they are completely different, and I don't think in this case the proposed approach can completely replace the training-pruning-tuning methods. \n\n2) The same question can be asked for the \"Pruning as Architecture Search\" section.  Is the same optimization objective function used?  Or there should be some regularization terms to penalize complex network architectures?  \n\nOverall, an interesting argument was proposed with some solid experimental results presented.   I'd like to see more discussions on the underlying principles that leads to these empirical observations.   \n"
+                        },
+                        "forum": "r1eLk2mKiX",
+                        "referent": "BkxxwtjRoX",
+                        "invitation": "NIPS.cc/2018/Workshop/CDNNRIA/-/Paper49/Official_Comment",
+                        "replyto": "r1eLk2mKiX",
+                        "readers": [
+                           "everyone"
+                        ],
+                        "nonreaders": [],
+                        "signatures": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "writers": [
+                           "NIPS.cc/2018/Workshop/CDNNRIA/Paper49/AnonReviewer4"
+                        ],
+                        "details": {
+                           "replyCount": 0
+                        }
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+]

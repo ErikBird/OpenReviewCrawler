@@ -18,12 +18,23 @@ def crawl(client, config, log):
     :param log: the configured logging client
     :return: Nothing
     '''
-    results = []
+    if not os.path.exists(config["outdir"]):
+        os.makedirs(config["outdir"])
+    if os.path.exists(os.path.join(config["outdir"], config["filename"])):
+        with open(os.path.join(config["outdir"], config["filename"]), 'r') as file_handle:
+            results = json.load(file_handle)
+    else:
+        results = []
+    already_done = set(["{} {}".format(r["venue"], r["year"]) for r in results])
+
     for target in config["targets"]:
         venue, years = target["venue"], target["years"]
         if years == "all":
             years = range(2000, date.today().year + 2)
         for year in years:
+            if "{} {}".format(venue, year) in already_done:
+                log.info("Skipping {} {}. Already done".format(venue, year))
+                continue
             log.info('Current Download: '+ venue+' in '+str(year))
             invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year))
             invitations = [inv.id for inv in invitations_iterator]
@@ -46,14 +57,13 @@ def crawl(client, config, log):
                         threads = list()
                         for n in progressbar.progressbar(notes):
                             references = client.get_references(n["id"], original=True)
-                            pdf_names=[]
-                            for index, r in enumerate(references):
-                                pdf_name = n["id"] + '_' + str(index) + '.pdf'
-                                pdf_names.append(pdf_name)
-                                x = threading.Thread(target=download_revision, args=(r.id,pdf_name,client))
-                                threads.append(x)
-                                x.start()
-                            n["revisions"] = pdf_names
+                            if not config["skip_pdf_download"]:
+                                for index, r in enumerate(references):
+                                    pdf_name = n["id"] + '_' + str(index) + '.pdf'
+                                    x = threading.Thread(target=download_revision, args=(r.id,pdf_name,client))
+                                    threads.append(x)
+                                    x.start()
+                            n["revisions"] = [r.to_json() for r in references]
                             n["notes"] = []
                         submissions.extend(notes)
                     else:
@@ -71,16 +81,13 @@ def crawl(client, config, log):
                         except KeyError:
                             log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
                 results.append({"venue": venue, "year": year, "submissions": submissions})
-
-    if not os.path.exists(config["outdir"]):
-        os.makedirs(config["outdir"])
-    with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
-        json.dump(results, file_handle, indent=config["json_indent"])
+                with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
+                    json.dump(results, file_handle, indent=config["json_indent"])
 
 
 def merge_invitations(invitations):
     '''
-    This method merges invitations if they are redundant
+    This method merges invitations for OpenReview API wildcard support
     :param invitations: List of Invitations
     :return: Set of invitations
     '''
@@ -135,11 +142,12 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-c', '--config', help='configuration for the crawling', default='config.json')
+        '-c', '--config', help='Configuration for the crawling', default='config.json')
     parser.add_argument(
-        '-p', '--password', help='password for the username given in the config. Overwrites password in config')
-    parser.add_argument('-b','--baseurl', default='https://openreview.net')
-    parser.add_argument("--help_venues", action='store_true', help="receive a list of all possible venues")
+        '-p', '--password', help='Password for the username out of the config. Overwrites the password in config')
+    parser.add_argument('-b', '--baseurl', default='https://openreview.net',
+                        help="in case a different base URL is needed. This will usually not be the case")
+    parser.add_argument("--help_venues", action='store_true', help="Print a list of all possible venues")
     args = parser.parse_args()
 
     if args.help_venues:
@@ -147,11 +155,7 @@ if __name__ == '__main__':
         exit()
 
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-    try:
-        config = json.load(open(args.config))
-    except:
-        print('The configuration file has not been found. \n Please Make sure it is correctly Named \'config.json\' and is located in the project root folder.\n Otherwise please specify the correct path with \'-c {path}\'')
-
+    config = json.load(open(args.config))
     username = config["username"]
     if args.password is not None:
         password = args.password
