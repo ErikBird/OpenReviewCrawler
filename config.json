@@ -9,7 +9,8 @@
   "password": "please change to a proper password",
   "outdir": "./ICLR/",
   "filename": "out.json",
-  "json_indent": 3
+  "json_indent": 3,
+  "skip_pdf_download": true
 }
 
 
