@@ -1,0 +1,103 @@
+{
+  "targets": [
+    {
+      "venue": "ICLR.cc",
+      "years": "all"
+    },
+  {
+      "venue": "auai.org/UAI",
+      "years": "all"
+    },
+        {
+      "venue": "NIPS.cc",
+      "years": "all"
+    },
+            {
+      "venue": "ICML.cc",
+      "years": "all"
+    },
+            {
+      "venue": "ACM.org",
+      "years": "all"
+    },
+            {
+      "venue": "AKBC.ws",
+      "years": "all"
+    },
+            {
+      "venue": "NIPS.cc",
+      "years": "all"
+    },
+               {
+      "venue": "learningtheory.org/COLT",
+      "years": "all"
+    },
+               {
+      "venue": "eswc-conferences.org/ESWC",
+      "years": "all"
+    },
+               {
+      "venue": "IEEE.org",
+      "years": "all"
+    },
+               {
+      "venue": "NIPS.cc",
+      "years": "all"
+    },
+    {
+      "venue": "ISMIR.net",
+      "years": "all"
+    },
+    {
+      "venue": "swsa.semanticweb.org/ISWC",
+      "years": "all"
+    },
+    {
+      "venue": "machineintelligence.cc/MIC",
+      "years": "all"
+    },
+    {
+      "venue": "MIDL.io",
+      "years": "all"
+    },
+    {
+      "venue": "vivoconference.org/VIVO",
+      "years": "all"
+    },
+        {
+      "venue": "icaps-conference.org/ICAPS",
+      "years": "all"
+    },
+        {
+      "venue": "MIDL.amsterdam",
+      "years": "all"
+    },
+        {
+      "venue": "MICCAI.org",
+      "years": "all"
+    },
+        {
+      "venue": "RIIAA.org",
+      "years": "all"
+    },
+            {
+      "venue": "NeurIPS.cc",
+      "years": "all"
+    },
+            {
+      "venue": "approximateinference.org/AABI",
+      "years": "all"
+    }
+  ],
+  "username": "openreview@erikschwan.de",
+  "password": "please change to a proper password",
+  "outdir": "./all/",
+  "filename": "out.json",
+  "json_indent": 3
+}
+
+
+
+
+
+

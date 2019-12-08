@@ -21,4 +21,6 @@ __pycache__/
 *.so
 
 # All Data and the Config File (incl. Passwords)
-*.json
+config.json
+out.json
+*.pdf
