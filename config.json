@@ -2,16 +2,19 @@
   "targets": [
     {
       "venue": "ICLR.cc",
-      "years": [2019]
-    },
-    {
-      "venue": "NIPS.cc",
       "years": "all"
     }
   ],
-  "username": "",
-  "password": "",
-  "outdir": ".",
+  "username": "openreview@erikschwan.de",
+  "password": "please change to a proper password",
+  "outdir": "./ICLR/",
   "filename": "out.json",
   "json_indent": 3,
+  "skip_pdf_download": true
 }
+
+
+
+
+
+
