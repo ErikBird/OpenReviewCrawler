@@ -36,14 +36,13 @@ def crawl(client, config, log):
                 log.info("Skipping {} {}. Already done".format(venue, year))
                 continue
             log.info('Current Download: '+ venue+' in '+str(year))
-            invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year))
+            invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year), expired=True)
             invitations = [inv.id for inv in invitations_iterator]
             invitations = merge_invitations(invitations)
+            submissions = []
             if not invitations:
-                log.warning('No data for'+ venue+' in '+str(year))
-                continue
+                log.warning('No data for '+ venue+' in '+str(year))
             else:
-                submissions = []
                 forum_idx_map = {}
                 other_notes = []
                 for inv in progressbar.progressbar(invitations):
@@ -71,18 +70,17 @@ def crawl(client, config, log):
                         for note in notes:
                             note["revisions"] = [r for r in revisions if r["referent"] == note["id"]]
                         other_notes.extend(notes)
-                if not submissions:
-                    log.warning('No submissions found for '+ venue+' in '+str(year))
-                    continue
-                else:
-                    for note in other_notes:
-                        try:
-                            submissions[forum_idx_map[note["forum"]]]["notes"].append(note)
-                        except KeyError:
-                            log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
-                results.append({"venue": venue, "year": year, "submissions": submissions})
-                with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
-                    json.dump(results, file_handle, indent=config["json_indent"])
+            if not submissions:
+                log.warning('No submissions found for '+ venue+' in '+str(year))
+            else:
+                for note in other_notes:
+                    try:
+                        submissions[forum_idx_map[note["forum"]]]["notes"].append(note)
+                    except KeyError:
+                        log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
+            results.append({"venue": venue, "year": year, "submissions": submissions})
+            with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
+                json.dump(results, file_handle, indent=config["json_indent"])
 
 
 def merge_invitations(invitations):
@@ -137,7 +135,7 @@ def get_all_available_venues():
 
 if __name__ == '__main__':
     log = logging.getLogger("crawler")
-    log.setLevel(logging.CRITICAL)
+    log.setLevel(logging.INFO)
     progressbar.streams.wrap_stderr()
 
     parser = argparse.ArgumentParser()
