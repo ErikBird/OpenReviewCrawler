@@ -8,6 +8,7 @@ import logging
 import sys
 import progressbar
 import threading
+from database import SQLDatabase
 
 def crawl(client, config, log):
     '''
@@ -79,8 +80,15 @@ def crawl(client, config, log):
                     except KeyError:
                         log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
             results.append({"venue": venue, "year": year, "submissions": submissions})
-            with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
-                json.dump(results, file_handle, indent=config["json_indent"])
+            if config["output_SQL"]:
+                db = SQLDatabase(dbname='myCrawl')
+                db.create_db_tables()
+                db.insert_dict(results)
+            if config["output_json"]:
+                with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
+                    json.dump(results, file_handle, indent=config["json_indent"])
+
+
 
 
 def merge_invitations(invitations):
