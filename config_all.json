@@ -93,6 +93,8 @@
   "password": "please change to a proper password",
   "outdir": "./all/",
   "filename": "out.json",
+  "output_json": false,
+  "output_SQL": true,
   "json_indent": 3
 }
 
