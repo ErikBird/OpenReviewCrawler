@@ -23,42 +23,69 @@ def tagging(file, write_new_file, log):
             if "withdraw" in submission["invitation"].lower():
                 submission["acceptance_tag"] = "withdrawn"
             else:
-                for note in submission["notes"]:
-                    # Found a decicion note
-                    if "decision" in note["invitation"].lower():
-                        log.debug("{} has decision note".format(submission["forum"]))
-                        # We consider a submission accepted if it is not rejected. This is due to some venues only writing
-                        # for what a submission is accepted (poster, talk, workshop) without writing the word 'accept'.
-                        # 'Reject' is found in all rejected submission decisions (as far as we are aware).
-                        for key in note["content"]:
-                            # Naming varies for the fild. Both decision and acceptance decision exist.
-                            if "decision" in key.lower():
-                                if "reject" in note["content"][key].lower():
+                if "decision" in submission["content"]:
+                    log.debug("{} has decision in content".format(submission["forum"]))
+                    if "reject" in submission["content"]["decision"].lower() and "accept" in submission["content"]["decision"].lower():
+                        log.warn(
+                            "Forum {}. Tagged as unknown because decision is unclear. Decision: {}".format(
+                                submission["forum"], submission["content"]["decision"]))
+                        submission["acceptance_tag"] = "unknown"
+                    elif "reject" in submission["content"]["decision"].lower():
+                        submission["acceptance_tag"] = "rejected"
+                    elif "accept" in submission["content"]["decision"].lower():
+                        submission["acceptance_tag"] = "accepted"
+                    else:
+                        log.warn(
+                            "Forum {}. Tagged as accepted because not rejected. This might be wrong. Decision: {}".format(
+                                submission["forum"], submission["content"]["decision"]))
+                        submission["acceptance_tag"] = "accepted"
+                else:
+                    for note in submission["notes"]:
+                        # Only found in ICLR 2020 as far as we are aware
+                        if "desk_reject" in note["invitation"].lower():
+                            log.debug("{} was desk rejected".format(submission["forum"]))
+                            submission["acceptance_tag"] = "rejected"
+
+                        # Found a decicion note
+                        if "decision" in note["invitation"].lower() or "acceptance" in note["invitation"].lower():
+                            log.debug("{} has decision note".format(submission["forum"]))
+                            # We consider a submission accepted if it is not rejected. This is due to some venues only writing
+                            # for what a submission is accepted (poster, talk, workshop) without writing the word 'accept'.
+                            # 'Reject' is found in all rejected submission decisions (as far as we are aware).
+                            for key in note["content"]:
+                                # Naming varies for the fild. Both decision and acceptance decision exist.
+                                if "decision" in key.lower():
+                                    if "reject" in note["content"][key].lower() and "accept" in note["content"][key].lower():
+                                        log.warn(
+                                            "Forum {}. Tagged as unknown because decision is unclear. Decision: {}".format(
+                                                submission["forum"], note["content"][key]))
+                                        submission["acceptance_tag"] = "unknown"
+                                    elif "reject" in note["content"][key].lower():
+                                        submission["acceptance_tag"] = "rejected"
+                                    elif "accept" in note["content"][key].lower():
+                                        submission["acceptance_tag"] = "accepted"
+                                    else:
+                                        log.warn(
+                                            "Forum {}. Tagged as accepted because not rejected. This might be wrong. Decision: {}".format(
+                                                submission["forum"], note["content"][key]))
+                                        submission["acceptance_tag"] = "accepted"
+                            break
+                        # Found a meta review
+                        # This will not stop the loop unlike a decision note in case both are used for some reason
+                        # Currently, only ICLR 2019 uses meta reviews as far as we know.
+                        elif "meta" in note["invitation"].lower():
+                            log.debug("{} has meta review note".format(submission["forum"]))
+                            try:
+                                if "reject" in note["content"]["recommendation"].lower():
                                     submission["acceptance_tag"] = "rejected"
-                                elif "accept" in note["content"][key].lower():
+                                elif "accept" in note["content"]["recommendation"].lower():
                                     submission["acceptance_tag"] = "accepted"
                                 else:
-                                    log.warn(
-                                        "Forum {}. Tagged as accepted because not rejected. This might be wrong. Decision: {}".format(
-                                            submission["forum"], note["content"][key]))
-                                    submission["acceptance_tag"] = "accepted"
-                        break
-                    # Found a meta review
-                    # This will not stop the loop unlike a decision note in case both are used for some reason
-                    # Currently, only ICLR 2019 uses meta reviews as far as we know.
-                    elif "meta" in note["invitation"].lower():
-                        log.debug("{} has meta review note".format(submission["forum"]))
-                        try:
-                            if "reject" in note["content"]["recommendation"].lower():
-                                submission["acceptance_tag"] = "rejected"
-                            elif "accept" in note["content"]["recommendation"].lower():
-                                submission["acceptance_tag"] = "accepted"
-                            else:
+                                    submission["acceptance_tag"] = "unknown"
+                                    log.warn("Forum {}. Meta review without decision".format(submission["forum"]))
+                            except KeyError:
                                 submission["acceptance_tag"] = "unknown"
-                                log.warn("Forum {}. Meta review without decision".format(submission["forum"]))
-                        except KeyError:
-                            submission["acceptance_tag"] = "unknown"
-                            log.warn("Forum {}. Unexpected format of a mew review note.".format(submission["forum"]))
+                                log.warn("Forum {}. Unexpected format of a mew review note.".format(submission["forum"]))
                 # Some venues use simple comments for the decision. We ignore them because the invitation is not
                 # exclusively used for the decision so the false classification risk is too high.
                 if not "acceptance_tag" in submission:
