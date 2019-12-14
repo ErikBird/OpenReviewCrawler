@@ -7,7 +7,7 @@ import sys
 import progressbar
 
 
-def tagging(file, write_new_file, log):
+def labeling(file, write_new_file, log):
     """
     Tag a given JSON file for acceptance/rejection/withdrawal/unknwon
     :param file: path to the JSON file
@@ -116,4 +116,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     log.setLevel(logging.getLevelName(args.logging_level))
 
-    tagging(args.file, args.write_new_file, log)
+    labeling(args.file, args.write_new_file, log)
