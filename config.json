@@ -5,9 +5,9 @@
       "years": [2018]
     }
   ],
-  "username": "openreview@erikschwan.de",
-  "password": "yt6AbNLRpm8ruc9D",
-  "outdir": "./ICLR/",
+  "username": "openreview@example.de",
+  "password": "",
+  "outdir": "./NIPS/",
   "filename": "out.json",
   "json_indent": 3,
   "output_json": true,
