@@ -108,7 +108,7 @@ if __name__ == "__main__":
     parser.add_argument(
         '-f', '--file', required=True, help='JSON created by crawler.py which should get tagged')
     parser.add_argument(
-        "--write_new_file", "-w", help="Write the output in a new JSON with the given path. Otherwise the input file is overwritte"
+        "--write_new_file", "-w", help="Write the output in a new JSON with the given path. Otherwise the input file is overwritten"
     )
     parser.add_argument(
         "--logging_level", help="Logging level", default="INFO"
