@@ -25,12 +25,24 @@ To get a list of all possible venues, run `python crawler --help_venues`
 You specify the venues and years to crawl in the config. Check out the example config [here](config.json).
 
 Use `year: "all"` to crawl an entire venue.
+
 Leaving username and password empty uses the guest access.
 
+The binary variable `acceptance_labeling` determines if the data will be annotated with the acceptance decision prior to storing.
+
+The binary variable `output_json` determines if the output will be saved as json file in the `outdir` with as `filename`.
+
+The binary variable `output_SQL` determines if the data will be inserted in the database which is configured [here](example_output.json).
+
+`output_SQL` and `output_json` function independent from each other.
+
+The binary variable `skip_pdf_download` determines if the pdfs will be downloaded.
+
+
 ## Output
-The program goes over the venues by year, download the PDFs for the revisions and output a JSON with the data.
-In the output JSON, information about submissions, comments and reviews are formatted as [Notes](https://openreview-py.readthedocs.io/en/latest/api.html#openreview.Note) as specified by OpenReview.
-See [here](example_output.json) for an example JSON.
+The program goes over the venues by year, download the PDFs for the revisions and output a dictionary of the data.
+This data can then be stored as JSON or SQL-Database. The information about submissions, comments and reviews are formatted as [Notes](https://openreview-py.readthedocs.io/en/latest/api.html#openreview.Note) as specified by OpenReview.
+However some variables are generally omitted, see [here](example_output.json) for an example JSON.
 
 Each submission also has the field `revisions` which contains a list of all previous revisions of the submissions
 and `notes` which contains a list of all comments, reviews and decisions of the submissions.
@@ -80,3 +92,27 @@ We present the results of our approach on all venues and years using ``config_al
  \* 2594 from ICLR 2020 which have no results at that time
  
  Random samples from the unknown submissions suggest that they have indeed no decision result and they are not failures of our labeling algorithm to identify the result.
+ 
+ ##Relational Database
+ ### Database Connection
+ The crawler is able to convert the dictionary data into a structured SQL Database format. Therefore it utilizes the popular 
+ SQLAlchemy Library which can interface various popular database systems.
+ 
+ This database can be configured [here](database.py).
+ 
+ Since the database uses the normalization standards, it cannot store lists. 
+ Therefore it is theoretically possible that the data-dictionary input contains more data than the database is storing.
+ However the implementation is quite robust to not omit the key data about the paper-review process.
+ ### Database Values
+Most values are intuitive or might be looked up [here](https://openreview-py.readthedocs.io/en/latest/api.html#openreview.Note).
+However for the following variables an explanation is quite useful:
+
+`cdate` (int, optional) – Creation date
+
+`tcdate` (int, optional) – True creation date
+
+`tmdate` (int, optional) – Modification date
+
+`ddate` (int, optional) – Deletion date
+ ### UML Diagramm
+ ![UML_Diagramm](Resources/UML.svg  "SQL Database Diagramm" )
