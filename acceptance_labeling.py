@@ -7,16 +7,13 @@ import sys
 import progressbar
 
 
-def labeling(file, write_new_file, log):
+def labeling(data_dict,log):
     """
     Tag a given JSON file for acceptance/rejection/withdrawal/unknwon
-    :param file: path to the JSON file
-    :param write_new_file: if given, will write output here otherwise file is used
+    :param dict: Dictionary of the crawled data to be tagged
     :param log: logger
     """
-    with open(file, "r") as f:
-        json_file = json.load(f)
-    for venue_year in json_file:
+    for venue_year in data_dict:
         log.info("Tagging {} {}".format(venue_year["venue"], venue_year["year"]))
         for submission in progressbar.progressbar(venue_year["submissions"]):
             # First check if submission was withdrawn
@@ -91,12 +88,7 @@ def labeling(file, write_new_file, log):
                 if not "acceptance_tag" in submission:
                     log.info("Forum {}. No decision could be found.".format(submission["forum"]))
                     submission["acceptance_tag"] = "unknown"
-    if write_new_file:
-        with open(write_new_file, "w") as f:
-            json.dump(json_file, f, indent=3)
-    else:
-        with open(file, "w") as f:
-            json.dump(json_file, f, indent=3)
+    return data_dict
 
 
 if __name__ == "__main__":
@@ -106,7 +98,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-f', '--file', required=True, help='JSON created by crawler.py which should get tagged')
+        '-f', '--file', required=False, help='JSON created by crawler.py which should get tagged')
     parser.add_argument(
         "--write_new_file", "-w", help="Write the output in a new JSON with the given path. Otherwise the input file is overwritten"
     )
@@ -115,5 +107,12 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     log.setLevel(logging.getLevelName(args.logging_level))
-
-    labeling(args.file, args.write_new_file, log)
+    if args.file:
+        with open(args.file, "r") as f:
+            json_file = json.load(f)
+            label = labeling(json_file,log)
+            if args.write_new_file:
+                with open(args.write_new_file, "w") as f:
+                    json.dump(json_file, f, indent=3)
+            else:
+                json.dump(json_file, f, indent=3)
