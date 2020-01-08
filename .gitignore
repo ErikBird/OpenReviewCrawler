@@ -24,3 +24,5 @@ __pycache__/
 config.json
 out.json
 *.pdf
+
+!.idea/

@@ -19,10 +19,9 @@ def crawl(client, config, log):
     :param log: the configured logging client
     :return: Nothing
     '''
-    if not os.path.exists(config["outdir"]):
-        os.makedirs(config["outdir"])
     if os.path.exists(os.path.join(config["outdir"], config["filename"])):
         with open(os.path.join(config["outdir"], config["filename"]), 'r') as file_handle:
+            log.info('previous file successfully loaded')
             results = json.load(file_handle)
     else:
         results = []
@@ -65,6 +64,7 @@ def crawl(client, config, log):
                                     x.start()
                             n["revisions"] = [r.to_json() for r in references]
                             n["notes"] = []
+                            print(notes)
                         submissions.extend(notes)
                     else:
                         revisions = [r.to_json() for r in client.get_references(invitation=inv)]
@@ -80,13 +80,8 @@ def crawl(client, config, log):
                     except KeyError:
                         log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
             results.append({"venue": venue, "year": year, "submissions": submissions})
-            if config["output_SQL"]:
-                db = SQLDatabase(dbname='myCrawl')
-                db.create_db_tables()
-                db.insert_dict(results)
-            if config["output_json"]:
-                with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
-                    json.dump(results, file_handle, indent=config["json_indent"])
+    return results
+
 
 
 
@@ -174,4 +169,13 @@ if __name__ == '__main__':
         password=password)
     log.info('Login as '+username+' was successful')
 
-    crawl(client, config, log)
+    results = crawl(client, config, log)
+    if config["output_SQL"]:
+        db = SQLDatabase(dbtype='sqlite', dbname='myCrawl')
+        db.create_db_tables()
+        db.insert_dict(results)
+    if config["output_json"]:
+        if not os.path.exists(config["outdir"]):
+            os.makedirs(config["outdir"])
+        with open(os.path.join(config["outdir"], config["filename"]), 'w') as file_handle:
+            json.dump(results, file_handle, indent=config["json_indent"])
