@@ -46,6 +46,11 @@ class SQLDatabase:
                 print(e)
 
     def insert_dict(self,dict):
+        '''
+        This method stores a dictionary containing the crawled data into an SQL Database
+        :param dict: The data dictionary
+        :return: Stores values into the database
+        '''
         session = self.Session()
         for i, el in enumerate(dict):
             session.add(model.Venue(id=i,venue =el["venue"],year= el["year"]))
