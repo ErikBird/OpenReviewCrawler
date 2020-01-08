@@ -28,6 +28,7 @@ class Submission(Base):
     number = Column(Integer)
     title = Column(String)
     abstract = Column(String)
+    acceptance_tag = Column(String)
     replyto = Column(String)
     authorid0 = Column(String)
     authorid1 = Column(String)

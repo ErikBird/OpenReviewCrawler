@@ -9,7 +9,7 @@ import sys
 import progressbar
 import threading
 from database import SQLDatabase
-
+from acceptance_labeling import labeling
 def crawl(client, config, log):
     '''
     This method crawls the configured venues and saves all comments and all PDF Revisions to the output folder.
@@ -170,6 +170,8 @@ if __name__ == '__main__':
     log.info('Login as '+username+' was successful')
 
     results = crawl(client, config, log)
+    if config['acceptance_labeling']:
+        results = labeling(results,log)
     if config["output_SQL"]:
         db = SQLDatabase(dbtype='sqlite', dbname='myCrawl')
         db.create_db_tables()

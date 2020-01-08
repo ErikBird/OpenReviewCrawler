@@ -1,17 +1,18 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import database_model as model
-import json
+import progressbar
 # Global Variables
 SQLITE                  = 'sqlite'
-
+POSTGRES                = 'postgres'
 
 
 
 class SQLDatabase:
     # http://docs.sqlalchemy.org/en/latest/core/engines.html
     DB_ENGINE = {
-        SQLITE: 'sqlite:///{DB}'
+        SQLITE: 'sqlite:///{DB}',
+        POSTGRES: '"postgres://SCHWAN:donotusethispassword@dasp.ukp.informatik.tu-darmstadt.de:22/dasp2"'
     }
     # Main DB Connection Ref Obj
     db_engine = None
@@ -49,7 +50,7 @@ class SQLDatabase:
         for i, el in enumerate(dict):
             session.add(model.Venue(id=i,venue =el["venue"],year= el["year"]))
             session.commit()
-            for s in el["submissions"]:
+            for s in progressbar.progressbar(el["submissions"]):
                 sub_dict = {'id': s["id"], 'venue': i,
                                     'original': s["original"], 'cdate': s["cdate"],
                                     'tcdate': s["tcdate"],
@@ -57,6 +58,7 @@ class SQLDatabase:
                                     'ddate': s["ddate"], 'number': s["number"],
                                     'title': s['content']["title"], 'abstract': s['content']["abstract"],
                                     'replyto': s['content']["replyto"] if "replyto" in s['content'].keys()  else "",
+                                    'acceptance_tag': s['acceptance_tag'] if "acceptance_tag" in s.keys() else "",
                                     'pdf': s['content']["pdf"] if "pdf" in s['content'].keys()  else "",
                                     'forum': s["forum"],
                                     'referent': s["referent"], 'invitation': s["invitation"]
@@ -93,7 +95,7 @@ class SQLDatabase:
                                         'tmdate': n["tmdate"],
                                         'ddate': n["ddate"], 'number': n["number"],
                                         'title': n['content']["title"] if "title" in n['content'].keys() else "",
-                                        'decision': n['content']["decision"]if "decision" in n['content'].keys() else "", #@TODO MIT PARSER VERBINDEN
+                                        'decision': n['content']["decision"]if "decision" in n['content'].keys() else "",
                                         'forum': n["forum"],
                                         'referent': n['referent'], 'invitation': n["invitation"],
                                         'replyto': n["replyto"], 'replyCount': n['details']["replyCount"]
@@ -107,7 +109,7 @@ class SQLDatabase:
                                       'tmdate': nr["tmdate"],
                                       'ddate': nr["ddate"], 'number': nr["number"],
                                       'title': nr['content']["title"] if "title" in nr['content'].keys() else "",
-                                      'decision': nr['content']["decision"] if "decision" in nr['content'].keys() else "",#@TODO MIT PARSER VERBINDEN
+                                      'decision': nr['content']["decision"] if "decision" in nr['content'].keys() else "",
                                       'forum': nr["forum"],
                                       'referent': nr['referent'], 'invitation': nr["invitation"],
                                       'replyto': nr["replyto"], 'replyCount': nr['details']["replyCount"]
@@ -125,6 +127,6 @@ class SQLDatabase:
                 print(e)
             else:
                 for row in result:
-                    print(row)  # print(row[0], row[1], row[2])
+                    print(row)
                 result.close()
         print("\n")
