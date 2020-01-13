@@ -62,7 +62,7 @@ The binary variable `skip_pdf_download` determines if the pdfs will be downloade
 The program goes over the venues by year, download the PDFs for the revisions and output a dictionary of the data.
 This data can then be stored as JSON or SQL-Database. 
 
-For the JSON, the information about submissions, comments and reviews are formatted as [Notes](https://openreview-py.readthedocs.io/en/latest/api.html#openreview.Note) as specified by OpenReview (For more information, see [About the OpenReview API](api)).
+For the JSON, the information about submissions, comments and reviews are formatted as [Notes](https://openreview-py.readthedocs.io/en/latest/api.html#openreview.Note) as specified by OpenReview (for more information, see [About the OpenReview API Model](api)).
 An example JSON can be found [here](example_output.json).
 
 In the JSON, each submission also has the field `revisions` which contains a list of all previous revisions of the submissions
