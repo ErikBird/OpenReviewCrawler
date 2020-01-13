@@ -3,12 +3,30 @@ This project is a crawler for OpenReview submissions. It is the base for [anothe
 
 Both projects are created by students of the Technische Universität Darmstadt as a course project for the [UKP lab](https://www.informatik.tu-darmstadt.de/ukp/ukp_home/index.en.jsp).
 
+## Table of Contents
+1. [About the OpenReview API Model](api)
+2. [Setup](#setup)
+3. [Usage](#usage)
+4. [Config](#config)
+5. [Output](output)
+6. [Labeling Approach](#labeling)
+7. [Relational Database](#database)
 
-## Setup
+<a name="api"></a>
+## About the OpenReview API Model
+We present the way OpenReview API models the data with invitations, notes and content in-depth [here](about_openreview_and_its_api.md).  
+
+TL;DR:  
+The model with notes, invitations and content allows customization for each venue.  
+Notes are container for data (submissions, reviews, comments), invitations decide the type of a note and the content field of a note contains its textual content (title, abstract, authors for a paper; review text, score, confidence for a review and so on).  
+Invitations and content are specified by each venue as needed or wanted and can thus vary between venues in name and extend.
+<a name="setup"></a>
+## Setup 
 We recommend at least Python 3.6 to use this project.
 
 Run `pip install -r requirements.txt` to install all required packages
 
+<a name="usage"></a>
 ## Usage
 Run ``python crawler.py `` to start the crawler with the default config `./config.json`. 
 
@@ -21,6 +39,7 @@ If you don't want your password in the config, use `-p | --password {password}`.
 To get a list of all possible venues, run `python crawler --help_venues`
 
 ``python crawler.py --help`` will display all possible arguments.
+<a name="config"></a>
 ## Config
 You specify the venues and years to crawl in the config. Check out the example config [here](config.json).
 
@@ -38,19 +57,24 @@ The binary variable `output_SQL` determines if the data will be inserted in the 
 
 The binary variable `skip_pdf_download` determines if the pdfs will be downloaded.
 
-
+<a name="output"></a>
 ## Output
 The program goes over the venues by year, download the PDFs for the revisions and output a dictionary of the data.
-This data can then be stored as JSON or SQL-Database. The information about submissions, comments and reviews are formatted as [Notes](https://openreview-py.readthedocs.io/en/latest/api.html#openreview.Note) as specified by OpenReview.
-However some variables are generally omitted, see [here](example_output.json) for an example JSON.
+This data can then be stored as JSON or SQL-Database. 
 
-Each submission also has the field `revisions` which contains a list of all previous revisions of the submissions
+For the JSON, the information about submissions, comments and reviews are formatted as [Notes](https://openreview-py.readthedocs.io/en/latest/api.html#openreview.Note) as specified by OpenReview (For more information, see [About the OpenReview API](api)).
+An example JSON can be found [here](example_output.json).
+
+In the JSON, each submission also has the field `revisions` which contains a list of all previous revisions of the submissions
 and `notes` which contains a list of all comments, reviews and decisions of the submissions.
 Each note in this list also has a field `revisions` for previous iterations of it.
 
 PDFs are stored in the format `{forum}_{revision_number}.pdf`. `revisions_number` is the position in the revision array of a submissions.
 Note that the array is sorted from newest to oldest.
 
+The database removes some fields deemed unneccesary.
+
+<a name="labeling"></a>
 ## Acceptance Labeling
 How a submissions is marked as accepted or rejected varies from venue to venue, year to year and even within one venue year.
 
@@ -93,7 +117,8 @@ We present the results of our approach on all venues and years using ``config_al
  
  Random samples from the unknown submissions suggest that they have indeed no decision result and they are not failures of our labeling algorithm to identify the result.
  
- ##Relational Database
+ <a name="database"></a>
+ ## Relational Database
  ### Database Connection
  The crawler is able to convert the dictionary data into a structured SQL Database format. Therefore it utilizes the popular 
  SQLAlchemy Library which can interface various popular database systems.
