@@ -14,7 +14,7 @@ Both projects are created by students of the Technische Universität Darmstadt a
 
 <a name="api"></a>
 ## About the OpenReview API Model
-We present the way OpenReview API models the data with invitations, notes and content in-depth [here](about_openreview_and_its_api.md).  
+We present the way OpenReview API models the data with invitations, notes and content in-depth [here](about_the_openreview_api_model.md).  
 
 TL;DR:  
 The model with notes, invitations and content allows customization for each venue.  
