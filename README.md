@@ -4,7 +4,7 @@ This project is a crawler for OpenReview submissions. It is the base for [anothe
 Both projects are created by students of the Technische Universität Darmstadt as a course project for the [UKP lab](https://www.informatik.tu-darmstadt.de/ukp/ukp_home/index.en.jsp).
 
 ## Table of Contents
-1. [About the OpenReview API Model](api)
+1. [About the OpenReview API Model](#api)
 2. [Setup](#setup)
 3. [Usage](#usage)
 4. [Config](#config)
