@@ -84,7 +84,8 @@ class SQLDatabase:
                                     'pdf_ref': s['content']["pdf"] if "pdf" in s['content'].keys()  else "",
                                     'forum': s["forum"],
                                     'referent': s["referent"], 'invitation': s["invitation"]
-                                    , 'replyCount': s['details']["replyCount"]}
+                                    , 'replyCount': s['details']["replyCount"],
+                                    'submission_content': str(s["content"])}
                 for i,authorid in enumerate(s['content']["authorids"][:12]):
                     sub_dict.update({'authorid'+str(i) : s['content']["authorids"][i]})
                 for i,authorid in enumerate(s['content']["authors"][:12]):
@@ -103,7 +104,8 @@ class SQLDatabase:
                                     'replyto': r["replyto"] if "replyto" in r['content'].keys() else "",
                                     'pdf_ref': r['content']["pdf"] if "pdf" in r['content'].keys() else "",
                                     'forum': r["forum"],
-                                    'referent': r["referent"], 'invitation': r["invitation"]}
+                                    'referent': r["referent"], 'invitation': r["invitation"],
+                                    'revision_content': str(r["content"])}
                     for i, authorid in enumerate(r['content']["authorids"][:12]):
                         rev_dict.update({'authorid' + str(i): r['content']["authorids"][i]})
                     for i, authorid in enumerate(r['content']["authors"][:12]):
