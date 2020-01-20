@@ -31,7 +31,6 @@ def crawl(client, config, log, db=None):
     elif config["output_SQL"]:
         venues = db.get_venues()
         if venues:
-            print(venues)
             venue_id = max(venue['id'] for venue in venues)
             already_done.update(["{} {}".format(v["venue"], v["year"]) for v in venues])
 
@@ -68,7 +67,7 @@ def crawl(client, config, log, db=None):
                         threads = list()
                         for n in progressbar.progressbar(notes):
                             refs = client.get_references(n["id"], original=True)
-                            references=refs[1:]
+                            references=[r.to_json() for r in refs[1:]]
                             original = refs[:1][0]
                             if not config["skip_pdf_download"]:
                                 if config["output_json"]:
@@ -78,23 +77,22 @@ def crawl(client, config, log, db=None):
                                     threads.append(x)
                                     x.start()
                                 if config["output_SQL"]:
-                                    x = threading.Thread(target=download_submission_db, args=(r.id, client, db, venue_id,submission_id))
+                                    x = threading.Thread(target=download_submission_db, args=(original.id, client, db, venue_id,n["id"]))
                                     threads.append(x)
                                     x.start()
                                 for index, r in enumerate(references):
                                     if config["output_json"]:
                                         pdf_name = n["id"] + '_' + str(index+1) + '.pdf'
                                         r['content']['pdf']= '/pdf/'+pdf_name
-                                        x = threading.Thread(target=download_revision_fs, args=(r.id, pdf_name, client))
+                                        x = threading.Thread(target=download_revision_fs, args=(r['id'], pdf_name, client))
                                         threads.append(x)
                                         x.start()
                                     if config["output_SQL"]:
-                                        x = threading.Thread(target=download_revision_db, args=(r.id, db, client, index))
+                                        x = threading.Thread(target=download_revision_db, args=(r['id'], client, db,n["id"]))
                                         threads.append(x)
                                         x.start()
-                            n["revisions"] = [r.to_json() for r in references]
+                            n["revisions"] = references
                             n["notes"] = []
-                            print(notes)
                         submissions.extend(notes)
                     else:
                         revisions = [r.to_json() for r in client.get_references(invitation=inv)]
@@ -153,7 +151,7 @@ def download_revision_fs(ref_id, pdf_name, client):
         file1.write(file)
     log.info(pdf_name + ' downloaded')
 
-def download_revision_db(ref_id, client, db, revision_id,submission_id):
+def download_revision_db(ref_id, client, db ,submission_id):
     '''
     This method downloads a pdf file from a openreview note and stores it in the oupath/pdf/ folder.
     If the folder does not exist, it will be created.
@@ -168,7 +166,7 @@ def download_revision_db(ref_id, client, db, revision_id,submission_id):
     except:
         log.info(ref_id + ' has no pdf ')
         return
-    db.insert_revision(revision_id, submission_id, pdf=file)
+    db.insert_revision(ref_id, submission_id, pdf=file)
     log.info(ref_id + ' inserted into db')
 
 def download_submission_db(ref_id, client, db, venue_id,submission_id):
@@ -239,6 +237,7 @@ if __name__ == '__main__':
     if config["output_SQL"]:
         db = SQLDatabase(dbtype='sqlite', dbname='myCrawl')
         db.create_db_tables()
+
 
     results = crawl(client, config, log,db)
     if config['acceptance_labeling']:

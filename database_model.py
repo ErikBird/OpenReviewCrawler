@@ -126,6 +126,7 @@ class Note(Base):
     invitation = Column(String)
     replyto = Column(String)
     replyCount = Column(Integer)
+    note_content = Column(String)
 
 class NoteRevision(Base):
     __tablename__ = NOTE_REVISION
@@ -144,5 +145,5 @@ class NoteRevision(Base):
     invitation = Column(String)
     replyto = Column(String)
     replyCount = Column(Integer)
-
+    note_content = Column(String)
 
