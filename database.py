@@ -45,6 +45,23 @@ class SQLDatabase:
             except Exception as e:
                 print(e)
 
+    def get_venues(self):
+        return model.Venue.query.all()
+
+    def insert_submission(self, venue_id,submission_id,pdf=None):
+        session = self.Session()
+        sub_dict = {'id': submission_id, 'venue': venue_id,
+                    'pdf_binary': pdf }
+        session.add(model.Submission(**sub_dict))
+        session.commit()
+
+    def insert_revision(self, revision_id,submission_id,pdf=None):
+        session = self.Session()
+        rev_dict = {'id': revision_id, 'submission': submission_id,
+                    'pdf_binary': pdf }
+        session.add(model.Revision(**rev_dict))
+        session.commit()
+
     def insert_dict(self,dict):
         '''
         This method stores a dictionary containing the crawled data into an SQL Database
@@ -64,7 +81,7 @@ class SQLDatabase:
                                     'title': s['content']["title"], 'abstract': s['content']["abstract"],
                                     'replyto': s['content']["replyto"] if "replyto" in s['content'].keys()  else "",
                                     'acceptance_tag': s['acceptance_tag'] if "acceptance_tag" in s.keys() else "",
-                                    'pdf': s['content']["pdf"] if "pdf" in s['content'].keys()  else "",
+                                    'pdf_ref': s['content']["pdf"] if "pdf" in s['content'].keys()  else "",
                                     'forum': s["forum"],
                                     'referent': s["referent"], 'invitation': s["invitation"]
                                     , 'replyCount': s['details']["replyCount"]}
@@ -84,13 +101,13 @@ class SQLDatabase:
                                     'ddate': r["ddate"], 'number': r["number"],
                                     'title': r['content']["title"], 'abstract': r['content']["abstract"],
                                     'replyto': r['content']["replyto"] if "replyto" in r['content'].keys() else "",
-                                    'pdf': r['content']["pdf"] if "pdf" in r['content'].keys() else "",
+                                    'pdf_ref': r['content']["pdf"] if "pdf" in r['content'].keys() else "",
                                     'forum': r["forum"],
                                     'referent': r["referent"], 'invitation': r["invitation"]}
-                    for i, authorid in enumerate(s['content']["authorids"][:12]):
-                        rev_dict.update({'authorid' + str(i): s['content']["authorids"][i]})
-                    for i, authorid in enumerate(s['content']["authors"][:12]):
-                        rev_dict.update({'author' + str(i): s['content']["authors"][i]})
+                    for i, authorid in enumerate(r['content']["authorids"][:12]):
+                        rev_dict.update({'authorid' + str(i): r['content']["authorids"][i]})
+                    for i, authorid in enumerate(r['content']["authors"][:12]):
+                        rev_dict.update({'author' + str(i): r['content']["authors"][i]})
                     session.add(model.Revision(**rev_dict))
                 session.commit()
                 for n in s['notes']:

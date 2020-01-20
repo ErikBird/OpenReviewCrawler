@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
+from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, LargeBinary
 
 # Table Names
 VENUE           = 'venue'
@@ -56,7 +56,8 @@ class Submission(Base):
     author10 = Column(String)
     author11 = Column(String)
     author12 = Column(String)
-    pdf = Column(String)
+    pdf_ref = Column(String)
+    pdf_binary = Column(LargeBinary, nullable=True)
     forum = Column(String)
     referent = Column(String)
     invitation = Column(String)
@@ -101,7 +102,8 @@ class Revision(Base):
     author10 = Column(String)
     author11 = Column(String)
     author12 = Column(String)
-    pdf = Column(String)
+    pdf_ref = Column(String)
+    pdf_binary = Column(LargeBinary, nullable=True)
     forum = Column(String)
     referent = Column(String)
     invitation = Column(String)
