@@ -10,7 +10,7 @@ import progressbar
 import threading
 from database import SQLDatabase
 from acceptance_labeling import labeling
-def crawl(client, config, log):
+def crawl(client, config, log, db=None):
     '''
     This method crawls the configured venues and saves all comments and all PDF Revisions to the output folder.
 
@@ -19,13 +19,23 @@ def crawl(client, config, log):
     :param log: the configured logging client
     :return: Nothing
     '''
-    if os.path.exists(os.path.join(config["outdir"], config["filename"])):
-        with open(os.path.join(config["outdir"], config["filename"]), 'r') as file_handle:
-            log.info('previous file successfully loaded')
-            results = json.load(file_handle)
-    else:
-        results = []
-    already_done = set(["{} {}".format(r["venue"], r["year"]) for r in results])
+    already_done = set([])
+    results = []
+    venue_id = -1
+    if config["output_json"]:
+        if os.path.exists(os.path.join(config["outdir"], config["filename"])):
+            with open(os.path.join(config["outdir"], config["filename"]), 'r') as file_handle:
+                log.info('previous file successfully loaded')
+                results = json.load(file_handle)
+                already_done = set(["{} {}".format(r["venue"], r["year"]) for r in results])
+    elif config["output_SQL"]:
+        venues = db.get_venues()
+        if venues:
+            print(venues)
+            venue_id = max(venue['id'] for venue in venues)
+            already_done.update(["{} {}".format(v["venue"], v["year"]) for v in venues])
+
+
 
     for target in config["targets"]:
         venue, years = target["venue"], target["years"]
@@ -35,6 +45,8 @@ def crawl(client, config, log):
             if "{} {}".format(venue, year) in already_done:
                 log.info("Skipping {} {}. Already done".format(venue, year))
                 continue
+            venue_id += 1
+
             log.info('Current Download: '+ venue+' in '+str(year))
             invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year), expired=True)
             invitations = [inv.id for inv in invitations_iterator]
@@ -55,13 +67,31 @@ def crawl(client, config, log):
                         forum_idx_map.update({n["forum"]: i+len(submissions) for i, n in enumerate(notes)})
                         threads = list()
                         for n in progressbar.progressbar(notes):
-                            references = client.get_references(n["id"], original=True)
+                            refs = client.get_references(n["id"], original=True)
+                            references=refs[1:]
+                            original = refs[:1][0]
                             if not config["skip_pdf_download"]:
-                                for index, r in enumerate(references):
-                                    pdf_name = n["id"] + '_' + str(index) + '.pdf'
-                                    x = threading.Thread(target=download_revision, args=(r.id,pdf_name,client))
+                                if config["output_json"]:
+                                    pdf_name = n["id"] + '_' + str(0) + '.pdf'
+                                    n['content']['pdf'] = '/pdf/' + pdf_name
+                                    x = threading.Thread(target=download_revision_fs, args=(original.id, pdf_name, client))
                                     threads.append(x)
                                     x.start()
+                                if config["output_SQL"]:
+                                    x = threading.Thread(target=download_submission_db, args=(r.id, client, db, venue_id,submission_id))
+                                    threads.append(x)
+                                    x.start()
+                                for index, r in enumerate(references):
+                                    if config["output_json"]:
+                                        pdf_name = n["id"] + '_' + str(index+1) + '.pdf'
+                                        r['content']['pdf']= '/pdf/'+pdf_name
+                                        x = threading.Thread(target=download_revision_fs, args=(r.id, pdf_name, client))
+                                        threads.append(x)
+                                        x.start()
+                                    if config["output_SQL"]:
+                                        x = threading.Thread(target=download_revision_db, args=(r.id, db, client, index))
+                                        threads.append(x)
+                                        x.start()
                             n["revisions"] = [r.to_json() for r in references]
                             n["notes"] = []
                             print(notes)
@@ -79,7 +109,8 @@ def crawl(client, config, log):
                         submissions[forum_idx_map[note["forum"]]]["notes"].append(note)
                     except KeyError:
                         log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
-            results.append({"venue": venue, "year": year, "submissions": submissions})
+            results.append({"venue_id":venue_id,"venue": venue, "year": year, "submissions": submissions})
+
     return results
 
 
@@ -100,7 +131,7 @@ def merge_invitations(invitations):
     return new_invitations
 
 
-def download_revision(ref_id, pdf_name, client):
+def download_revision_fs(ref_id, pdf_name, client):
     '''
     This method downloads a pdf file from a openreview note and stores it in the oupath/pdf/ folder.
     If the folder does not exist, it will be created.
@@ -122,6 +153,41 @@ def download_revision(ref_id, pdf_name, client):
         file1.write(file)
     log.info(pdf_name + ' downloaded')
 
+def download_revision_db(ref_id, client, db, revision_id,submission_id):
+    '''
+    This method downloads a pdf file from a openreview note and stores it in the oupath/pdf/ folder.
+    If the folder does not exist, it will be created.
+    :param ref_id: The target note id
+    :param pdf_name: The target filename
+    :param client: The openreview client
+    :return: Nothing
+    '''
+    if not ref_id: return
+    try:
+        file = client.get_pdf(ref_id, is_reference=True)
+    except:
+        log.info(ref_id + ' has no pdf ')
+        return
+    db.insert_revision(revision_id, submission_id, pdf=file)
+    log.info(ref_id + ' inserted into db')
+
+def download_submission_db(ref_id, client, db, venue_id,submission_id):
+    '''
+    This method downloads a pdf file from a openreview note and stores it in the oupath/pdf/ folder.
+    If the folder does not exist, it will be created.
+    :param ref_id: The target note id
+    :param pdf_name: The target filename
+    :param client: The openreview client
+    :return: Nothing
+    '''
+    if not ref_id: return
+    try:
+        file = client.get_pdf(ref_id, is_reference=True)
+    except:
+        log.info(ref_id + ' has no pdf ')
+        return
+    db.insert_submission( venue_id,submission_id,pdf=file)
+    log.info(ref_id + ' inserted into db')
 
 def get_all_available_venues():
     '''
@@ -169,13 +235,18 @@ if __name__ == '__main__':
         password=password)
     log.info('Login as '+username+' was successful')
 
-    results = crawl(client, config, log)
-    if config['acceptance_labeling']:
-        results = labeling(results,log)
+    db = None
     if config["output_SQL"]:
         db = SQLDatabase(dbtype='sqlite', dbname='myCrawl')
         db.create_db_tables()
+
+    results = crawl(client, config, log,db)
+    if config['acceptance_labeling']:
+        results = labeling(results,log)
+
+    if config["output_SQL"]:
         db.insert_dict(results)
+
     if config["output_json"]:
         if not os.path.exists(config["outdir"]):
             os.makedirs(config["outdir"])
