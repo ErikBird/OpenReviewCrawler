@@ -121,7 +121,7 @@ class SQLDatabase:
                                         'forum': n["forum"],
                                         'referent': n['referent'], 'invitation': n["invitation"],
                                         'replyto': n["replyto"], 'replyCount': n['details']["replyCount"],
-                                        'note_content': str(n)
+                                        'note_content': str(n["content"])
                                            }
 
                     session.merge(model.Note(**notes))
@@ -137,7 +137,7 @@ class SQLDatabase:
                                       'forum': nr["forum"],
                                       'referent': nr['referent'], 'invitation': nr["invitation"],
                                       'replyto': nr["replyto"], 'replyCount': nr['details']["replyCount"],
-                                      'note_content': str(nr)
+                                      'note_content': str(n["content"])
                                       }
                         session.merge(model.NoteRevision(**note_revisions))
                     session.commit()
