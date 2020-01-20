@@ -121,7 +121,7 @@ class SQLDatabase:
                                         'forum': n["forum"],
                                         'referent': n['referent'], 'invitation': n["invitation"],
                                         'replyto': n["replyto"], 'replyCount': n['details']["replyCount"],
-                                        'note_content': str(nr)
+                                        'note_content': str(n)
                                            }
 
                     session.merge(model.Note(**notes))
