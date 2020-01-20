@@ -62,6 +62,7 @@ class Submission(Base):
     referent = Column(String)
     invitation = Column(String)
     replyCount = Column(Integer)
+    submission_content = Column(String)
 
 class Revision(Base):
     __tablename__ = REVISIONS
@@ -108,6 +109,7 @@ class Revision(Base):
     referent = Column(String)
     invitation = Column(String)
     replyCount = Column(Integer)
+    revision_content = Column(String)
 
 class Note(Base):
     __tablename__ = NOTE
