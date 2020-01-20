@@ -70,7 +70,7 @@ class SQLDatabase:
         '''
         session = self.Session()
         for i, el in enumerate(dict):
-            session.add(model.Venue(id=i,venue =el["venue"],year= el["year"]))
+            session.merge(model.Venue(id=i,venue =el["venue"],year= el["year"]))
             session.commit()
             for s in progressbar.progressbar(el["submissions"]):
                 sub_dict = {'id': s["id"], 'venue': i,
@@ -79,7 +79,7 @@ class SQLDatabase:
                                     'tmdate': s["tmdate"],
                                     'ddate': s["ddate"], 'number': s["number"],
                                     'title': s['content']["title"], 'abstract': s['content']["abstract"],
-                                    'replyto': s['content']["replyto"] if "replyto" in s['content'].keys()  else "",
+                                    'replyto': s["replyto"] if "replyto" in s['content'].keys()  else "",
                                     'acceptance_tag': s['acceptance_tag'] if "acceptance_tag" in s.keys() else "",
                                     'pdf_ref': s['content']["pdf"] if "pdf" in s['content'].keys()  else "",
                                     'forum': s["forum"],
@@ -89,7 +89,7 @@ class SQLDatabase:
                     sub_dict.update({'authorid'+str(i) : s['content']["authorids"][i]})
                 for i,authorid in enumerate(s['content']["authors"][:12]):
                     sub_dict.update({'author' + str(i): s['content']["authors"][i]})
-                session.add(model.Submission(**sub_dict))
+                session.merge(model.Submission(**sub_dict))
                 session.commit()
 
                 for r in s['revisions']:
@@ -100,7 +100,7 @@ class SQLDatabase:
                                     'tmdate': r["tmdate"],
                                     'ddate': r["ddate"], 'number': r["number"],
                                     'title': r['content']["title"], 'abstract': r['content']["abstract"],
-                                    'replyto': r['content']["replyto"] if "replyto" in r['content'].keys() else "",
+                                    'replyto': r["replyto"] if "replyto" in r['content'].keys() else "",
                                     'pdf_ref': r['content']["pdf"] if "pdf" in r['content'].keys() else "",
                                     'forum': r["forum"],
                                     'referent': r["referent"], 'invitation': r["invitation"]}
@@ -108,7 +108,7 @@ class SQLDatabase:
                         rev_dict.update({'authorid' + str(i): r['content']["authorids"][i]})
                     for i, authorid in enumerate(r['content']["authors"][:12]):
                         rev_dict.update({'author' + str(i): r['content']["authors"][i]})
-                    session.add(model.Revision(**rev_dict))
+                    session.merge(model.Revision(**rev_dict))
                 session.commit()
                 for n in s['notes']:
                     notes={'id': n["id"], 'submission': s["id"],
@@ -120,9 +120,11 @@ class SQLDatabase:
                                         'decision': n['content']["decision"]if "decision" in n['content'].keys() else "",
                                         'forum': n["forum"],
                                         'referent': n['referent'], 'invitation': n["invitation"],
-                                        'replyto': n["replyto"], 'replyCount': n['details']["replyCount"]
+                                        'replyto': n["replyto"], 'replyCount': n['details']["replyCount"],
+                                        'note_content': str(nr)
                                            }
-                    session.add(model.Note(**notes))
+
+                    session.merge(model.Note(**notes))
                     session.commit()
                     for nr in n['revisions']:
                         note_revisions={'id': nr["id"], 'submission': n["id"],
@@ -134,9 +136,10 @@ class SQLDatabase:
                                       'decision': nr['content']["decision"] if "decision" in nr['content'].keys() else "",
                                       'forum': nr["forum"],
                                       'referent': nr['referent'], 'invitation': nr["invitation"],
-                                      'replyto': nr["replyto"], 'replyCount': nr['details']["replyCount"]
+                                      'replyto': nr["replyto"], 'replyCount': nr['details']["replyCount"],
+                                      'note_content': str(nr)
                                       }
-                        session.add(model.NoteRevision(**note_revisions))
+                        session.merge(model.NoteRevision(**note_revisions))
                     session.commit()
 
     def print_all_data(self, table='', query=''):
