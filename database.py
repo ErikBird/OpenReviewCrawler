@@ -1,11 +1,16 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.inspection import inspect
 import database_model as model
 import progressbar
 # Global Variables
 SQLITE                  = 'sqlite'
 POSTGRES                = 'postgres'
 
+
+def object_as_dict(obj):
+    return {c.key: getattr(obj, c.key)
+            for c in inspect(obj).mapper.column_attrs}
 
 
 class SQLDatabase:
@@ -46,7 +51,9 @@ class SQLDatabase:
                 print(e)
 
     def get_venues(self):
-        return model.Venue.query.all()
+        session = self.Session()
+        return [object_as_dict(venue) for venue in session.query(model.Venue).all()]
+
 
     def insert_submission(self, venue_id,submission_id,pdf=None):
         session = self.Session()

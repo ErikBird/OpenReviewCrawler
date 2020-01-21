@@ -31,7 +31,7 @@ def crawl(client, config, log, db=None):
     elif config["output_SQL"]:
         venues = db.get_venues()
         if venues:
-            venue_id = max(venue['id'] for venue in venues)
+            venue_id = max([venue['id'] for venue in venues])
             already_done.update(["{} {}".format(v["venue"], v["year"]) for v in venues])
 
 
