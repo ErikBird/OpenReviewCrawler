@@ -7,10 +7,6 @@ SUBMISSION       = 'submission'
 REVISIONS = 'revisions'
 NOTE = 'notes'
 NOTE_REVISION = "note_revision"
-REVISION_DIFF = "revision_diff"
-PARSED_SUBMISSION = "parsed_submission"
-PARSED_REVISION = "parsed_revision"
-
 #msc
 Base = declarative_base()
 
@@ -152,28 +148,3 @@ class NoteRevision(Base):
     replyto = Column(String)
     replyCount = Column(Integer)
     note_content = Column(String)
-
-class ParsedSubmission(Base):
-    __tablename__ = PARSED_SUBMISSION
-    submission = Column(None, ForeignKey(Submission.id), primary_key=True)
-    section_num = Column(Integer, primary_key=True)
-    heading = Column(String)
-    text = Column(String)
-
-class ParsedRevision(Base):
-    __tablename__ = PARSED_REVISION
-    submission = Column(None, ForeignKey(Submission.id), primary_key=True)
-    revision = Column(None, ForeignKey(Revision.id), primary_key=True)
-    section_num = Column(Integer, primary_key=True)
-    heading = Column(String)
-    text = Column(String)
-
-class RevisionDiff(Base):
-    __tablename__ = REVISION_DIFF
-    venue = Column(None, ForeignKey(Venue.id), primary_key=True)
-    submission = Column(None, ForeignKey(Submission.id), primary_key=True)
-    revision = Column(None, ForeignKey(Revision.id), primary_key=True)
-    previous_revision = Column(String)
-    comment = Column(String)
-    diff = Column(String)
-    description = Column(String)
