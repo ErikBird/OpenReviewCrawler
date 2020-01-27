@@ -8,7 +8,7 @@ import logging
 import sys
 import progressbar
 import threading
-from database import SQLDatabase
+from database.database import SQLDatabase
 from acceptance_labeling import labeling
 def crawl(client, config, log, db=None):
     '''
