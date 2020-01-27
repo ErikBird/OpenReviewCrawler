@@ -148,4 +148,3 @@ class NoteRevision(Base):
     replyto = Column(String)
     replyCount = Column(Integer)
     note_content = Column(String)
-
