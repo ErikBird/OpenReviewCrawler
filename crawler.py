@@ -10,6 +10,9 @@ import progressbar
 import threading
 from database.database import SQLDatabase
 from acceptance_labeling import labeling
+import time
+maxthreads = 10
+sema = threading.Semaphore(value=maxthreads)
 def crawl(client, config, log, db=None):
     '''
     This method crawls the configured venues and saves all comments and all PDF Revisions to the output folder.
@@ -112,9 +115,6 @@ def crawl(client, config, log, db=None):
     return results
 
 
-
-
-
 def merge_invitations(invitations):
     '''
     This method merges invitations for OpenReview API wildcard support
@@ -138,7 +138,7 @@ def download_revision_fs(ref_id, pdf_name, client):
     :param client: The openreview client
     :return: Nothing
     '''
-
+    sema.acquire()
     out_path = os.path.join(config["outdir"], 'pdf/')
     if not os.path.exists(out_path): os.makedirs(out_path)
     if not ref_id: return
@@ -150,6 +150,7 @@ def download_revision_fs(ref_id, pdf_name, client):
     with open(os.path.join(out_path, pdf_name), "wb") as file1:
         file1.write(file)
     log.info(pdf_name + ' downloaded')
+    sema.release()
 
 def download_revision_db(ref_id, client, db ,submission_id):
     '''
@@ -160,6 +161,7 @@ def download_revision_db(ref_id, client, db ,submission_id):
     :param client: The openreview client
     :return: Nothing
     '''
+    sema.acquire()
     if not ref_id: return
     try:
         file = client.get_pdf(ref_id, is_reference=True)
@@ -168,6 +170,7 @@ def download_revision_db(ref_id, client, db ,submission_id):
         return
     db.insert_revision(ref_id, submission_id, pdf=file)
     log.info(ref_id + ' inserted into db')
+    sema.release()
 
 def download_submission_db(ref_id, client, db, venue_id,submission_id):
     '''
@@ -178,6 +181,7 @@ def download_submission_db(ref_id, client, db, venue_id,submission_id):
     :param client: The openreview client
     :return: Nothing
     '''
+    sema.acquire()
     if not ref_id: return
     try:
         file = client.get_pdf(ref_id, is_reference=True)
@@ -186,6 +190,7 @@ def download_submission_db(ref_id, client, db, venue_id,submission_id):
         return
     db.insert_submission( venue_id,submission_id,pdf=file)
     log.info(ref_id + ' inserted into db')
+    sema.release()
 
 def get_all_available_venues():
     '''
