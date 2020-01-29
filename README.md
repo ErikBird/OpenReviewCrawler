@@ -123,7 +123,7 @@ We present the results of our approach on all venues and years using ``config_al
  The crawler is able to convert the dictionary data into a structured SQL Database format. Therefore it utilizes the popular 
  SQLAlchemy Library which can interface various popular database systems.
  
- This database can be configured [here](database.py).
+ This database can be configured [here](database/database.py).
  
  Since the database uses the normalization standards, it cannot store lists. 
  Therefore it is theoretically possible that the data-dictionary input contains more data than the database is storing.
