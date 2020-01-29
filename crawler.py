@@ -74,6 +74,8 @@ def crawl(client, config, log, db=None):
                             except:
                                 print("Request Error for ID:",n["id"])
                             references=[r.to_json() for r in refs[1:]]
+                            n["revisions"] = references
+                            n["notes"] = []
                             if len(refs) > 0:
                                 original = refs[:1][0]
                                 if not config["skip_pdf_download"]:
@@ -98,8 +100,6 @@ def crawl(client, config, log, db=None):
                                             x = threading.Thread(target=download_revision_db, args=(r['id'], client, db,n["id"]))
                                             threads.append(x)
                                             x.start()
-                                n["revisions"] = references
-                                n["notes"] = []
                         submissions.extend(notes)
                     else:
                         revisions = [r.to_json() for r in client.get_references(invitation=inv)]
