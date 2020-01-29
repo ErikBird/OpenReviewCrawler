@@ -79,7 +79,7 @@ class SQLDatabase:
         '''
         session = self.Session()
         for v_id, el in enumerate(dict):
-            session.merge(model.Venue(id=i,venue =el["venue"],year= el["year"]))
+            session.merge(model.Venue(id=v_id,venue =el["venue"],year= el["year"]))
             session.commit()
             for s in progressbar.progressbar(el["submissions"]):
                 sub_dict = {'id': s["id"], 'venue': v_id,
