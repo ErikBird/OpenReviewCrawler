@@ -1,3 +1,4 @@
 progressbar2
 sqlalchemy
 openreview-py
+requests

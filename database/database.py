@@ -78,11 +78,11 @@ class SQLDatabase:
         :return: Stores values into the database
         '''
         session = self.Session()
-        for i, el in enumerate(dict):
+        for v_id, el in enumerate(dict):
             session.merge(model.Venue(id=i,venue =el["venue"],year= el["year"]))
             session.commit()
             for s in progressbar.progressbar(el["submissions"]):
-                sub_dict = {'id': s["id"], 'venue': i,
+                sub_dict = {'id': s["id"], 'venue': v_id,
                                     'original': s["original"], 'cdate': s["cdate"],
                                     'tcdate': s["tcdate"],
                                     'tmdate': s["tmdate"],

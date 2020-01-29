@@ -10,7 +10,7 @@ import progressbar
 import threading
 from database.database import SQLDatabase
 from acceptance_labeling import labeling
-import time
+
 maxthreads = 10
 sema = threading.Semaphore(value=maxthreads)
 def crawl(client, config, log, db=None):
@@ -48,7 +48,7 @@ def crawl(client, config, log, db=None):
                 log.info("Skipping {} {}. Already done".format(venue, year))
                 continue
             venue_id += 1
-
+            print(venue_id,year,venue)
             log.info('Current Download: '+ venue+' in '+str(year))
             invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year), expired=True)
             invitations = [inv.id for inv in invitations_iterator]
@@ -69,7 +69,10 @@ def crawl(client, config, log, db=None):
                         forum_idx_map.update({n["forum"]: i+len(submissions) for i, n in enumerate(notes)})
                         threads = list()
                         for n in progressbar.progressbar(notes):
-                            refs = client.get_references(n["id"], original=True)
+                            try:
+                                refs = client.get_references(n["id"], original=True)
+                            except:
+                                print("Request Error for ID:",n["id"])
                             references=[r.to_json() for r in refs[1:]]
                             original = refs[:1][0]
                             if not config["skip_pdf_download"]:
