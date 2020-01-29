@@ -74,31 +74,32 @@ def crawl(client, config, log, db=None):
                             except:
                                 print("Request Error for ID:",n["id"])
                             references=[r.to_json() for r in refs[1:]]
-                            original = refs[:1][0]
-                            if not config["skip_pdf_download"]:
-                                if config["output_json"]:
-                                    pdf_name = n["id"] + '_' + str(0) + '.pdf'
-                                    n['content']['pdf'] = '/pdf/' + pdf_name
-                                    x = threading.Thread(target=download_revision_fs, args=(original.id, pdf_name, client))
-                                    threads.append(x)
-                                    x.start()
-                                if config["output_SQL"]:
-                                    x = threading.Thread(target=download_submission_db, args=(original.id, client, db, venue_id,n["id"]))
-                                    threads.append(x)
-                                    x.start()
-                                for index, r in enumerate(references):
+                            if len(refs) > 0:
+                                original = refs[:1][0]
+                                if not config["skip_pdf_download"]:
                                     if config["output_json"]:
-                                        pdf_name = n["id"] + '_' + str(index+1) + '.pdf'
-                                        r['content']['pdf']= '/pdf/'+pdf_name
-                                        x = threading.Thread(target=download_revision_fs, args=(r['id'], pdf_name, client))
+                                        pdf_name = n["id"] + '_' + str(0) + '.pdf'
+                                        n['content']['pdf'] = '/pdf/' + pdf_name
+                                        x = threading.Thread(target=download_revision_fs, args=(original.id, pdf_name, client))
                                         threads.append(x)
                                         x.start()
                                     if config["output_SQL"]:
-                                        x = threading.Thread(target=download_revision_db, args=(r['id'], client, db,n["id"]))
+                                        x = threading.Thread(target=download_submission_db, args=(original.id, client, db, venue_id,n["id"]))
                                         threads.append(x)
                                         x.start()
-                            n["revisions"] = references
-                            n["notes"] = []
+                                    for index, r in enumerate(references):
+                                        if config["output_json"]:
+                                            pdf_name = n["id"] + '_' + str(index+1) + '.pdf'
+                                            r['content']['pdf']= '/pdf/'+pdf_name
+                                            x = threading.Thread(target=download_revision_fs, args=(r['id'], pdf_name, client))
+                                            threads.append(x)
+                                            x.start()
+                                        if config["output_SQL"]:
+                                            x = threading.Thread(target=download_revision_db, args=(r['id'], client, db,n["id"]))
+                                            threads.append(x)
+                                            x.start()
+                                n["revisions"] = references
+                                n["notes"] = []
                         submissions.extend(notes)
                     else:
                         revisions = [r.to_json() for r in client.get_references(invitation=inv)]
