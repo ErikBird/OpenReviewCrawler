@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, LargeBinary
+from sqlalchemy import Table, Column, Integer, BigInteger, String, MetaData, ForeignKey, LargeBinary
 
 # Table Names
 VENUE           = 'venue'
@@ -10,21 +10,23 @@ NOTE_REVISION = "note_revision"
 #msc
 Base = declarative_base()
 
+
 class Venue(Base):
     __tablename__ = VENUE
     id = Column(Integer, primary_key=True)
-    venue = Column( String)
+    venue = Column(String)
     year = Column(String)
+
 
 class Submission(Base):
     __tablename__ = SUBMISSION
     id = Column(String, primary_key=True)
-    venue = Column( None, ForeignKey(Venue.id))
+    venue = Column(None, ForeignKey(Venue.id))
     original = Column(String)
-    cdate = Column(Integer)
-    tcdate = Column(Integer)
-    tmdate = Column(Integer)
-    ddate = Column(Integer)
+    cdate = Column(BigInteger)
+    tcdate = Column(BigInteger)
+    tmdate = Column(BigInteger)
+    ddate = Column(BigInteger)
     number = Column(Integer)
     title = Column(String)
     abstract = Column(String)
@@ -64,15 +66,16 @@ class Submission(Base):
     replyCount = Column(Integer)
     submission_content = Column(String)
 
+
 class Revision(Base):
     __tablename__ = REVISIONS
     id = Column(String, primary_key=True)
-    submission = Column( None, ForeignKey(Submission.id))
+    submission = Column(None, ForeignKey(Submission.id))
     original = Column(String)
-    cdate = Column(Integer)
-    tcdate = Column(Integer)
-    tmdate = Column(Integer)
-    ddate = Column(Integer)
+    cdate = Column(BigInteger)
+    tcdate = Column(BigInteger)
+    tmdate = Column(BigInteger)
+    ddate = Column(BigInteger)
     number = Column(Integer)
     title = Column(String)
     abstract = Column(String)
@@ -111,15 +114,16 @@ class Revision(Base):
     replyCount = Column(Integer)
     revision_content = Column(String)
 
+
 class Note(Base):
     __tablename__ = NOTE
     id = Column(String, primary_key=True)
-    submission = Column( None, ForeignKey(Submission.id))
+    submission = Column(None, ForeignKey(Submission.id))
     original = Column(String)
-    cdate = Column(Integer)
-    tcdate = Column(Integer)
-    tmdate = Column(Integer)
-    ddate = Column(Integer)
+    cdate = Column(BigInteger)
+    tcdate = Column(BigInteger)
+    tmdate = Column(BigInteger)
+    ddate = Column(BigInteger)
     number = Column(Integer)
     title = Column(String)
     decision = Column(String)
@@ -130,15 +134,16 @@ class Note(Base):
     replyCount = Column(Integer)
     note_content = Column(String)
 
+
 class NoteRevision(Base):
     __tablename__ = NOTE_REVISION
     id = Column(String, primary_key=True)
-    submission = Column( None, ForeignKey(Note.id))
+    submission = Column(None, ForeignKey(Note.id))
     original = Column(String)
-    cdate = Column(Integer)
-    tcdate = Column(Integer)
-    tmdate = Column(Integer)
-    ddate = Column(Integer)
+    cdate = Column(BigInteger)
+    tcdate = Column(BigInteger)
+    tmdate = Column(BigInteger)
+    ddate = Column(BigInteger)
     number = Column(Integer)
     title = Column(String)
     decision = Column(String)
