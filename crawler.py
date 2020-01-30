@@ -11,8 +11,6 @@ import threading
 from database.database import SQLDatabase
 from acceptance_labeling import labeling
 
-maxthreads = 10
-sema = threading.Semaphore(value=maxthreads)
 def crawl(client, config, log, db=None):
     '''
     This method crawls the configured venues and saves all comments and all PDF Revisions to the output folder.
@@ -48,7 +46,7 @@ def crawl(client, config, log, db=None):
                 log.info("Skipping {} {}. Already done".format(venue, year))
                 continue
             venue_id += 1
-            print(venue_id,year,venue)
+
             log.info('Current Download: '+ venue+' in '+str(year))
             invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year), expired=True)
             invitations = [inv.id for inv in invitations_iterator]
@@ -72,34 +70,16 @@ def crawl(client, config, log, db=None):
                             try:
                                 refs = client.get_references(n["id"], original=True)
                             except:
-                                print("Request Error for ID:",n["id"])
+                                log.error("Request Error for ID: "+str(n["id"]))
                             references=[r.to_json() for r in refs[1:]]
                             n["revisions"] = references
                             n["notes"] = []
-                            if len(refs) > 0:
-                                original = refs[:1][0]
-                                if not config["skip_pdf_download"]:
-                                    if config["output_json"]:
-                                        pdf_name = n["id"] + '_' + str(0) + '.pdf'
-                                        n['content']['pdf'] = '/pdf/' + pdf_name
-                                        x = threading.Thread(target=download_revision_fs, args=(original.id, pdf_name, client))
-                                        threads.append(x)
-                                        x.start()
-                                    if config["output_SQL"]:
-                                        x = threading.Thread(target=download_submission_db, args=(original.id, client, db, venue_id,n["id"]))
-                                        threads.append(x)
-                                        x.start()
-                                    for index, r in enumerate(references):
-                                        if config["output_json"]:
-                                            pdf_name = n["id"] + '_' + str(index+1) + '.pdf'
-                                            r['content']['pdf']= '/pdf/'+pdf_name
-                                            x = threading.Thread(target=download_revision_fs, args=(r['id'], pdf_name, client))
-                                            threads.append(x)
-                                            x.start()
-                                        if config["output_SQL"]:
-                                            x = threading.Thread(target=download_revision_db, args=(r['id'], client, db,n["id"]))
-                                            threads.append(x)
-                                            x.start()
+                            if len(refs) > 0 :
+                                print(refs[0].to_json()['content'].keys())
+                                if "pdf" in  refs[0].to_json()['content'].keys():
+                                    original = refs[:1][0]
+                                    if not config["skip_pdf_download"]:
+                                        download_manager(n, original, venue_id, references, threads)
                         submissions.extend(notes)
                     else:
                         revisions = [r.to_json() for r in client.get_references(invitation=inv)]
@@ -118,6 +98,38 @@ def crawl(client, config, log, db=None):
 
     return results
 
+
+def download_manager(n,original,venue_id,references,threads):
+    if config["output_json"]:
+        pdf_name = n["id"] + '_' + str(0) + '.pdf'
+        n['content']['pdf'] = '/pdf/' + pdf_name
+        if config["threaded_download"]:
+            x = threading.Thread(target=download_revision_fs, args=(original.id, pdf_name, client))
+            threads.append(x)
+            x.start()
+        else:download_revision_fs(original.id, pdf_name, client)
+    if config["output_SQL"]:
+        if config["threaded_download"]:
+            x = threading.Thread(target=download_submission_db, args=(original.id, client, db, venue_id, n["id"]))
+            threads.append(x)
+            x.start()
+        else:download_submission_db(original.id, client, db, venue_id, n["id"])
+
+    for index, r in enumerate(references):
+        if config["output_json"]:
+            pdf_name = n["id"] + '_' + str(index + 1) + '.pdf'
+            r['content']['pdf'] = '/pdf/' + pdf_name
+            if config["threaded_download"]:
+                x = threading.Thread(target=download_revision_fs, args=(r['id'], pdf_name, client))
+                threads.append(x)
+                x.start()
+            else:download_revision_fs(r['id'], pdf_name, client)
+        if config["output_SQL"]:
+            if config["threaded_download"]:
+                x = threading.Thread(target=download_revision_db, args=(r['id'], client, db, n["id"]))
+                threads.append(x)
+                x.start()
+            else:download_revision_db(r['id'], client, db, n["id"])
 
 def merge_invitations(invitations):
     '''
@@ -142,7 +154,6 @@ def download_revision_fs(ref_id, pdf_name, client):
     :param client: The openreview client
     :return: Nothing
     '''
-    sema.acquire()
     out_path = os.path.join(config["outdir"], 'pdf/')
     if not os.path.exists(out_path): os.makedirs(out_path)
     if not ref_id: return
@@ -154,7 +165,6 @@ def download_revision_fs(ref_id, pdf_name, client):
     with open(os.path.join(out_path, pdf_name), "wb") as file1:
         file1.write(file)
     log.info(pdf_name + ' downloaded')
-    sema.release()
 
 def download_revision_db(ref_id, client, db ,submission_id):
     '''
@@ -165,7 +175,6 @@ def download_revision_db(ref_id, client, db ,submission_id):
     :param client: The openreview client
     :return: Nothing
     '''
-    sema.acquire()
     if not ref_id: return
     try:
         file = client.get_pdf(ref_id, is_reference=True)
@@ -174,7 +183,7 @@ def download_revision_db(ref_id, client, db ,submission_id):
         return
     db.insert_revision(ref_id, submission_id, pdf=file)
     log.info(ref_id + ' inserted into db')
-    sema.release()
+
 
 def download_submission_db(ref_id, client, db, venue_id,submission_id):
     '''
@@ -185,7 +194,6 @@ def download_submission_db(ref_id, client, db, venue_id,submission_id):
     :param client: The openreview client
     :return: Nothing
     '''
-    sema.acquire()
     if not ref_id: return
     try:
         file = client.get_pdf(ref_id, is_reference=True)
@@ -194,7 +202,6 @@ def download_submission_db(ref_id, client, db, venue_id,submission_id):
         return
     db.insert_submission( venue_id,submission_id,pdf=file)
     log.info(ref_id + ' inserted into db')
-    sema.release()
 
 def get_all_available_venues():
     '''
