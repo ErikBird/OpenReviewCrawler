@@ -1,8 +1,11 @@
+import threading
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.inspection import inspect
 from . import database_model as model
 import progressbar
+from sqlalchemy.orm import scoped_session
+import queue
 
 # Global Variables
 SQLITE                  = 'sqlite'
@@ -15,7 +18,7 @@ def object_as_dict(obj, skip_keys=[]):
             if c.key not in skip_keys}
 
 
-class SQLDatabase:
+class SQLDatabase(threading.Thread):
     # http://docs.sqlalchemy.org/en/latest/core/engines.html
     DB_ENGINE = {
         SQLITE: 'sqlite:///{DB}',
@@ -25,15 +28,45 @@ class SQLDatabase:
     db_engine = None
     Session = None
     def __init__(self, dbtype, username='', password='', dbname=''):
+        threading.Thread.__init__(self)
         dbtype = dbtype.lower()
         if dbtype in self.DB_ENGINE.keys():
             self.model = model
             engine_url = self.DB_ENGINE[dbtype].format(DB=dbname)
             self.db_engine = create_engine(engine_url)
-            self.Session= sessionmaker(bind=self.db_engine)
+            session_factory= sessionmaker(bind=self.db_engine)
+            self.Session = scoped_session(session_factory)
+            self.q = queue.Queue()
             print(self.db_engine)
         else:
             print("DBType is not found in DB_ENGINE")
+
+    def run(self):
+        while True:
+            session = self.Session()
+            cmd,data= self.q.get()
+            if cmd == "quit":
+                break
+            elif cmd == "add":
+                session.add(data)
+                session.commit()
+                print('add')
+                #log.info(' inserted into db')
+            elif cmd == "merge":
+                session.merge(data)
+                session.commit()
+                print('merge')
+            else:
+                print("Database Command not found: ",cmd)
+
+
+    def close(self):
+        self.q.put(("quit","quit"))
+        print('QUIT!')
+
+    def command(self, cmd,data):
+        # Kommando in Warteschlange einreihen
+        self.q.put((cmd,data))
 
     def create_db_tables(self):
         try:
@@ -58,18 +91,15 @@ class SQLDatabase:
         return [object_as_dict(venue) for venue in session.query(model.Venue).all()]
 
     def insert_submission(self, venue_id,submission_id,pdf=None):
-        session = self.Session()
+
         sub_dict = {'id': submission_id, 'venue': venue_id,
                     'pdf_binary': pdf }
-        session.add(model.Submission(**sub_dict))
-        session.commit()
+        self.command("add",model.Submission(**sub_dict))
 
     def insert_revision(self, revision_id,submission_id,pdf=None):
-        session = self.Session()
         rev_dict = {'id': revision_id, 'submission': submission_id,
                     'pdf_binary': pdf }
-        session.add(model.Revision(**rev_dict))
-        session.commit()
+        self.command("add",model.Revision(**rev_dict))
 
     def insert_dict(self,dict):
         '''
@@ -77,10 +107,10 @@ class SQLDatabase:
         :param dict: The data dictionary
         :return: Stores values into the database
         '''
-        session = self.Session()
+
         for v_id, el in enumerate(dict):
-            session.merge(model.Venue(id=v_id,venue =el["venue"],year= el["year"]))
-            session.commit()
+            self.command("merge", model.Venue(id=v_id,venue =el["venue"],year= el["year"]))
+
             for s in progressbar.progressbar(el["submissions"]):
                 sub_dict = {'id': s["id"], 'venue': v_id,
                                     'original': s["original"], 'cdate': s["cdate"],
@@ -100,8 +130,7 @@ class SQLDatabase:
                     sub_dict.update({'authorid'+str(i) : s['content']["authorids"][i]})
                 for i,authorid in enumerate(s['content']["authors"][:12]):
                     sub_dict.update({'author' + str(i): s['content']["authors"][i]})
-                session.merge(model.Submission(**sub_dict))
-                session.commit()
+                self.command("merge", model.Submission(**sub_dict))
 
                 for r in s['revisions']:
                     rev_dict={'id': r["id"],
@@ -121,8 +150,8 @@ class SQLDatabase:
                         rev_dict.update({'authorid' + str(i): r['content']["authorids"][i]})
                     for i, authorid in enumerate(r['content']["authors"][:12]):
                         rev_dict.update({'author' + str(i): r['content']["authors"][i]})
-                    session.merge(model.Revision(**rev_dict))
-                session.commit()
+                    self.command("merge", model.Revision(**rev_dict))
+
                 for n in s['notes']:
                     notes={'id': n["id"], 'submission': s["id"],
                                         'original': n["original"], 'cdate': n["cdate"],
@@ -136,9 +165,8 @@ class SQLDatabase:
                                         'replyto': n["replyto"], 'replyCount': n['details']["replyCount"],
                                         'note_content': str(n["content"])
                                            }
+                    self.command("merge", model.Note(**notes))
 
-                    session.merge(model.Note(**notes))
-                    session.commit()
                     for nr in n['revisions']:
                         note_revisions={'id': nr["id"], 'submission': n["id"],
                                       'original': nr["original"], 'cdate': nr["cdate"],
@@ -152,8 +180,8 @@ class SQLDatabase:
                                       'replyto': nr["replyto"], 'replyCount': nr['details']["replyCount"],
                                       'note_content': str(n["content"])
                                       }
-                        session.merge(model.NoteRevision(**note_revisions))
-                    session.commit()
+                        self.command("merge", model.NoteRevision(**note_revisions))
+
 
     def print_all_data(self, table='', query=''):
         query = query if query != '' else "SELECT * FROM '{}';".format(table)

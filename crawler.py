@@ -10,6 +10,7 @@ import progressbar
 import threading
 from database.database import SQLDatabase
 from acceptance_labeling import labeling
+import time
 
 def crawl(client, config, log, db=None):
     '''
@@ -34,7 +35,6 @@ def crawl(client, config, log, db=None):
         if venues:
             venue_id = max([venue['id'] for venue in venues])
             already_done.update(["{} {}".format(v["venue"], v["year"]) for v in venues])
-
 
 
     for target in config["targets"]:
@@ -75,7 +75,7 @@ def crawl(client, config, log, db=None):
                             n["revisions"] = references
                             n["notes"] = []
                             if len(refs) > 0 :
-                                print(refs[0].to_json()['content'].keys())
+                                #print(refs[0].to_json()['content'].keys())
                                 if "pdf" in  refs[0].to_json()['content'].keys():
                                     original = refs[:1][0]
                                     if not config["skip_pdf_download"]:
@@ -96,7 +96,7 @@ def crawl(client, config, log, db=None):
                         log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
             results.append({"venue_id":venue_id,"venue": venue, "year": year, "submissions": submissions})
 
-    return results
+    return (results,threads)
 
 
 def download_manager(n,original,venue_id,references,threads):
@@ -182,7 +182,6 @@ def download_revision_db(ref_id, client, db ,submission_id):
         log.info(ref_id + ' has no pdf ')
         return
     db.insert_revision(ref_id, submission_id, pdf=file)
-    log.info(ref_id + ' inserted into db')
 
 
 def download_submission_db(ref_id, client, db, venue_id,submission_id):
@@ -201,7 +200,7 @@ def download_submission_db(ref_id, client, db, venue_id,submission_id):
         log.info(ref_id + ' has no pdf ')
         return
     db.insert_submission( venue_id,submission_id,pdf=file)
-    log.info(ref_id + ' inserted into db')
+
 
 def get_all_available_venues():
     '''
@@ -253,14 +252,26 @@ if __name__ == '__main__':
     if config["output_SQL"]:
         db = SQLDatabase(dbtype='sqlite', dbname='myCrawl')
         db.create_db_tables()
+        db.start()
+        #x = threading.Thread(target=db.run())
 
 
-    results = crawl(client, config, log,db)
+
+    results,threads = crawl(client, config, log,db)
     if config['acceptance_labeling']:
         results = labeling(results,log)
 
     if config["output_SQL"]:
+        while any(thread.is_alive() for thread in threads) and not db.q.empty():
+            print('Download PDFs still active...')
+            time.sleep(1)
+
         db.insert_dict(results)
+        db.close()
+        while db.is_alive() :
+            print('running...')
+            time.sleep(1)
+        #
 
     if config["output_json"]:
         if not os.path.exists(config["outdir"]):
