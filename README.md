@@ -57,6 +57,9 @@ The binary variable `output_SQL` determines if the data will be inserted in the 
 
 The binary variable `skip_pdf_download` determines if the pdfs will be downloaded.
 
+The binary variable `threaded_download` if the pdfs will be downloaded as threads. This increases the speed of the download significantly. However, this feature is developed to run robustly on linux machines. We advise Windows and OSX Users to switch it off. 
+
+
 <a name="output"></a>
 ## Output
 The program goes over the venues by year, download the PDFs for the revisions and output a dictionary of the data.
@@ -141,3 +144,14 @@ However for the following variables an explanation is quite useful:
 `ddate` (int, optional) – Deletion date
  ### UML Diagramm
  ![UML_Diagramm](Resources/UML.svg  "SQL Database Diagramm" )
+ ## Threading
+ If the threading is turned on in the configuration file, we are downloading the pdfs with multiple threads. 
+ The number of threads is not limited so the download-capacity will be limited by your bandwidth and/or your hardware. 
+ Openreview confirmed that we don't need to limit the capacity for their servers. 
+ 
+ Furthermore, our crawler has a seperate thread to communicate with the database. 
+ This Database communicator works queue based inserts Data with a FIFO paradigm. 
+ 
+ All PDF-Download threads are pushing their resulting Data into the queue. 
+ The Data is then inserted into the database by the database thread. 
+ We are waiting until all PDF Data is inserted into the database before we are inserting the JSON Data. This avoids insertion conflicts. 

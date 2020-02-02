@@ -263,15 +263,14 @@ if __name__ == '__main__':
 
     if config["output_SQL"]:
         while any(thread.is_alive() for thread in threads) and not db.q.empty():
-            print('Download PDFs still active...')
+            log.info('PDF Download Threads still active')
             time.sleep(1)
 
         db.insert_dict(results)
         db.close()
         while db.is_alive() :
-            print('running...')
+            log.info('SQL Insertion still active')
             time.sleep(1)
-        #
 
     if config["output_json"]:
         if not os.path.exists(config["outdir"]):

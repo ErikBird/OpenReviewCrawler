@@ -6,7 +6,8 @@ from . import database_model as model
 import progressbar
 from sqlalchemy.orm import scoped_session
 import queue
-
+import logging
+from sqlalchemy.dialects.postgresql import insert
 # Global Variables
 SQLITE                  = 'sqlite'
 POSTGRES                = 'postgres'
@@ -31,6 +32,7 @@ class SQLDatabase(threading.Thread):
         threading.Thread.__init__(self)
         dbtype = dbtype.lower()
         if dbtype in self.DB_ENGINE.keys():
+            self.log = logging.getLogger("crawler")
             self.model = model
             engine_url = self.DB_ENGINE[dbtype].format(DB=dbname)
             self.db_engine = create_engine(engine_url)
@@ -48,14 +50,13 @@ class SQLDatabase(threading.Thread):
             if cmd == "quit":
                 break
             elif cmd == "add":
-                session.add(data)
+                session.merge(data)
                 session.commit()
-                print('add')
-                #log.info(' inserted into db')
+                self.log.debug('Value added to db')
             elif cmd == "merge":
                 session.merge(data)
                 session.commit()
-                print('merge')
+                self.log.debug('Value merged into db')
             else:
                 print("Database Command not found: ",cmd)
 
