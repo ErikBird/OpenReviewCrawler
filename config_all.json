@@ -4,7 +4,7 @@
       "venue": "ICLR.cc",
       "years": "all"
     },
-  {
+    {
       "venue": "auai.org/UAI",
       "years": "all"
     },
@@ -25,7 +25,11 @@
       "years": "all"
     },
             {
-      "venue": "NIPS.cc",
+      "venue": "BNMW_Workshop",
+      "years": "all"
+    },
+            {
+      "venue": "informatik.uni-rostock.de/Informatik_Rostock/Ubiquitous_Computing",
       "years": "all"
     },
                {
@@ -38,10 +42,6 @@
     },
                {
       "venue": "IEEE.org",
-      "years": "all"
-    },
-               {
-      "venue": "NIPS.cc",
       "years": "all"
     },
     {
@@ -61,41 +61,112 @@
       "years": "all"
     },
     {
+      "venue": "OpenReview.net/Anonymous_Preprint",
+      "years": "all"
+    },
+    {
+      "venue": "roboticsfoundation.org/RSS",
+      "years": "all"
+    },
+    {
       "venue": "vivoconference.org/VIVO",
       "years": "all"
     },
-        {
+    {
       "venue": "icaps-conference.org/ICAPS",
       "years": "all"
     },
-        {
+    {
+      "venue": "adai.ai/DAI",
+      "years": "all"
+    },
+    {
+      "venue": "gamesec-conf.org/GameSec",
+      "years": "all"
+    },
+    {
       "venue": "MIDL.amsterdam",
       "years": "all"
     },
-        {
+    {
+      "venue": "EMNLP",
+      "years": "all"
+    },
+    {
+      "venue": "thecvf.com/ICCV",
+      "years": "all"
+    },
+    {
       "venue": "MICCAI.org",
       "years": "all"
     },
-        {
+    {
       "venue": "RIIAA.org",
       "years": "all"
     },
-            {
+    {
       "venue": "NeurIPS.cc",
       "years": "all"
     },
-            {
+    {
+      "venue": "msrconf.org/MSR",
+      "years": "all"
+    },
+    {
+      "venue": "sail.health/SAIL",
+      "years": "all"
+    },
+    {
+      "venue": "datascience.virginia.edu/UVA",
+      "years": "all"
+    },
+    {
+      "venue": "sydney.edu.au/EDSC",
+      "years": "all"
+    },
+    {
+      "venue": "umass.edu/University_of_Massachusetts",
+      "years": "all"
+    },
+    {
+      "venue": "conceptuccino.uni-osnabrueck.de/CARLA",
+      "years": "all"
+    },
+    {
+      "venue": "acm.org/CHI",
+      "years": "all"
+    },
+    {
+      "venue": "MSMARCO.org",
+      "years": "all"
+    },
+    {
+      "venue": "TimeMachine.eu",
+      "years": "all"
+    },
+    {
+      "venue": "DisCoTec.org",
+      "years": "all"
+    },
+    {
+      "venue": "HAID",
+      "years": "all"
+    },
+    {
       "venue": "approximateinference.org/AABI",
       "years": "all"
     }
   ],
-  "username": "openreview@erikschwan.de",
-  "password": "please change to a proper password",
-  "outdir": "./all/",
+  "username": "",
+  "password": "",
+  "outdir": "./all20200302/",
   "filename": "out.json",
-  "output_json": false,
-  "output_SQL": true,
-  "json_indent": 3
+  "json_indent": 3,
+  "output_json": true,
+  "output_SQL": false,
+  "acceptance_labeling": true,
+  "skip_pdf_download": true,
+  "threaded_download": false
 }
 
 
