@@ -21,11 +21,11 @@ def crawl(client, config, log, db=None):
     :param log: the configured logging client
     :return: Nothing
     '''
+    threads = list()
     already_done = set([])
     sql_venue_to_id ={}
     results = []
     venue_id = 0
-    tmp_venue_id = -1
     if config["output_json"]:
         if os.path.exists(os.path.join(config["outdir"], config["filename"])):
             with open(os.path.join(config["outdir"], config["filename"]), 'r') as file_handle:
