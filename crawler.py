@@ -22,8 +22,10 @@ def crawl(client, config, log, db=None):
     :return: Nothing
     '''
     already_done = set([])
+    sql_venue_to_id ={}
     results = []
     venue_id = -1
+    tmp_venue_id = -1
     if config["output_json"]:
         if os.path.exists(os.path.join(config["outdir"], config["filename"])):
             with open(os.path.join(config["outdir"], config["filename"]), 'r') as file_handle:
@@ -34,7 +36,8 @@ def crawl(client, config, log, db=None):
         venues = db.get_venues()
         if venues:
             venue_id = max([venue['id'] for venue in venues])
-            already_done.update(["{} {}".format(v["venue"], v["year"]) for v in venues])
+            for v in venues:
+                sql_venue_to_id["{} {}".format(v["venue"], v["year"])]=v['id']
 
 
     for target in config["targets"]:
@@ -45,7 +48,13 @@ def crawl(client, config, log, db=None):
             if "{} {}".format(venue, year) in already_done:
                 log.info("Skipping {} {}. Already done".format(venue, year))
                 continue
-            venue_id += 1
+            if "{} {}".format(venue, year) in sql_venue_to_id:
+                log.debug("Overrive Venue "+"{} {}".format(venue, year)+" from Database")
+                tmp_venue_id = sql_venue_to_id["{} {}".format(venue, year)]
+            else:
+                log.debug("New Venue " + "{} {}".format(venue, year))
+                venue_id =+ 1
+                tmp_venue_id = venue_id
 
             log.info('Current Download: '+ venue+' in '+str(year))
             invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year), expired=True)
@@ -94,7 +103,7 @@ def crawl(client, config, log, db=None):
                         submissions[forum_idx_map[note["forum"]]]["notes"].append(note)
                     except KeyError:
                         log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
-            results.append({"venue_id":venue_id,"venue": venue, "year": year, "submissions": submissions})
+            results.append({"venue_id":tmp_venue_id,"venue": venue, "year": year, "submissions": submissions})
 
     return (results,threads)
 
@@ -217,7 +226,7 @@ def get_all_available_venues():
 
 if __name__ == '__main__':
     log = logging.getLogger("crawler")
-    log.setLevel(logging.INFO)
+    log.setLevel(logging.DEBUG)
     progressbar.streams.wrap_stderr()
 
     parser = argparse.ArgumentParser()
@@ -269,7 +278,7 @@ if __name__ == '__main__':
         db.insert_dict(results)
         db.close()
         while db.is_alive() :
-            log.info('SQL Insertion still active')
+            log.info('SQL Insertion still active, Queue Size: '+ str(db.q.qsize()))
             time.sleep(1)
 
     if config["output_json"]:

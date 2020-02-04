@@ -39,7 +39,6 @@ class SQLDatabase(threading.Thread):
             session_factory= sessionmaker(bind=self.db_engine)
             self.Session = scoped_session(session_factory)
             self.q = queue.Queue()
-            print(self.db_engine)
         else:
             print("DBType is not found in DB_ENGINE")
 
@@ -49,21 +48,17 @@ class SQLDatabase(threading.Thread):
             cmd,data= self.q.get()
             if cmd == "quit":
                 break
-            elif cmd == "add":
+            elif cmd == "add" or cmd == "merge":
                 session.merge(data)
                 session.commit()
-                self.log.debug('Value added to db')
-            elif cmd == "merge":
-                session.merge(data)
-                session.commit()
-                self.log.debug('Value merged into db')
+                self.log.debug('Value inserted into db')
             else:
                 print("Database Command not found: ",cmd)
 
 
     def close(self):
         self.q.put(("quit","quit"))
-        print('QUIT!')
+        self.log.info('Last Value has been added to the database queue')
 
     def command(self, cmd,data):
         # Kommando in Warteschlange einreihen
@@ -109,11 +104,11 @@ class SQLDatabase(threading.Thread):
         :return: Stores values into the database
         '''
 
-        for v_id, el in enumerate(dict):
-            self.command("merge", model.Venue(id=v_id,venue =el["venue"],year= el["year"]))
+        for el in dict:
+            self.command("merge", model.Venue(id=el["venue_id"],venue =el["venue"],year= el["year"]))
 
             for s in progressbar.progressbar(el["submissions"]):
-                sub_dict = {'id': s["id"], 'venue': v_id,
+                sub_dict = {'id': s["id"], 'venue': el["venue_id"],
                                     'original': s["original"], 'cdate': s["cdate"],
                                     'tcdate': s["tcdate"],
                                     'tmdate': s["tmdate"],
