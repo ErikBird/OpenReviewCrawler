@@ -106,7 +106,6 @@ class SQLDatabase(threading.Thread):
 
         for el in dict:
             self.command("merge", model.Venue(id=el["venue_id"],venue =el["venue"],year= el["year"]))
-
             for s in progressbar.progressbar(el["submissions"]):
                 sub_dict = {'id': s["id"], 'venue': el["venue_id"],
                                     'original': s["original"], 'cdate': s["cdate"],

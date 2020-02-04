@@ -11,7 +11,7 @@ import threading
 from database.database import SQLDatabase
 from acceptance_labeling import labeling
 import time
-
+import copy
 def crawl(client, config, log, db=None):
     '''
     This method crawls the configured venues and saves all comments and all PDF Revisions to the output folder.
@@ -24,7 +24,7 @@ def crawl(client, config, log, db=None):
     already_done = set([])
     sql_venue_to_id ={}
     results = []
-    venue_id = -1
+    venue_id = 0
     tmp_venue_id = -1
     if config["output_json"]:
         if os.path.exists(os.path.join(config["outdir"], config["filename"])):
@@ -35,7 +35,6 @@ def crawl(client, config, log, db=None):
     elif config["output_SQL"]:
         venues = db.get_venues()
         if venues:
-            venue_id = max([venue['id'] for venue in venues])
             for v in venues:
                 sql_venue_to_id["{} {}".format(v["venue"], v["year"])]=v['id']
 
@@ -52,9 +51,13 @@ def crawl(client, config, log, db=None):
                 log.debug("Overrive Venue "+"{} {}".format(venue, year)+" from Database")
                 tmp_venue_id = sql_venue_to_id["{} {}".format(venue, year)]
             else:
-                log.debug("New Venue " + "{} {}".format(venue, year))
-                venue_id =+ 1
+                while True:
+                    if venue_id in sql_venue_to_id.values():
+                        venue_id = + 1
+                    else:break
+                sql_venue_to_id["{} {}".format(venue, year)]=venue_id
                 tmp_venue_id = venue_id
+                log.debug("New Venue " + "{} {}".format(venue, year)+" ID: "+str(venue_id))
 
             log.info('Current Download: '+ venue+' in '+str(year))
             invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year), expired=True)
@@ -103,7 +106,7 @@ def crawl(client, config, log, db=None):
                         submissions[forum_idx_map[note["forum"]]]["notes"].append(note)
                     except KeyError:
                         log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
-            results.append({"venue_id":tmp_venue_id,"venue": venue, "year": year, "submissions": submissions})
+            results.append({"venue_id":sql_venue_to_id["{} {}".format(venue, year)],"venue": venue, "year": year, "submissions": submissions})
 
     return (results,threads)
 
@@ -226,7 +229,7 @@ def get_all_available_venues():
 
 if __name__ == '__main__':
     log = logging.getLogger("crawler")
-    log.setLevel(logging.DEBUG)
+    log.setLevel(logging.INFO)
     progressbar.streams.wrap_stderr()
 
     parser = argparse.ArgumentParser()
