@@ -49,14 +49,12 @@ def crawl(client, config, log, db=None):
                 continue
             if "{} {}".format(venue, year) in sql_venue_to_id:
                 log.debug("Overrive Venue "+"{} {}".format(venue, year)+" from Database")
-                tmp_venue_id = sql_venue_to_id["{} {}".format(venue, year)]
             else:
                 while True:
-                    if venue_id in sql_venue_to_id.values():
-                        venue_id = + 1
+                    if venue_id in list(sql_venue_to_id.values()):
+                        venue_id += 1
                     else:break
                 sql_venue_to_id["{} {}".format(venue, year)]=venue_id
-                tmp_venue_id = venue_id
                 log.debug("New Venue " + "{} {}".format(venue, year)+" ID: "+str(venue_id))
 
             log.info('Current Download: '+ venue+' in '+str(year))
