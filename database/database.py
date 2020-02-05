@@ -10,7 +10,7 @@ import logging
 from sqlalchemy.dialects.postgresql import insert
 # Global Variables
 SQLITE                  = 'sqlite'
-POSTGRES                = 'postgres'
+POSTGRES                = 'postgresql'
 
 
 def object_as_dict(obj, skip_keys=[]):
@@ -23,11 +23,14 @@ class SQLDatabase(threading.Thread):
     # http://docs.sqlalchemy.org/en/latest/core/engines.html
     DB_ENGINE = {
         SQLITE: 'sqlite:///{DB}',
-        POSTGRES: '"postgres://SCHWAN:donotusethispassword@dasp.ukp.informatik.tu-darmstadt.de:22/dasp2"'
+        # requires ssh name@dasp.ukp.informatik.tu-darmstadt.de -L 5432:localhost:5432
+        # name and password as given for UKP server
+        # POSTGRES: 'postgresql://name:password@localhost:5432/dasp2'
     }
     # Main DB Connection Ref Obj
     db_engine = None
     Session = None
+
     def __init__(self, dbtype, username='', password='', dbname=''):
         threading.Thread.__init__(self)
         dbtype = dbtype.lower()
@@ -121,10 +124,12 @@ class SQLDatabase(threading.Thread):
                                     'referent': s["referent"], 'invitation': s["invitation"]
                                     , 'replyCount': s['details']["replyCount"],
                                     'submission_content': str(s["content"])}
-                for i,authorid in enumerate(s['content']["authorids"][:12]):
-                    sub_dict.update({'authorid'+str(i) : s['content']["authorids"][i]})
-                for i,authorid in enumerate(s['content']["authors"][:12]):
-                    sub_dict.update({'author' + str(i): s['content']["authors"][i]})
+                if "authorids" in s['content'].keys():
+                    for i,authorid in enumerate(s['content']["authorids"][:12]):
+                        sub_dict.update({'authorid'+str(i) : s['content']["authorids"][i]})
+                if "authors" in s['content'].keys():
+                    for i,authorid in enumerate(s['content']["authors"][:12]):
+                        sub_dict.update({'author' + str(i): s['content']["authors"][i]})
                 self.command("merge", model.Submission(**sub_dict))
 
                 for r in s['revisions']:
@@ -141,10 +146,12 @@ class SQLDatabase(threading.Thread):
                                     'forum': r["forum"],
                                     'referent': r["referent"], 'invitation': r["invitation"],
                                     'revision_content': str(r["content"])}
-                    for i, authorid in enumerate(r['content']["authorids"][:12]):
-                        rev_dict.update({'authorid' + str(i): r['content']["authorids"][i]})
-                    for i, authorid in enumerate(r['content']["authors"][:12]):
-                        rev_dict.update({'author' + str(i): r['content']["authors"][i]})
+                    if "authorids" in r['content'].keys():
+                        for i, authorid in enumerate(r['content']["authorids"][:12]):
+                            rev_dict.update({'authorid' + str(i): r['content']["authorids"][i]})
+                    if "authors" in r['content'].keys():
+                        for i, authorid in enumerate(r['content']["authors"][:12]):
+                            rev_dict.update({'author' + str(i): r['content']["authors"][i]})
                     self.command("merge", model.Revision(**rev_dict))
 
                 for n in s['notes']:
