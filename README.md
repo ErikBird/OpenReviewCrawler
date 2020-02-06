@@ -14,7 +14,7 @@ Both projects are created by students of the Technische Universität Darmstadt a
 
 <a name="api"></a>
 ## About the OpenReview API Model
-We present the way OpenReview API models the data with invitations, notes and content in-depth [here](about_the_openreview_api_model.md).  
+We present the way OpenReview API models the data with invitations, notes and content in-depth [here](documentation/about_the_openreview_api_model.md).  
 
 TL;DR:  
 The model with notes, invitations and content allows customization for each venue.  
@@ -65,7 +65,8 @@ The binary variable `threaded_download` if the pdfs will be downloaded as thread
 The program goes over the venues by year, download the PDFs for the revisions and output a dictionary of the data.
 This data can then be stored as JSON or SQL-Database. 
 
-For the JSON, the information about submissions, comments and reviews are formatted as [Notes](https://openreview-py.readthedocs.io/en/latest/api.html#openreview.Note) as specified by OpenReview (for more information, see [About the OpenReview API Model](api)).
+For the JSON, the information about submissions, comments and reviews are formatted as [Notes](https://openreview-py.readthedocs.io/en/latest/api.html#openreview.Note) as specified by OpenReview 
+(for more information, see [About the OpenReview API Model](documentation/about_the_openreview_api_model.md)).
 An example JSON can be found [here](example_output.json).
 
 In the JSON, each submission also has the field `revisions` which contains a list of all previous revisions of the submissions
@@ -105,20 +106,18 @@ Otherwise we search for a decision note in one of the notes. Decision notes cont
 We search each content field (except title) of the decision note for 'accept' or 'reject'.
 If both are found in a field, it is labeled unknown, otherwise it is labeled accepted or rejected.
 If both words are not found in a decision note, we also label it as accepted. This is due to many venues, which only write for what a submission is accepted (e.g. poster or workshop). 
-However, all rejected papers that we have seen contain 'reject' in their decision note, so we do not expect many false positives from this.
+All rejected papers that we have seen contain 'reject' in their decision note (except ICLR 2014) , so we do not expect false positives from this.
 
-We also accommodate ICLR exceptions (decicion as content field of the submission, decision note named meta review, desk rejected invitation), as ICLR is one of the largest venues on OpenReview.
 
 ### Results
-We present the results of our approach on all venues and years using ``config_all.json`` [Date: 14.12.2019]
+We present the results of our approach on all venues and years with [config_all.json](config_all.json) [Date: 03.02.2020]
 
 |Total   |Unknown   |Withdrawn   |Accepted   |Rejected   |
 |---|---|---|---|---|
-|10035   |4502*|779   |2615   |2139   |
+|9801   |2412 |784   |3008   |3597   |
  
- \* 2594 from ICLR 2020 which have no results at that time
- 
- Random samples from the unknown submissions suggest that they have indeed no decision result and they are not failures of our labeling algorithm to identify the result.
+ We manually verified that the label is correct for each venue. 
+ The approach and results can be found [here](documentation/acceptance_label_verification.md) 
  
  <a name="database"></a>
  ## Relational Database
@@ -144,13 +143,13 @@ However for the following variables an explanation is quite useful:
 `ddate` (int, optional) – Deletion date
  ### UML Diagramm
  ![UML_Diagramm](Resources/UML.svg  "SQL Database Diagramm" )
- ##Error Explaination
- ###Request Error for ID ...
+ ### Error Explaination
+ #### Request Error for ID ...
  During our test period, this error has been raised when the internet bandwidth was to low to handle all Requests in a appropriate time. The Request gets a timeout and therefore raises an error.
  
  If this error get raised, no data will be downloaded. Therefore the PDF for the Submission will be missing. 
  
- ## Threading
+ ### Threading
  If the threading is turned on in the configuration file, we are downloading the pdfs with multiple threads. 
  The number of threads is not limited so the download-capacity will be limited by your bandwidth and/or your hardware. 
  Openreview confirmed that we don't need to limit the capacity for their servers. 
@@ -161,3 +160,7 @@ However for the following variables an explanation is quite useful:
  All PDF-Download threads are pushing their resulting Data into the queue. 
  The Data is then inserted into the database by the database thread. 
  We are waiting until all PDF Data is inserted into the database before we are inserting the JSON Data. This avoids insertion conflicts. 
+
+ <a name="stats"></a>
+ ## Statistics of the the Data
+ We present a graphical exploration of of the statistics of the number of submissions, comments and revisions [here](documentation/statistics_of_the_data.md) 

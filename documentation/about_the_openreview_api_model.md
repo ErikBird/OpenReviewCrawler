@@ -19,7 +19,7 @@ We will briefly go over each field and then look at the important ones (invitati
 * readers, nonreaders, writers, signature: not important. Used for rights management
 * original, number, referent, tauthor: unimportant
  
- Examples for notes can be found in the [example_output.json](example_output.json).
+ Examples for notes can be found in the [example_output.json](../example_output.json).
  
 ## Invitation
 Invitations are similar to API endpoints within the OpenReview model. 

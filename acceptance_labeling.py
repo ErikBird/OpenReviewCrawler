@@ -20,6 +20,7 @@ def labeling(data_dict,log):
             if "withdraw" in submission["invitation"].lower():
                 submission["acceptance_tag"] = "withdrawn"
             else:
+                # Venues in 2013 and 2014 often have the decision in the content of the submission
                 if "decision" in submission["content"]:
                     log.debug("{} has decision in content".format(submission["forum"]))
                     if "reject" in submission["content"]["decision"].lower() and "accept" in submission["content"]["decision"].lower():
@@ -32,10 +33,14 @@ def labeling(data_dict,log):
                     elif "accept" in submission["content"]["decision"].lower():
                         submission["acceptance_tag"] = "accepted"
                     else:
-                        log.warn(
-                            "Forum {}. Tagged as accepted because not rejected. This might be wrong. Decision: {}".format(
-                                submission["forum"], submission["content"]["decision"]))
-                        submission["acceptance_tag"] = "accepted"
+                        # exclude ICLR 2014 from this choice
+                        if not (venue_year["venue"] == "ICLR.cc" and venue_year["year"] == 2014):
+                            log.warn(
+                                "Forum {}. Tagged as accepted because not rejected. This might be wrong. Decision: {}".format(
+                                    submission["forum"], submission["content"]["decision"]))
+                            submission["acceptance_tag"] = "accepted"
+                        else:
+                            submission["acceptance_tag"] = "unknown"
                 else:
                     for note in submission["notes"]:
                         # Only found in ICLR 2020 as far as we are aware
@@ -69,7 +74,7 @@ def labeling(data_dict,log):
                             break
                         # Found a meta review
                         # This will not stop the loop unlike a decision note in case both are used for some reason
-                        # Currently, only ICLR 2019 uses meta reviews as far as we know.
+                        # Currently, only ICLR 2019 and an ICAPS 2019 workshop uses meta reviews as far as we know.
                         elif "meta" in note["invitation"].lower():
                             log.debug("{} has meta review note".format(submission["forum"]))
                             try:
