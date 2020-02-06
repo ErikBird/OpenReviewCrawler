@@ -11,7 +11,7 @@ import threading
 from database.database import SQLDatabase
 from acceptance_labeling import labeling
 import time
-
+import copy
 def crawl(client, config, log, db=None):
     '''
     This method crawls the configured venues and saves all comments and all PDF Revisions to the output folder.
@@ -21,33 +21,45 @@ def crawl(client, config, log, db=None):
     :param log: the configured logging client
     :return: Nothing
     '''
+    threads = list()
     already_done = set([])
+    sql_venue_to_id ={}
     results = []
-    venue_id = -1
+    venue_id = 0
     if config["output_json"]:
         if os.path.exists(os.path.join(config["outdir"], config["filename"])):
             with open(os.path.join(config["outdir"], config["filename"]), 'r') as file_handle:
                 log.info('previous file successfully loaded')
                 results = json.load(file_handle)
                 already_done = set(["{} {}".format(r["venue"], r["year"]) for r in results])
-    elif config["output_SQL"]:
+    if config["output_SQL"]:
         venues = db.get_venues()
         if venues:
-            venue_id = max([venue['id'] for venue in venues])
-            already_done.update(["{} {}".format(v["venue"], v["year"]) for v in venues])
-
+            for v in venues:
+                sql_venue_to_id["{} {}".format(v["venue"], v["year"])]=v['id']
 
     for target in config["targets"]:
         venue, years = target["venue"], target["years"]
         if years == "all":
             years = range(2000, date.today().year + 2)
         for year in years:
+            if "{} {}".format(venue, year) in sql_venue_to_id:
+                log.debug("Override Venue "+"{} {}".format(venue, year)+" from Database")
+                venue_id = sql_venue_to_id["{} {}".format(venue, year)]
+            else:
+                while venue_id in list(sql_venue_to_id.values()):
+                    venue_id += 1
+                sql_venue_to_id["{} {}".format(venue, year)]=venue_id
+                log.debug("New Venue " + "{} {}".format(venue, year)+" ID: "+str(venue_id))
             if "{} {}".format(venue, year) in already_done:
                 log.info("Skipping {} {}. Already done".format(venue, year))
+                for r in results:
+                    if r["year"] == year and r["venue"] == venue and r["venue_id"] != venue_id:
+                        log.info("Updating Venue ID: {} changed to {}".format(r["venue_id"], venue_id))
+                        r["venue_id"] = venue_id
                 continue
-            venue_id += 1
-
             log.info('Current Download: '+ venue+' in '+str(year))
+
             invitations_iterator = openreview.tools.iterget_invitations(client, regex="{}/{}/".format(venue, year), expired=True)
             invitations = [inv.id for inv in invitations_iterator]
             invitations = merge_invitations(invitations)
@@ -94,9 +106,9 @@ def crawl(client, config, log, db=None):
                         submissions[forum_idx_map[note["forum"]]]["notes"].append(note)
                     except KeyError:
                         log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
-            results.append({"venue_id":venue_id,"venue": venue, "year": year, "submissions": submissions})
+            results.append({"venue_id":sql_venue_to_id["{} {}".format(venue, year)],"venue": venue, "year": year, "submissions": submissions})
 
-    return (results,threads)
+    return results, threads
 
 
 def download_manager(n,original,venue_id,references,threads):
@@ -130,6 +142,7 @@ def download_manager(n,original,venue_id,references,threads):
                 threads.append(x)
                 x.start()
             else:download_revision_db(r['id'], client, db, n["id"])
+
 
 def merge_invitations(invitations):
     '''
@@ -165,6 +178,7 @@ def download_revision_fs(ref_id, pdf_name, client):
     with open(os.path.join(out_path, pdf_name), "wb") as file1:
         file1.write(file)
     log.info(pdf_name + ' downloaded')
+
 
 def download_revision_db(ref_id, client, db ,submission_id):
     '''
@@ -250,12 +264,11 @@ if __name__ == '__main__':
 
     db = None
     if config["output_SQL"]:
+        # db = SQLDatabase(dbtype='postgresql', dbname='dasp2')
         db = SQLDatabase(dbtype='sqlite', dbname='myCrawl')
         db.create_db_tables()
         db.start()
         #x = threading.Thread(target=db.run())
-
-
 
     results,threads = crawl(client, config, log,db)
     if config['acceptance_labeling']:
@@ -269,7 +282,7 @@ if __name__ == '__main__':
         db.insert_dict(results)
         db.close()
         while db.is_alive() :
-            log.info('SQL Insertion still active')
+            log.info('SQL Insertion still active, Queue Size: '+ str(db.q.qsize()))
             time.sleep(1)
 
     if config["output_json"]:

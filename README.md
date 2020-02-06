@@ -144,6 +144,12 @@ However for the following variables an explanation is quite useful:
 `ddate` (int, optional) – Deletion date
  ### UML Diagramm
  ![UML_Diagramm](Resources/UML.svg  "SQL Database Diagramm" )
+ ##Error Explaination
+ ###Request Error for ID ...
+ During our test period, this error has been raised when the internet bandwidth was to low to handle all Requests in a appropriate time. The Request gets a timeout and therefore raises an error.
+ 
+ If this error get raised, no data will be downloaded. Therefore the PDF for the Submission will be missing. 
+ 
  ## Threading
  If the threading is turned on in the configuration file, we are downloading the pdfs with multiple threads. 
  The number of threads is not limited so the download-capacity will be limited by your bandwidth and/or your hardware. 

@@ -10,7 +10,7 @@ import logging
 from sqlalchemy.dialects.postgresql import insert
 # Global Variables
 SQLITE                  = 'sqlite'
-POSTGRES                = 'postgres'
+POSTGRES                = 'postgresql'
 
 
 def object_as_dict(obj, skip_keys=[]):
@@ -23,11 +23,14 @@ class SQLDatabase(threading.Thread):
     # http://docs.sqlalchemy.org/en/latest/core/engines.html
     DB_ENGINE = {
         SQLITE: 'sqlite:///{DB}',
-        POSTGRES: '"postgres://SCHWAN:donotusethispassword@dasp.ukp.informatik.tu-darmstadt.de:22/dasp2"'
+        # requires ssh name@dasp.ukp.informatik.tu-darmstadt.de -L 5432:localhost:5432
+        # name and password as given for UKP server
+        # POSTGRES: 'postgresql://name:password@localhost:5432/dasp2'
     }
     # Main DB Connection Ref Obj
     db_engine = None
     Session = None
+
     def __init__(self, dbtype, username='', password='', dbname=''):
         threading.Thread.__init__(self)
         dbtype = dbtype.lower()
@@ -39,7 +42,6 @@ class SQLDatabase(threading.Thread):
             session_factory= sessionmaker(bind=self.db_engine)
             self.Session = scoped_session(session_factory)
             self.q = queue.Queue()
-            print(self.db_engine)
         else:
             print("DBType is not found in DB_ENGINE")
 
@@ -49,21 +51,17 @@ class SQLDatabase(threading.Thread):
             cmd,data= self.q.get()
             if cmd == "quit":
                 break
-            elif cmd == "add":
+            elif cmd == "add" or cmd == "merge":
                 session.merge(data)
                 session.commit()
-                self.log.debug('Value added to db')
-            elif cmd == "merge":
-                session.merge(data)
-                session.commit()
-                self.log.debug('Value merged into db')
+                self.log.debug('Value inserted into db')
             else:
                 print("Database Command not found: ",cmd)
 
 
     def close(self):
         self.q.put(("quit","quit"))
-        print('QUIT!')
+        self.log.info('Last Value has been added to the database queue')
 
     def command(self, cmd,data):
         # Kommando in Warteschlange einreihen
@@ -109,11 +107,10 @@ class SQLDatabase(threading.Thread):
         :return: Stores values into the database
         '''
 
-        for v_id, el in enumerate(dict):
-            self.command("merge", model.Venue(id=v_id,venue =el["venue"],year= el["year"]))
-
+        for el in dict:
+            self.command("merge", model.Venue(id=el["venue_id"],venue =el["venue"],year= el["year"]))
             for s in progressbar.progressbar(el["submissions"]):
-                sub_dict = {'id': s["id"], 'venue': v_id,
+                sub_dict = {'id': s["id"], 'venue': el["venue_id"],
                                     'original': s["original"], 'cdate': s["cdate"],
                                     'tcdate': s["tcdate"],
                                     'tmdate': s["tmdate"],
@@ -127,10 +124,12 @@ class SQLDatabase(threading.Thread):
                                     'referent': s["referent"], 'invitation': s["invitation"]
                                     , 'replyCount': s['details']["replyCount"],
                                     'submission_content': str(s["content"])}
-                for i,authorid in enumerate(s['content']["authorids"][:12]):
-                    sub_dict.update({'authorid'+str(i) : s['content']["authorids"][i]})
-                for i,authorid in enumerate(s['content']["authors"][:12]):
-                    sub_dict.update({'author' + str(i): s['content']["authors"][i]})
+                if "authorids" in s['content'].keys():
+                    for i,authorid in enumerate(s['content']["authorids"][:12]):
+                        sub_dict.update({'authorid'+str(i) : s['content']["authorids"][i]})
+                if "authors" in s['content'].keys():
+                    for i,authorid in enumerate(s['content']["authors"][:12]):
+                        sub_dict.update({'author' + str(i): s['content']["authors"][i]})
                 self.command("merge", model.Submission(**sub_dict))
 
                 for r in s['revisions']:
@@ -147,10 +146,12 @@ class SQLDatabase(threading.Thread):
                                     'forum': r["forum"],
                                     'referent': r["referent"], 'invitation': r["invitation"],
                                     'revision_content': str(r["content"])}
-                    for i, authorid in enumerate(r['content']["authorids"][:12]):
-                        rev_dict.update({'authorid' + str(i): r['content']["authorids"][i]})
-                    for i, authorid in enumerate(r['content']["authors"][:12]):
-                        rev_dict.update({'author' + str(i): r['content']["authors"][i]})
+                    if "authorids" in r['content'].keys():
+                        for i, authorid in enumerate(r['content']["authorids"][:12]):
+                            rev_dict.update({'authorid' + str(i): r['content']["authorids"][i]})
+                    if "authors" in r['content'].keys():
+                        for i, authorid in enumerate(r['content']["authors"][:12]):
+                            rev_dict.update({'author' + str(i): r['content']["authors"][i]})
                     self.command("merge", model.Revision(**rev_dict))
 
                 for n in s['notes']:
