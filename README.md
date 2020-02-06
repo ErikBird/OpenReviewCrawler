@@ -58,6 +58,7 @@ The boolean variable `skip_pdf_download` determines if the PDFs will be download
 
 The boolean variable `threaded_download` if the PDFs will be downloaded with threads. This increases the speed of the download significantly. However, this feature is developed to run robustly on linux machines. We advise Windows and OSX users to switch it off. 
 
+`logging_level` changes the logging level. Default is `INFO`.
 
 <a name="output"></a>
 ## Output

@@ -29,7 +29,7 @@ def crawl(client, config, log, db=None):
     if config["output_json"]:
         if os.path.exists(os.path.join(config["outdir"], config["filename"])):
             with open(os.path.join(config["outdir"], config["filename"]), 'r') as file_handle:
-                log.info('previous file successfully loaded')
+                log.debug('Previous file successfully loaded')
                 results = json.load(file_handle)
                 already_done = set(["{} {}".format(r["venue"], r["year"]) for r in results])
     if config["output_SQL"]:
@@ -65,7 +65,7 @@ def crawl(client, config, log, db=None):
             invitations = merge_invitations(invitations)
             submissions = []
             if not invitations:
-                log.warning('No data for '+ venue+' in '+str(year))
+                log.debug('No data for '+ venue+' in '+str(year))
             else:
                 forum_idx_map = {}
                 other_notes = []
@@ -75,7 +75,7 @@ def crawl(client, config, log, db=None):
                         # this is a bit of a hack but there is no general submission invitation but all submission invitations
                         # contain at least (S|s)ubmission somewhere
                         # check https://openreview-py.readthedocs.io/en/latest/get_submission_invitations.html to verify
-                        log.info("Submission invitation")
+                        log.debug("Submission invitation")
                         forum_idx_map.update({n["forum"]: i+len(submissions) for i, n in enumerate(notes)})
                         threads = list()
                         for n in progressbar.progressbar(notes):
@@ -105,7 +105,7 @@ def crawl(client, config, log, db=None):
                     try:
                         submissions[forum_idx_map[note["forum"]]]["notes"].append(note)
                     except KeyError:
-                        log.info("No submission found for note "+note["id"]+" in forum "+note["forum"])
+                        log.debug("No submission found for note "+note["id"]+" in forum "+note["forum"])
             results.append({"venue_id":sql_venue_to_id["{} {}".format(venue, year)],"venue": venue, "year": year, "submissions": submissions})
 
     return results, threads
@@ -231,7 +231,6 @@ def get_all_available_venues():
 
 if __name__ == '__main__':
     log = logging.getLogger("crawler")
-    log.setLevel(logging.INFO)
     progressbar.streams.wrap_stderr()
 
     parser = argparse.ArgumentParser()
@@ -250,6 +249,7 @@ if __name__ == '__main__':
 
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
     config = json.load(open(args.config))
+    log.setLevel(logging.getLevelName(config.get("logging_level", "INFO")))
     username = config["username"]
     if args.password is not None:
         password = args.password

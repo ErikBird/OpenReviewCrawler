@@ -24,7 +24,7 @@ def labeling(data_dict,log):
                 if "decision" in submission["content"]:
                     log.debug("{} has decision in content".format(submission["forum"]))
                     if "reject" in submission["content"]["decision"].lower() and "accept" in submission["content"]["decision"].lower():
-                        log.warn(
+                        log.debug(
                             "Forum {}. Tagged as unknown because decision is unclear. Decision: {}".format(
                                 submission["forum"], submission["content"]["decision"]))
                         submission["acceptance_tag"] = "unknown"
@@ -35,7 +35,7 @@ def labeling(data_dict,log):
                     else:
                         # exclude ICLR 2014 from this choice
                         if not (venue_year["venue"] == "ICLR.cc" and venue_year["year"] == 2014):
-                            log.warn(
+                            log.debug(
                                 "Forum {}. Tagged as accepted because not rejected. This might be wrong. Decision: {}".format(
                                     submission["forum"], submission["content"]["decision"]))
                             submission["acceptance_tag"] = "accepted"
@@ -58,7 +58,7 @@ def labeling(data_dict,log):
                                 # Naming varies for the fild. Both decision and acceptance decision exist.
                                 if "decision" in key.lower():
                                     if "reject" in note["content"][key].lower() and "accept" in note["content"][key].lower():
-                                        log.warn(
+                                        log.debug(
                                             "Forum {}. Tagged as unknown because decision is unclear. Decision: {}".format(
                                                 submission["forum"], note["content"][key]))
                                         submission["acceptance_tag"] = "unknown"
@@ -67,7 +67,7 @@ def labeling(data_dict,log):
                                     elif "accept" in note["content"][key].lower():
                                         submission["acceptance_tag"] = "accepted"
                                     else:
-                                        log.warn(
+                                        log.debug(
                                             "Forum {}. Tagged as accepted because not rejected. This might be wrong. Decision: {}".format(
                                                 submission["forum"], note["content"][key]))
                                         submission["acceptance_tag"] = "accepted"
@@ -84,14 +84,14 @@ def labeling(data_dict,log):
                                     submission["acceptance_tag"] = "accepted"
                                 else:
                                     submission["acceptance_tag"] = "unknown"
-                                    log.warn("Forum {}. Meta review without decision".format(submission["forum"]))
+                                    log.debug("Forum {}. Meta review without decision".format(submission["forum"]))
                             except KeyError:
                                 submission["acceptance_tag"] = "unknown"
-                                log.warn("Forum {}. Unexpected format of a mew review note.".format(submission["forum"]))
+                                log.debug("Forum {}. Unexpected format of a meta review note.".format(submission["forum"]))
                 # Some venues use simple comments for the decision. We ignore them because the invitation is not
                 # exclusively used for the decision so the false classification risk is too high.
                 if not "acceptance_tag" in submission:
-                    log.info("Forum {}. No decision could be found.".format(submission["forum"]))
+                    log.debug("Forum {}. No decision could be found.".format(submission["forum"]))
                     submission["acceptance_tag"] = "unknown"
     return data_dict
 
