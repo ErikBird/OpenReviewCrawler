@@ -74,7 +74,7 @@ Submissions with 30 or more comments are ignored as outliers.
 ![](../resources/comment_distribution.svg )
 
 #### Distribution within each Venue over all Years
-Distributions are displayed with violin plots. The middle line marks the median.  
+Distributions are displayed with violin plots. Top and bottom line mark the highest/ lowest value and the middle line marks the median.  
 ![](../resources/venue_comment_distribution.svg )
 
 #### Distribution within each Venue & Year

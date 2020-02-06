@@ -11,6 +11,7 @@ Both projects are created by students of the Technische Universität Darmstadt a
 5. [Output](output)
 6. [Labeling Approach](#labeling)
 7. [Relational Database](#database)
+8. [Statistics of the the Data](#stats)
 
 <a name="api"></a>
 ## About the OpenReview API Model
