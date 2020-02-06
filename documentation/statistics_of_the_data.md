@@ -1,4 +1,4 @@
-# Statistics of the the Data
+# Statistics of the Data
 We consider these questions for our data exploration.
 
 About total numbers:
@@ -7,7 +7,7 @@ About total numbers:
 - How many comments are reviews? What 'type' do the other comments have?
 
 About class distributions:
-- What part of submissions are rejected in each venue? And which venues does not have an acceptance decision at all?
+- What part of submissions are rejected in each venue? And which venues do not have an acceptance decision at all?
 - Which venues have relatively many reviews compared to other comment types?
 
 About the distribution of submissions over the venues:
@@ -15,11 +15,11 @@ About the distribution of submissions over the venues:
 - Does a venue get more submission each year?
 
 About comments per submission:
-- How many comments does an submission get on average?
+- How many comments does a submission get on average?
 - Which venues have the most comments? Which has the most comments per submission? 
 
 About revision per submission:
-- How many revisions are uploaded for an submission on average?
+- How many revisions are uploaded for a submission on average?
 - Which venue has the most revisions per submission? 
 
 The data was collected with [config_all.json](../config_all.json) on 03.02.2020. 
