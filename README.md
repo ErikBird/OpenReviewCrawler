@@ -95,6 +95,12 @@ The result is written in the input JSON by default, but a new output can be spec
 
 ``python acceptance_labeling.py --help`` will display all possible arguments.
 
+
+If an existing json datafile is placed in the output path, this file is reloaded and all existing venues are skipped. 
+
+Otherwise if venues are already stored in the SQL Database, these venues will be overwritten and not skipped. However we made sure that the ID Keys remain the same. This enables us to **update only certain venues without loading all venues from the database**.   
+
+
 ### Labeling Approach
 The labeling is done with string matching of the invitation names and note content.
 
