@@ -1,7 +1,8 @@
 # OpenReviewCrawler
-This project is a crawler for OpenReview submissions. It is the base for [another project](https://github.com/movabo/science-revisioning) that wants to match comments and reviews to specific changes between revisions.
+This project is a crawler for OpenReview submissions. 
+It is the base for another project that wants to match comments and reviews to specific changes between revisions.
 
-Both projects are created by students of the Technische Universität Darmstadt as a course project for the [UKP lab](https://www.informatik.tu-darmstadt.de/ukp/ukp_home/index.en.jsp).
+This project was created by Lena Held, Erik Schwan and Gregor Geigle, three students of the Technische Universität Darmstadt as a course project for the [UKP lab](https://www.informatik.tu-darmstadt.de/ukp/ukp_home/index.en.jsp).
 
 ## Table of Contents
 1. [About the OpenReview API Model](#api)
