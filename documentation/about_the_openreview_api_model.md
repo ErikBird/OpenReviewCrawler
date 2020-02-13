@@ -57,7 +57,7 @@ The format is "key": "value" for the examples.
 
 "title": "The paper title",  
 "abstract": "The abstract of the paper"  
-"tl;dr": "An even shorter summary. Some venues use this."
+"tl;dr": "An even shorter summary. Some venues use this."  
 "authorids": \["jon.doe@example.de", "jane.doe@example.de"]  
 "authors": \["Jon Doe", "Jane Doe"]  
 "keywords": \["example", "not real"]

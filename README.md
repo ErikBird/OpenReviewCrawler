@@ -15,6 +15,11 @@ This project was created by Lena Held, Erik Schwan and Gregor Geigle, three stud
 8. [Comments as Tree](#tree)
 9. [Statistics of the the Data](#stats)
 
+## License for the Data
+There exists no license for the data by OpenReview as far as we are aware. 
+Neither [https://openreview.net/terms](https://openreview.net/terms) nor [https://openreview.net/about](https://openreview.net/about) give any licensing information.
+
+
 <a name="api"></a>
 ## About the OpenReview API Model
 We present the way OpenReview API models the data with invitations, notes and content in-depth [here](documentation/about_the_openreview_api_model.md).  
@@ -51,7 +56,7 @@ The boolean variable `acceptance_labeling` determines if the data will be annota
 
 The boolean variable `output_json` determines if the output will be saved as json file in the `outdir` with as `filename`.
 
-The boolean variable `output_SQL` determines if the data will be inserted in the database which is configured [here](example_output.json).
+The boolean variable `output_SQL` determines if the data will be inserted in the database which is configured [here](database/database.py).
 
 `output_SQL` and `output_json` are independent from each other. Both can be true.
 

@@ -40,13 +40,14 @@ All values and graphics are created with [statistics_from_json.py](../statistics
 
 #### Of the Comments
 
-[Definition of types used here:
+Definition of types used here:
 - Review: 'review' in invitation
 - Decision 'decision|acceptance' in invitation
 - Plain Comment: 'comment' in invitation
 - Other: all other comment notes
 
-These types cover most of the comments. Some notes might be 'misclassified' but we do not really care for this here.]
+These types cover most of the comments. Some notes might be 'misclassified' but we do not really care for this here.
+We are only interested in a rough overview.
 
 |Plain Comment|Review|Decision|Other   |
 |---          |---   |---     |---|
