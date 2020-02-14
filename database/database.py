@@ -31,13 +31,14 @@ class SQLDatabase(threading.Thread):
     db_engine = None
     Session = None
 
-    def __init__(self, dbtype, username='', password='', dbname=''):
+    def __init__(self, dbtype=None, username='', password='', dbname='', engine_url=''):
         threading.Thread.__init__(self)
         dbtype = dbtype.lower()
-        if dbtype in self.DB_ENGINE.keys():
+        if dbtype in self.DB_ENGINE.keys() or engine_url:
             self.log = logging.getLogger("crawler")
             self.model = model
-            engine_url = self.DB_ENGINE[dbtype].format(DB=dbname)
+            if not engine_url:
+                engine_url = self.DB_ENGINE[dbtype].format(DB=dbname)
             self.db_engine = create_engine(engine_url)
             session_factory= sessionmaker(bind=self.db_engine)
             self.Session = scoped_session(session_factory)
