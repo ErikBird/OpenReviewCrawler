@@ -30,7 +30,7 @@ The notes can be retrieved by querying for the invitation.
 
 The invitation decides if a note is a submission, comment, review, acceptance decision or something different.
 Administrative tasks like the ability to withdraw an submission is handled with an invitation, as well. 
-A withdrawn papern is then found at this invitation.
+A withdrawn paper is then found at this invitation.
 
 Since invitations are created by the venues, they can have different sets of invitations for e.g. different workshops at the venue.  
 The invitations can also change between the years for the same venue.
