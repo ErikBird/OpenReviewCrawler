@@ -25,4 +25,5 @@ config.json
 out.json
 *.pdf
 
+
 !.idea/
